@@ -1,0 +1,177 @@
+{
+  "fetchedAt": "2026-03-17T21:26:23.061Z",
+  "block": 80607326,
+  "stakers": [
+    {
+      "a": "0xa344C1401D8fdEC5F842E07a488006c6ec6A26b9",
+      "n": null,
+      "t": "holder",
+      "moatStake": 90000000,
+      "ebProto": 0,
+      "ebStake": 0,
+      "totalStaked": 90000000
+    },
+    {
+      "a": "0xB0920227B49a43EC7259bF070a1fC3E52c56084D",
+      "n": null,
+      "t": "holder",
+      "moatStake": 20048032,
+      "ebProto": 0,
+      "ebStake": 0,
+      "totalStaked": 20048032
+    },
+    {
+      "a": "0x0F6A81BA40E410b34c74BB4d7D5dFFaf180d3471",
+      "n": null,
+      "t": "holder",
+      "moatStake": 12358575,
+      "ebProto": 0,
+      "ebStake": 0,
+      "totalStaked": 12358575
+    },
+    {
+      "a": "0xeDd138F8b6652950d79349169F9E65B603BdfB05",
+      "n": null,
+      "t": "holder",
+      "moatStake": 8085870,
+      "ebProto": 0,
+      "ebStake": 0,
+      "totalStaked": 8085870
+    },
+    {
+      "a": "0xE6f20b9906455451A5082bDCe5E20b760ab40ae2",
+      "n": null,
+      "t": "holder",
+      "moatStake": 4523697,
+      "ebProto": 0,
+      "ebStake": 0,
+      "totalStaked": 4523697
+    },
+    {
+      "a": "0xd26C04bE22Cb25c7727504daF4304919cA26e301",
+      "n": null,
+      "t": "holder",
+      "moatStake": 3750200,
+      "ebProto": 0,
+      "ebStake": 0,
+      "totalStaked": 3750200
+    },
+    {
+      "a": "0x4ddD3E8549C08a6f88D26F367F13317eFd570C22",
+      "n": null,
+      "t": "holder",
+      "moatStake": 3692271,
+      "ebProto": 0,
+      "ebStake": 0,
+      "totalStaked": 3692271
+    },
+    {
+      "a": "0xFC545C66A6257Be71DD643D4A30b96f88600941C",
+      "n": null,
+      "t": "holder",
+      "moatStake": 2050260,
+      "ebProto": 0,
+      "ebStake": 0,
+      "totalStaked": 2050260
+    },
+    {
+      "a": "0x0bBf95F2414B772Ab973A331Fd84Da46aeB5483a",
+      "n": null,
+      "t": "holder",
+      "moatStake": 1500200,
+      "ebProto": 0,
+      "ebStake": 0,
+      "totalStaked": 1500200
+    },
+    {
+      "a": "0x884964337F9B1e0D18b5E07fE738802E6dE1ca9d",
+      "n": null,
+      "t": "holder",
+      "moatStake": 1406250,
+      "ebProto": 0,
+      "ebStake": 0,
+      "totalStaked": 1406250
+    },
+    {
+      "a": "0x4EA05E364EAb819b3Ae950317A66fe9d191dF55d",
+      "n": null,
+      "t": "holder",
+      "moatStake": 1325000,
+      "ebProto": 0,
+      "ebStake": 0,
+      "totalStaked": 1325000
+    },
+    {
+      "a": "0xE2a93c90563b2895543C348B5AC66Cd3bDeEa127",
+      "n": null,
+      "t": "holder",
+      "moatStake": 1250000,
+      "ebProto": 0,
+      "ebStake": 0,
+      "totalStaked": 1250000
+    },
+    {
+      "a": "0x785a9369CF7918C0a295809962EAF9d8FAbde98D",
+      "n": null,
+      "t": "holder",
+      "moatStake": 1200591,
+      "ebProto": 0,
+      "ebStake": 0,
+      "totalStaked": 1200591
+    },
+    {
+      "a": "0x9c5262E19B1235e0D21eF132DE4F2BecE2b3E92D",
+      "n": null,
+      "t": "holder",
+      "moatStake": 1000000,
+      "ebProto": 0,
+      "ebStake": 0,
+      "totalStaked": 1000000
+    },
+    {
+      "a": "0x10a6B3F80bC4405260c1ac85Ef0b4C1f86C039b5",
+      "n": null,
+      "t": "holder",
+      "moatStake": 0,
+      "ebProto": 670255,
+      "ebStake": 0,
+      "totalStaked": 670255
+    },
+    {
+      "a": "0x474DcFB22B651A1a8e860064EDa2A16D5a5A7c3a",
+      "n": null,
+      "t": "holder",
+      "moatStake": 483353,
+      "ebProto": 0,
+      "ebStake": 0,
+      "totalStaked": 483353
+    },
+    {
+      "a": "0xd93BAb51CD83881cE1228650B9798EE8FC3E746c",
+      "n": null,
+      "t": "holder",
+      "moatStake": 164798,
+      "ebProto": 0,
+      "ebStake": 0,
+      "totalStaked": 164798
+    },
+    {
+      "a": "0xfE85C993605Dd02FFD2b0B7db041f51071e45cd1",
+      "n": "Treasury",
+      "t": "team",
+      "moatStake": 0,
+      "ebProto": 0,
+      "ebStake": 147431,
+      "totalStaked": 147431
+    },
+    {
+      "a": "0x8B4A106521AE96a41B2Ec405d3FCb05eaf4A7C4f",
+      "n": null,
+      "t": "holder",
+      "moatStake": 91590,
+      "ebProto": 0,
+      "ebStake": 0,
+      "totalStaked": 91590
+    }
+  ]
+}

@@ -1465,6 +1465,127 @@
                 <span class="info-icon">ℹ️</span>
                 <span>Dane on-chain z <a href="https://snowscan.xyz/token/0x22683bbadd01473969f23709879187705a253763" target="_blank" rel="noopener" style="color: var(--accent-blue);">Snowscan</a> — 679 holderów. CA LIL: <code style="font-size:10px; color: var(--text-muted);">0x2268...3763</code></span>
             </div>
+
+            <!-- ══════ LOCK POSITIONS TABLE ══════ -->
+            <div class="holders-card" style="margin-top:32px;">
+                <div class="holders-card-header">
+                    <h3>🔒 Lock Positions <span class="h-count" id="lockCount"></span></h3>
+                </div>
+                <div class="holders-toolbar">
+                    <div class="holders-search-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <input type="text" class="holders-search" id="lockSearch" placeholder="Szukaj adresu 0x…" oninput="filterLocks()">
+                    </div>
+                </div>
+                <div class="holders-table-scroll">
+                    <table class="holders-tbl">
+                        <colgroup>
+                            <col style="width:36px">
+                            <col style="width:36%">
+                            <col style="width:22%">
+                            <col style="width:14%">
+                            <col style="width:14%">
+                            <col style="width:14%">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th class="col-rank">#</th>
+                                <th>Address</th>
+                                <th class="col-bal sortable" onclick="sortLocks('totalLocked')" style="text-align:right">Locked LIL <span class="sort-arrow">▼</span></th>
+                                <th style="text-align:center">Locks</th>
+                                <th style="text-align:center">Duration</th>
+                                <th style="text-align:center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lockBody"></tbody>
+                    </table>
+                </div>
+                <div class="holders-pager" id="lockPager"></div>
+            </div>
+
+            <!-- ══════ STAKE POSITIONS TABLE ══════ -->
+            <div class="holders-card" style="margin-top:32px;">
+                <div class="holders-card-header">
+                    <h3>📊 Stake Positions <span class="h-count" id="stakeCount"></span></h3>
+                </div>
+                <div class="holders-toolbar">
+                    <div class="holders-search-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <input type="text" class="holders-search" id="stakeSearch" placeholder="Szukaj adresu 0x…" oninput="filterStakes()">
+                    </div>
+                </div>
+                <div class="holders-table-scroll">
+                    <table class="holders-tbl">
+                        <colgroup>
+                            <col style="width:36px">
+                            <col style="width:36%">
+                            <col style="width:16%">
+                            <col style="width:16%">
+                            <col style="width:16%">
+                            <col style="width:16%">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th class="col-rank">#</th>
+                                <th>Address</th>
+                                <th class="col-bal sortable" onclick="sortStakes('moatStake')" style="text-align:right">Moat Stake <span class="sort-arrow">⇅</span></th>
+                                <th style="text-align:right">EB Protocol <span class="sort-arrow">⇅</span></th>
+                                <th style="text-align:right">EB Staking <span class="sort-arrow">⇅</span></th>
+                                <th class="sortable" onclick="sortStakes('totalStaked')" style="text-align:right">Total <span class="sort-arrow">▼</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="stakeBody"></tbody>
+                    </table>
+                </div>
+                <div class="holders-pager" id="stakePager"></div>
+            </div>
+
+            <!-- ══════ COMBINED PORTFOLIO TABLE ══════ -->
+            <div class="holders-card" style="margin-top:32px;">
+                <div class="holders-card-header">
+                    <h3>📋 Portfolio (bez contractów) <span class="h-count" id="portfolioCount"></span></h3>
+                </div>
+                <div class="holders-toolbar">
+                    <div class="holders-search-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <input type="text" class="holders-search" id="portfolioSearch" placeholder="Szukaj adresu 0x…" oninput="filterPortfolio()">
+                    </div>
+                    <label class="holders-toggle" title="Ukryj adresy z zerowym saldem">
+                        <input type="checkbox" id="hideZeroPortfolio" onchange="filterPortfolio()" checked>
+                        <span class="holders-toggle-track"></span>
+                        <span>Ukryj zerowe</span>
+                    </label>
+                </div>
+                <div class="holders-table-scroll">
+                    <table class="holders-tbl">
+                        <colgroup>
+                            <col style="width:36px">
+                            <col style="width:32%">
+                            <col style="width:17%">
+                            <col style="width:17%">
+                            <col style="width:17%">
+                            <col style="width:17%">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th class="col-rank">#</th>
+                                <th>Address</th>
+                                <th style="text-align:right">Wallet</th>
+                                <th style="text-align:right">🔒 Locked</th>
+                                <th style="text-align:right">📊 Staked</th>
+                                <th class="sortable" onclick="sortPortfolio('total')" style="text-align:right">Total <span class="sort-arrow">▼</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="portfolioBody"></tbody>
+                    </table>
+                </div>
+                <div class="holders-pager" id="portfolioPager"></div>
+            </div>
+
+            <div class="info-bar" style="margin-top: 12px;">
+                <span class="info-icon">⛓️</span>
+                <span>Dane on-chain z Avalanche C-Chain — MultiLockMoat + EarningsBay contracts</span>
+            </div>
         </div><!-- /view-holders -->
     </div>
 
@@ -1891,6 +2012,164 @@
                     }, 1200);
                 }
             });
+        }
+
+        // ══════════════════════════════════════════════
+        // ON-CHAIN DATA (fetched 17.03.2026)
+        // ══════════════════════════════════════════════
+        const LOCK_DATA = [{"a":"0xF1B1CAE350ddF76b6Dcd75C21551DeD08d26968e","n":null,"t":"holder","totalLocked":42429079,"lockCount":1,"locks":[{"amount":42429079,"endTs":1793803420,"durationDays":235}]},{"a":"0x88f470733100c2bf068a88B218455bdC73049AB1","n":null,"t":"holder","totalLocked":18365727,"lockCount":1,"locks":[{"amount":18365727,"endTs":1774867009,"durationDays":14}]},{"a":"0x8566a6a3F75969270B98831B1486AB5D9D9fc389","n":null,"t":"holder","totalLocked":14548108,"lockCount":2,"locks":[{"amount":14290354,"endTs":1781979942,"durationDays":98},{"amount":257754,"endTs":1804206285,"durationDays":355}]},{"a":"0x785a9369CF7918C0a295809962EAF9d8FAbde98D","n":null,"t":"holder","totalLocked":13958860,"lockCount":3,"locks":[{"amount":10987088,"endTs":1805228400,"durationDays":365},{"amount":1981181,"endTs":1789252456,"durationDays":180},{"amount":990591,"endTs":1836806523,"durationDays":730}]},{"a":"0xB0920227B49a43EC7259bF070a1fC3E52c56084D","n":null,"t":"holder","totalLocked":10000000,"lockCount":1,"locks":[{"amount":10000000,"endTs":1789223920,"durationDays":180}]},{"a":"0xE9b3D86924e42aC51d9b932Cc7397F14eF7d58E4","n":null,"t":"holder","totalLocked":6475000,"lockCount":1,"locks":[{"amount":6475000,"endTs":1774529671,"durationDays":12}]},{"a":"0xbBddff6EeDc68aF31929cB66DD5F7B4043014BD4","n":null,"t":"holder","totalLocked":5825460,"lockCount":1,"locks":[{"amount":5825460,"endTs":1776272139,"durationDays":30}]},{"a":"0xD14EbfBD0De7F4300C9239f67A252b33311844D4","n":null,"t":"holder","totalLocked":5490448,"lockCount":2,"locks":[{"amount":4948507,"endTs":1781720613,"durationDays":95},{"amount":541941,"endTs":1804206224,"durationDays":355}]},{"a":"0x0F6A81BA40E410b34c74BB4d7D5dFFaf180d3471","n":null,"t":"holder","totalLocked":4119525,"lockCount":1,"locks":[{"amount":4119525,"endTs":1774004699,"durationDays":7}]},{"a":"0x6B552C0D0D96c18751dDfCBd5110C852480cac9e","n":null,"t":"holder","totalLocked":2499999,"lockCount":1,"locks":[{"amount":2499999,"endTs":1836832748,"durationDays":730}]},{"a":"0xfFcb681b7B779357B343E16cA875163Ed1063269","n":null,"t":"holder","totalLocked":2113769,"lockCount":1,"locks":[{"amount":2113769,"endTs":1778689641,"durationDays":60}]},{"a":"0xFC545C66A6257Be71DD643D4A30b96f88600941C","n":null,"t":"holder","totalLocked":2050260,"lockCount":1,"locks":[{"amount":2050260,"endTs":1776158677,"durationDays":30}]},{"a":"0x7B45fAE0991c87dCf0A821a038C3cea9560c4c95","n":null,"t":"holder","totalLocked":1961672,"lockCount":1,"locks":[{"amount":1961672,"endTs":1805254392,"durationDays":365}]},{"a":"0x884964337F9B1e0D18b5E07fE738802E6dE1ca9d","n":null,"t":"holder","totalLocked":1875000,"lockCount":1,"locks":[{"amount":1875000,"endTs":1789239989,"durationDays":180}]},{"a":"0x4EA05E364EAb819b3Ae950317A66fe9d191dF55d","n":null,"t":"holder","totalLocked":1325000,"lockCount":1,"locks":[{"amount":1325000,"endTs":1836631953,"durationDays":730}]},{"a":"0xE2a93c90563b2895543C348B5AC66Cd3bDeEa127","n":null,"t":"holder","totalLocked":1250000,"lockCount":1,"locks":[{"amount":1250000,"endTs":1804686288,"durationDays":360}]},{"a":"0x6e0d0539986d626a479C66F4afEf97ea64C2307A","n":null,"t":"holder","totalLocked":1171281,"lockCount":1,"locks":[{"amount":1171281,"endTs":1779111812,"durationDays":65}]},{"a":"0x474DcFB22B651A1a8e860064EDa2A16D5a5A7c3a","n":null,"t":"holder","totalLocked":966706,"lockCount":1,"locks":[{"amount":966706,"endTs":1805126921,"durationDays":365}]},{"a":"0xd211d55B80f650d63d443bb92b312ACd85606B2d","n":null,"t":"holder","totalLocked":929398,"lockCount":1,"locks":[{"amount":929398,"endTs":1776174838,"durationDays":31}]},{"a":"0x8B4A106521AE96a41B2Ec405d3FCb05eaf4A7C4f","n":null,"t":"holder","totalLocked":200000,"lockCount":1,"locks":[{"amount":200000,"endTs":1805209506,"durationDays":365}]},{"a":"0x07737abA415bD610700663B633c4bAbB827F38AA","n":null,"t":"holder","totalLocked":152388,"lockCount":1,"locks":[{"amount":152388,"endTs":1785775402,"durationDays":142}]},{"a":"0x488be5DED711572F9fB8568F3013e6E907506B6f","n":null,"t":"holder","totalLocked":25000,"lockCount":1,"locks":[{"amount":25000,"endTs":1836784739,"durationDays":730}]}];
+
+        const STAKE_DATA = [{"a":"0xa344C1401D8fdEC5F842E07a488006c6ec6A26b9","n":null,"t":"holder","moatStake":90000000,"ebProto":0,"ebStake":0,"totalStaked":90000000},{"a":"0xB0920227B49a43EC7259bF070a1fC3E52c56084D","n":null,"t":"holder","moatStake":20048032,"ebProto":0,"ebStake":0,"totalStaked":20048032},{"a":"0x0F6A81BA40E410b34c74BB4d7D5dFFaf180d3471","n":null,"t":"holder","moatStake":12358575,"ebProto":0,"ebStake":0,"totalStaked":12358575},{"a":"0xeDd138F8b6652950d79349169F9E65B603BdfB05","n":null,"t":"holder","moatStake":8085870,"ebProto":0,"ebStake":0,"totalStaked":8085870},{"a":"0xE6f20b9906455451A5082bDCe5E20b760ab40ae2","n":null,"t":"holder","moatStake":4523697,"ebProto":0,"ebStake":0,"totalStaked":4523697},{"a":"0xd26C04bE22Cb25c7727504daF4304919cA26e301","n":null,"t":"holder","moatStake":3750200,"ebProto":0,"ebStake":0,"totalStaked":3750200},{"a":"0x4ddD3E8549C08a6f88D26F367F13317eFd570C22","n":null,"t":"holder","moatStake":3692271,"ebProto":0,"ebStake":0,"totalStaked":3692271},{"a":"0xFC545C66A6257Be71DD643D4A30b96f88600941C","n":null,"t":"holder","moatStake":2050260,"ebProto":0,"ebStake":0,"totalStaked":2050260},{"a":"0x0bBf95F2414B772Ab973A331Fd84Da46aeB5483a","n":null,"t":"holder","moatStake":1500200,"ebProto":0,"ebStake":0,"totalStaked":1500200},{"a":"0x884964337F9B1e0D18b5E07fE738802E6dE1ca9d","n":null,"t":"holder","moatStake":1406250,"ebProto":0,"ebStake":0,"totalStaked":1406250},{"a":"0x4EA05E364EAb819b3Ae950317A66fe9d191dF55d","n":null,"t":"holder","moatStake":1325000,"ebProto":0,"ebStake":0,"totalStaked":1325000},{"a":"0xE2a93c90563b2895543C348B5AC66Cd3bDeEa127","n":null,"t":"holder","moatStake":1250000,"ebProto":0,"ebStake":0,"totalStaked":1250000},{"a":"0x785a9369CF7918C0a295809962EAF9d8FAbde98D","n":null,"t":"holder","moatStake":1200591,"ebProto":0,"ebStake":0,"totalStaked":1200591},{"a":"0x9c5262E19B1235e0D21eF132DE4F2BecE2b3E92D","n":null,"t":"holder","moatStake":1000000,"ebProto":0,"ebStake":0,"totalStaked":1000000},{"a":"0x10a6B3F80bC4405260c1ac85Ef0b4C1f86C039b5","n":null,"t":"holder","moatStake":0,"ebProto":670255,"ebStake":0,"totalStaked":670255},{"a":"0x474DcFB22B651A1a8e860064EDa2A16D5a5A7c3a","n":null,"t":"holder","moatStake":483353,"ebProto":0,"ebStake":0,"totalStaked":483353},{"a":"0xd93BAb51CD83881cE1228650B9798EE8FC3E746c","n":null,"t":"holder","moatStake":164798,"ebProto":0,"ebStake":0,"totalStaked":164798},{"a":"0xfE85C993605Dd02FFD2b0B7db041f51071e45cd1","n":"Treasury","t":"team","moatStake":0,"ebProto":0,"ebStake":147431,"totalStaked":147431},{"a":"0x8B4A106521AE96a41B2Ec405d3FCb05eaf4A7C4f","n":null,"t":"holder","moatStake":91590,"ebProto":0,"ebStake":0,"totalStaked":91590}];
+
+        const PORTFOLIO_DATA = [{"a":"0xa344C1401D8fdEC5F842E07a488006c6ec6A26b9","n":null,"t":"holder","wallet":0,"locked":0,"staked":90000000,"total":90000000},{"a":"0xF1B1CAE350ddF76b6Dcd75C21551DeD08d26968e","n":null,"t":"holder","wallet":0,"locked":42429079,"staked":0,"total":42429079},{"a":"0xB0920227B49a43EC7259bF070a1fC3E52c56084D","n":null,"t":"holder","wallet":0,"locked":10000000,"staked":20048032,"total":30048032},{"a":"0x88f470733100c2bf068a88B218455bdC73049AB1","n":null,"t":"holder","wallet":0,"locked":18365727,"staked":0,"total":18365727},{"a":"0x0F6A81BA40E410b34c74BB4d7D5dFFaf180d3471","n":null,"t":"holder","wallet":0,"locked":4119525,"staked":12358575,"total":16478100},{"a":"0x785a9369CF7918C0a295809962EAF9d8FAbde98D","n":null,"t":"holder","wallet":0,"locked":13958860,"staked":1200591,"total":15159451},{"a":"0x8566a6a3F75969270B98831B1486AB5D9D9fc389","n":null,"t":"holder","wallet":0,"locked":14548108,"staked":0,"total":14548108},{"a":"0xeDd138F8b6652950d79349169F9E65B603BdfB05","n":null,"t":"holder","wallet":0,"locked":0,"staked":8085870,"total":8085870},{"a":"0xE9b3D86924e42aC51d9b932Cc7397F14eF7d58E4","n":null,"t":"holder","wallet":0,"locked":6475000,"staked":0,"total":6475000},{"a":"0xbBddff6EeDc68aF31929cB66DD5F7B4043014BD4","n":null,"t":"holder","wallet":0,"locked":5825460,"staked":0,"total":5825460},{"a":"0xD14EbfBD0De7F4300C9239f67A252b33311844D4","n":null,"t":"holder","wallet":0,"locked":5490448,"staked":0,"total":5490448},{"a":"0xE6f20b9906455451A5082bDCe5E20b760ab40ae2","n":null,"t":"holder","wallet":0,"locked":0,"staked":4523697,"total":4523697},{"a":"0xFC545C66A6257Be71DD643D4A30b96f88600941C","n":null,"t":"holder","wallet":0,"locked":2050260,"staked":2050260,"total":4100520},{"a":"0xd26C04bE22Cb25c7727504daF4304919cA26e301","n":null,"t":"holder","wallet":0,"locked":0,"staked":3750200,"total":3750200},{"a":"0x4ddD3E8549C08a6f88D26F367F13317eFd570C22","n":null,"t":"holder","wallet":0,"locked":0,"staked":3692271,"total":3692271},{"a":"0x884964337F9B1e0D18b5E07fE738802E6dE1ca9d","n":null,"t":"holder","wallet":0,"locked":1875000,"staked":1406250,"total":3281250},{"a":"0x4EA05E364EAb819b3Ae950317A66fe9d191dF55d","n":null,"t":"holder","wallet":0,"locked":1325000,"staked":1325000,"total":2650000},{"a":"0xE2a93c90563b2895543C348B5AC66Cd3bDeEa127","n":null,"t":"holder","wallet":0,"locked":1250000,"staked":1250000,"total":2500000},{"a":"0x6B552C0D0D96c18751dDfCBd5110C852480cac9e","n":null,"t":"holder","wallet":0,"locked":2499999,"staked":0,"total":2499999},{"a":"0xfFcb681b7B779357B343E16cA875163Ed1063269","n":null,"t":"holder","wallet":0,"locked":2113769,"staked":0,"total":2113769},{"a":"0x7B45fAE0991c87dCf0A821a038C3cea9560c4c95","n":null,"t":"holder","wallet":0,"locked":1961672,"staked":0,"total":1961672},{"a":"0x0bBf95F2414B772Ab973A331Fd84Da46aeB5483a","n":null,"t":"holder","wallet":0,"locked":0,"staked":1500200,"total":1500200},{"a":"0x474DcFB22B651A1a8e860064EDa2A16D5a5A7c3a","n":null,"t":"holder","wallet":0,"locked":966706,"staked":483353,"total":1450059},{"a":"0x6e0d0539986d626a479C66F4afEf97ea64C2307A","n":null,"t":"holder","wallet":0,"locked":1171281,"staked":0,"total":1171281},{"a":"0x9c5262E19B1235e0D21eF132DE4F2BecE2b3E92D","n":null,"t":"holder","wallet":0,"locked":0,"staked":1000000,"total":1000000},{"a":"0xd211d55B80f650d63d443bb92b312ACd85606B2d","n":null,"t":"holder","wallet":0,"locked":929398,"staked":0,"total":929398},{"a":"0x10a6B3F80bC4405260c1ac85Ef0b4C1f86C039b5","n":null,"t":"holder","wallet":0,"locked":0,"staked":670255,"total":670255},{"a":"0x8B4A106521AE96a41B2Ec405d3FCb05eaf4A7C4f","n":null,"t":"holder","wallet":0,"locked":200000,"staked":91590,"total":291590},{"a":"0xd93BAb51CD83881cE1228650B9798EE8FC3E746c","n":null,"t":"holder","wallet":0,"locked":0,"staked":164798,"total":164798},{"a":"0x07737abA415bD610700663B633c4bAbB827F38AA","n":null,"t":"holder","wallet":0,"locked":152388,"staked":0,"total":152388},{"a":"0xfE85C993605Dd02FFD2b0B7db041f51071e45cd1","n":"Treasury","t":"team","wallet":0,"locked":0,"staked":147431,"total":147431},{"a":"0x488be5DED711572F9fB8568F3013e6E907506B6f","n":null,"t":"holder","wallet":0,"locked":25000,"staked":0,"total":25000}];
+
+        // ── Generic table engine ──
+        function makeAddr(h) {
+            const snowUrl = `https://snowscan.xyz/address/${h.a}`;
+            const dbUrl = `https://debank.com/profile/${h.a}`;
+            const label = h.n || shortAddr(h.a);
+            const cls = h.n ? 'addr-link' : 'addr-link addr-hex';
+            return `<span class="addr-wrap">` +
+                `<a href="${snowUrl}" target="_blank" onclick="event.stopPropagation()" class="${cls}">${label}</a>` +
+                `<span class="copy-addr-icon" onclick="event.stopPropagation();copyAddr('${h.a}',this)" title="Kopiuj">${COPY_SVG}</span>` +
+                `<a href="${dbUrl}" target="_blank" onclick="event.stopPropagation()" class="debank-icon" title="DeBank"><img src="https://debank.com/favicon.ico" width="14" height="14" onerror="this.parentElement.style.display='none'"></a>` +
+                `</span>`;
+        }
+        function renderGenericTable(data, bodyId, pagerId, page, pageSize, rowFn) {
+            const tbody = document.getElementById(bodyId);
+            const totalPages = Math.max(1, Math.ceil(data.length / pageSize));
+            if (page >= totalPages) page = totalPages - 1;
+            if (page < 0) page = 0;
+            const start = page * pageSize;
+            const slice = data.slice(start, start + pageSize);
+            tbody.innerHTML = slice.map((h, idx) => rowFn(h, start + idx + 1, idx)).join('');
+            const empty = pageSize - slice.length;
+            for(let i=0;i<empty;i++) tbody.innerHTML += '<tr class="empty-row"><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td></tr>';
+            document.getElementById(pagerId).innerHTML =
+                `<button onclick="${bodyId}Page=0;render${bodyId}()" ${page===0?'disabled':''}>«</button>` +
+                `<button onclick="${bodyId}Page--;render${bodyId}()" ${page===0?'disabled':''}>‹</button>` +
+                `<span class="pg-info">${page+1} / ${totalPages}</span>` +
+                `<button onclick="${bodyId}Page++;render${bodyId}()" ${page>=totalPages-1?'disabled':''}>›</button>` +
+                `<button onclick="${bodyId}Page=${totalPages-1};render${bodyId}()" ${page>=totalPages-1?'disabled':''}>»</button>`;
+            return page;
+        }
+
+        // ── LOCK TABLE ──
+        let lockBodyPage = 0;
+        let filteredLocks = [...LOCK_DATA];
+        function filterLocks() {
+            const q = (document.getElementById('lockSearch').value || '').toLowerCase();
+            filteredLocks = LOCK_DATA.filter(h => !q || h.a.toLowerCase().includes(q) || (h.n && h.n.toLowerCase().includes(q)));
+            lockBodyPage = 0; renderlockBody();
+        }
+        function sortLocks(col) {
+            filteredLocks.sort((a, b) => b[col] - a[col]);
+            lockBodyPage = 0; renderlockBody();
+        }
+        function renderlockBody() {
+            const now = Date.now() / 1000;
+            document.getElementById('lockCount').textContent = `(${filteredLocks.length} lockerów)`;
+            lockBodyPage = renderGenericTable(filteredLocks, 'lockBody', 'lockPager', lockBodyPage, PAGE_SIZE, (h, rank, idx) => {
+                const maxDur = h.locks.reduce((m, l) => Math.max(m, l.durationDays), 0);
+                const maxEnd = h.locks.reduce((m, l) => Math.max(m, l.endTs), 0);
+                const endDate = new Date(maxEnd * 1000).toLocaleDateString('pl', {day:'2-digit',month:'short',year:'numeric'});
+                const isExpired = maxEnd < now;
+                const statusBadge = isExpired
+                    ? '<span style="color:#f87171;font-size:10px;font-weight:600">EXPIRED</span>'
+                    : '<span style="color:#34d399;font-size:10px;font-weight:600">ACTIVE</span>';
+                const durLabel = maxDur >= 365 ? Math.round(maxDur/365) + 'y' : maxDur + 'd';
+                return `<tr style="border-bottom:1px solid rgba(255,255,255,0.04);transition:transform .15s,background .15s;cursor:pointer;animation:rowFadeIn .25s ease forwards;animation-delay:${idx*20}ms" onmouseenter="this.style.transform='scale(1.01)';this.style.background='rgba(255,255,255,0.03)'" onmouseleave="this.style.transform='';this.style.background=''" onclick="window.open('https://snowscan.xyz/address/${h.a}','_blank')" title="${h.a}">
+                    <td class="td-rank">${rank}</td>
+                    <td class="td-addr">${makeAddr(h)}</td>
+                    <td class="td-bal" style="text-align:right"><span class="bal-num">${fmtBal(h.totalLocked)}</span><span class="bal-unit">LIL</span></td>
+                    <td style="text-align:center;font-size:12px;color:var(--text-muted)">${h.lockCount}×</td>
+                    <td style="text-align:center;font-size:12px;color:var(--accent-blue)">${durLabel}<br><span style="font-size:9px;color:var(--text-muted)">${endDate}</span></td>
+                    <td style="text-align:center">${statusBadge}</td>
+                </tr>`;
+            });
+        }
+
+        // ── STAKE TABLE ──
+        let stakeBodyPage = 0;
+        let filteredStakes = [...STAKE_DATA];
+        function filterStakes() {
+            const q = (document.getElementById('stakeSearch').value || '').toLowerCase();
+            filteredStakes = STAKE_DATA.filter(h => !q || h.a.toLowerCase().includes(q) || (h.n && h.n.toLowerCase().includes(q)));
+            stakeBodyPage = 0; renderstakeBody();
+        }
+        function sortStakes(col) {
+            filteredStakes.sort((a, b) => b[col] - a[col]);
+            stakeBodyPage = 0; renderstakeBody();
+        }
+        function renderstakeBody() {
+            document.getElementById('stakeCount').textContent = `(${filteredStakes.length} stakerów)`;
+            stakeBodyPage = renderGenericTable(filteredStakes, 'stakeBody', 'stakePager', stakeBodyPage, PAGE_SIZE, (h, rank, idx) => {
+                const fmtVal = v => v > 0 ? fmtBal(v) : '<span style="color:rgba(255,255,255,0.15)">—</span>';
+                return `<tr style="border-bottom:1px solid rgba(255,255,255,0.04);transition:transform .15s,background .15s;cursor:pointer;animation:rowFadeIn .25s ease forwards;animation-delay:${idx*20}ms" onmouseenter="this.style.transform='scale(1.01)';this.style.background='rgba(255,255,255,0.03)'" onmouseleave="this.style.transform='';this.style.background=''" onclick="window.open('https://snowscan.xyz/address/${h.a}','_blank')" title="${h.a}">
+                    <td class="td-rank">${rank}</td>
+                    <td class="td-addr">${makeAddr(h)}</td>
+                    <td style="text-align:right;font-size:12px">${fmtVal(h.moatStake)}</td>
+                    <td style="text-align:right;font-size:12px">${fmtVal(h.ebProto)}</td>
+                    <td style="text-align:right;font-size:12px">${fmtVal(h.ebStake)}</td>
+                    <td class="td-bal" style="text-align:right"><span class="bal-num">${fmtBal(h.totalStaked)}</span><span class="bal-unit">LIL</span></td>
+                </tr>`;
+            });
+        }
+
+        // ── PORTFOLIO TABLE ──
+        let portfolioBodyPage = 0;
+        let filteredPortfolio = PORTFOLIO_DATA.filter(h => h.total > 0);
+        function filterPortfolio() {
+            const q = (document.getElementById('portfolioSearch').value || '').toLowerCase();
+            const hideZero = document.getElementById('hideZeroPortfolio').checked;
+            filteredPortfolio = PORTFOLIO_DATA.filter(h => {
+                if (hideZero && h.total <= 0) return false;
+                if (q && !h.a.toLowerCase().includes(q) && !(h.n && h.n.toLowerCase().includes(q))) return false;
+                return true;
+            });
+            portfolioBodyPage = 0; renderportfolioBody();
+        }
+        function sortPortfolio(col) {
+            filteredPortfolio.sort((a, b) => b[col] - a[col]);
+            portfolioBodyPage = 0; renderportfolioBody();
+        }
+        function renderportfolioBody() {
+            document.getElementById('portfolioCount').textContent = `(${filteredPortfolio.length} adresów)`;
+            portfolioBodyPage = renderGenericTable(filteredPortfolio, 'portfolioBody', 'portfolioPager', portfolioBodyPage, PAGE_SIZE, (h, rank, idx) => {
+                const fmtVal = v => v > 0 ? fmtBal(v) : '<span style="color:rgba(255,255,255,0.15)">—</span>';
+                const totalColor = h.total > 10000000 ? 'color:#22d3ee;font-weight:600' : h.total > 1000000 ? 'color:#34d399;font-weight:600' : '';
+                return `<tr style="border-bottom:1px solid rgba(255,255,255,0.04);transition:transform .15s,background .15s;cursor:pointer;animation:rowFadeIn .25s ease forwards;animation-delay:${idx*20}ms" onmouseenter="this.style.transform='scale(1.01)';this.style.background='rgba(255,255,255,0.03)'" onmouseleave="this.style.transform='';this.style.background=''" onclick="window.open('https://snowscan.xyz/address/${h.a}','_blank')" title="${h.a}">
+                    <td class="td-rank">${rank}</td>
+                    <td class="td-addr">${makeAddr(h)}</td>
+                    <td style="text-align:right;font-size:12px">${fmtVal(h.wallet)}</td>
+                    <td style="text-align:right;font-size:12px;color:var(--accent-blue)">${fmtVal(h.locked)}</td>
+                    <td style="text-align:right;font-size:12px;color:var(--accent-green)">${fmtVal(h.staked)}</td>
+                    <td class="td-bal" style="text-align:right;${totalColor}"><span class="bal-num">${fmtBal(h.total)}</span><span class="bal-unit">LIL</span></td>
+                </tr>`;
+            });
+        }
+
+        // Initialize all on-chain tables when holders tab is shown
+        const origSwitchView = switchView;
+        switchView = function(view) {
+            origSwitchView(view);
+            if (view === 'holders') {
+                renderlockBody();
+                renderstakeBody();
+                renderportfolioBody();
+            }
+        };
+        // Also render on initial load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderlockBody();
+            renderstakeBody();
+            renderportfolioBody();
+        });
+        // Fallback for already-loaded DOM
+        if (document.readyState !== 'loading') {
+            renderlockBody();
+            renderstakeBody();
+            renderportfolioBody();
         }
     </script>
 </body>
