@@ -945,20 +945,24 @@
             font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:600;
             border-bottom:1px solid rgba(255,255,255,.08);user-select:none;
         }
-        .holders-tbl th.col-bal { text-align:right; }
+        .holders-tbl th.col-bal, .holders-tbl th.col-pct { text-align:right; }
         .holders-tbl th.col-rank { text-align:center;width:36px; }
         .holders-tbl th.sortable { cursor:pointer; }
         .holders-tbl th.sortable:hover { color:rgba(255,255,255,.6); }
-        .holders-tbl .sort-arrow { font-size:9px;margin-left:2px;opacity:.5; }
+        .holders-tbl th.sort-active { color:rgba(255,255,255,.7); }
+        .holders-tbl th.sort-active .sort-arrow { opacity:1;color:var(--accent-blue); }
+        .holders-tbl .sort-arrow { font-size:9px;margin-left:2px;opacity:.4;transition:opacity .15s; }
         .holders-tbl td {
             padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.04);
             vertical-align:middle;
         }
         .holders-tbl tbody tr {
-            transition:transform .15s, background .15s;
+            transition:transform .15s, background .15s, box-shadow .15s;
+            border-left:3px solid transparent;
         }
         .holders-tbl tbody tr:hover {
-            transform:scale(1.01);background:rgba(255,255,255,.03);
+            transform:scale(1.008);background:rgba(255,255,255,.03);
+            border-left-color:var(--accent-blue);
         }
         .holders-tbl .td-rank {
             color:var(--text-muted);font-size:11px;text-align:center;font-weight:600;
@@ -1001,8 +1005,16 @@
         .holders-tbl .td-bal .bal-num {
             font-weight:600;font-size:12px;color:var(--text-primary);
         }
-        .holders-tbl .td-bal .bal-pct {
-            font-size:10px;color:var(--text-muted);margin-left:6px;
+        .holders-tbl .td-pct {
+            text-align:right;font-variant-numeric:tabular-nums;
+        }
+        .holders-tbl .td-pct .pct-num {
+            font-weight:600;font-size:11px;color:var(--text-secondary);
+        }
+        .holders-tbl .td-pct .pct-bar {
+            display:block;height:3px;border-radius:2px;margin-top:4px;
+            background:linear-gradient(90deg,var(--accent-blue),var(--accent-purple));
+            opacity:.5;transition:width .3s ease;
         }
         /* Pagination */
         .holders-pager {
@@ -1317,14 +1329,16 @@
                     <table class="holders-tbl">
                         <colgroup>
                             <col style="width:36px">
-                            <col style="width:55%">
-                            <col style="width:calc(45% - 36px)">
+                            <col style="width:46%">
+                            <col style="width:calc(34% - 18px)">
+                            <col style="width:20%">
                         </colgroup>
                         <thead>
                             <tr>
-                                <th class="col-rank sortable" onclick="sortHolders('rank')"># <span class="sort-arrow">▲</span></th>
+                                <th class="col-rank sortable sort-active" onclick="sortHolders('rank')"># <span class="sort-arrow">▲</span></th>
                                 <th class="sortable" onclick="sortHolders('address')">Address <span class="sort-arrow">⇅</span></th>
-                                <th class="col-bal sortable" onclick="sortHolders('balance')">Balance <span class="sort-arrow">⇅</span></th>
+                                <th class="col-bal sortable" onclick="sortHolders('balance')">Ilość LIL <span class="sort-arrow">⇅</span></th>
+                                <th class="col-pct sortable" onclick="sortHolders('pct')">% Effective <span class="sort-arrow">⇅</span></th>
                             </tr>
                         </thead>
                         <tbody id="holdersBody"></tbody>
@@ -1514,6 +1528,8 @@
 
         // ── Top 100 Holders Data (from Avascan, 17.03.2026) ──
         const TOTAL_SUPPLY = 1350000000;
+        const BURN_AMOUNT = 363187841;
+        const EFFECTIVE_SUPPLY = TOTAL_SUPPLY - BURN_AMOUNT; // 986,812,159 — post-burn
         const TAG_MAP = {burn:'t-burn',lp:'t-lp',contract:'t-contract',team:'t-team',holder:'t-holder'};
         const TAG_LABEL = {burn:'Burn',lp:'LP',contract:'Contract',team:'Team',holder:'Holder'};
         const HOLDERS_DATA = [
@@ -1639,18 +1655,26 @@
 
         function sortHolders(col) {
             if (holderSort.col === col) holderSort.dir *= -1;
-            else { holderSort.col = col; holderSort.dir = col === 'balance' ? -1 : 1; }
+            else { holderSort.col = col; holderSort.dir = (col === 'balance' || col === 'pct') ? -1 : 1; }
             const sorted = [...filteredHolders];
             sorted.sort((a,b) => {
                 if (col === 'rank') return (a.rank - b.rank) * holderSort.dir;
-                if (col === 'balance') return (a.b - b.b) * holderSort.dir;
+                if (col === 'balance' || col === 'pct') return (a.b - b.b) * holderSort.dir;
                 if (col === 'address') return (a.n||a.a).localeCompare(b.n||b.a) * holderSort.dir;
                 return 0;
             });
             filteredHolders = sorted;
             holderPage = 0;
+            // Update active sort header
+            document.querySelectorAll('.holders-tbl th.sortable').forEach(th => th.classList.remove('sort-active'));
+            const colMap = {rank:'col-rank', address:null, balance:'col-bal', pct:'col-pct'};
+            const cls = colMap[col];
+            if (cls) document.querySelector('.holders-tbl th.' + cls)?.classList.add('sort-active');
+            else document.querySelectorAll('.holders-tbl th.sortable')[1]?.classList.add('sort-active');
             renderHoldersPage();
         }
+
+        const MAX_BAL = HOLDERS_DATA[0].b; // largest balance for bar scaling
 
         function renderHoldersPage() {
             const tbody = document.getElementById('holdersBody');
@@ -1662,8 +1686,10 @@
 
             tbody.innerHTML = '';
             page.forEach(h => {
-                const pct = ((h.b / TOTAL_SUPPLY) * 100);
-                const pctStr = pct >= 1 ? pct.toFixed(2) + '%' : pct >= 0.01 ? pct.toFixed(3) + '%' : '<0.01%';
+                const isBurn = h.a === '0x000000000000000000000000000000000000dEaD';
+                const pct = isBurn ? 0 : ((h.b / EFFECTIVE_SUPPLY) * 100);
+                const pctStr = isBurn ? '🔥' : pct >= 1 ? pct.toFixed(2) + '%' : pct >= 0.01 ? pct.toFixed(3) + '%' : '<0.01%';
+                const barW = isBurn ? 0 : Math.max(2, Math.min(100, (h.b / MAX_BAL) * 100));
                 const tagCls = TAG_MAP[h.tc || h.t] || 't-holder';
                 const tagLbl = h.tl || TAG_LABEL[h.t] || 'Holder';
 
@@ -1676,12 +1702,14 @@
                     addrHtml += `<span class="h-name">${h.n}</span><span class="h-tag ${tagCls}">${tagLbl}</span><br>`;
                 }
                 addrHtml += `<span class="h-hex"><a href="https://snowscan.xyz/address/${h.a}" target="_blank" rel="noopener">${shortAddr(h.a)}</a>`;
-                addrHtml += `<button class="h-copy" onclick="copyAddr('${h.a}')" title="Copy">📋</button></span>`;
+                addrHtml += `<button class="h-copy" onclick="copyAddr('${h.a}')" title="Kopiuj adres">📋</button></span>`;
                 if (!h.n) addrHtml += `<span class="h-tag ${tagCls}">${tagLbl}</span>`;
                 addrHtml += '</td>';
                 tr.innerHTML += addrHtml;
-                // Balance
-                tr.innerHTML += `<td class="td-bal"><span class="bal-num">${fmtBal(h.b)}</span><span class="bal-pct">${pctStr}</span></td>`;
+                // Balance (amount only)
+                tr.innerHTML += `<td class="td-bal"><span class="bal-num">${fmtBal(h.b)}</span></td>`;
+                // % Supply (separate column with bar)
+                tr.innerHTML += `<td class="td-pct"><span class="pct-num">${pctStr}</span><span class="pct-bar" style="width:${barW}%"></span></td>`;
                 tbody.appendChild(tr);
             });
 
