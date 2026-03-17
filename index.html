@@ -1113,74 +1113,16 @@
             </div>
 
             <!-- Holders & Contracts Table -->
-            <div class="holders-table-wrap">
+            <div class="holders-table-wrap" style="max-height: 620px; overflow-y: auto;">
                 <table class="holders-table">
-                    <thead>
+                    <thead style="position: sticky; top: 0; z-index: 2;">
                         <tr>
-                            <th>Nazwa</th>
-                            <th>Adres</th>
+                            <th style="width:36px">#</th>
+                            <th>Nazwa / Adres</th>
                             <th>Ilość LIL</th>
                         </tr>
                     </thead>
-                    <tbody id="holdersBody">
-                        <!-- Contracts / Infrastructure -->
-                        <tr data-type="contract">
-                            <td><span class="holder-name">Burn Address</span><span class="holder-tag tag-burn">Burn</span></td>
-                            <td><span class="addr-cell"><a href="https://snowscan.xyz/address/0x000000000000000000000000000000000000dEaD" target="_blank" rel="noopener">0x0000...dEaD</a><button class="copy-btn" onclick="copyAddr('0x000000000000000000000000000000000000dEaD')" title="Copy">📋</button></span></td>
-                            <td><span class="balance-val">363,187,841</span><span class="pct-val">26.90%</span></td>
-                        </tr>
-                        <tr data-type="contract">
-                            <td><span class="holder-name">Pharaoh LP (LIL/WAVAX)</span><span class="holder-tag tag-lp">LP</span></td>
-                            <td><span class="addr-cell"><a href="https://snowscan.xyz/address/0x8acc49857A1259D25eb3CA0aa15B398D0E149EF2" target="_blank" rel="noopener">0x8acc...9EF2</a><button class="copy-btn" onclick="copyAddr('0x8acc49857A1259D25eb3CA0aa15B398D0E149EF2')" title="Copy">📋</button></span></td>
-                            <td><span class="balance-val">353,508,945</span><span class="pct-val">26.19%</span></td>
-                        </tr>
-                        <tr data-type="contract">
-                            <td><span class="holder-name">MultiLockMoat (Locker)</span><span class="holder-tag tag-contract">Contract</span></td>
-                            <td><span class="addr-cell"><a href="https://snowscan.xyz/address/0x7A4D20261a765Bd9bA67D49FBf8189843eEC3393" target="_blank" rel="noopener">0x7A4D...3393</a><button class="copy-btn" onclick="copyAddr('0x7A4D20261a765Bd9bA67D49FBf8189843eEC3393')" title="Copy">📋</button></span></td>
-                            <td><span class="balance-val">282,139,473</span><span class="pct-val">20.90%</span></td>
-                        </tr>
-                        <tr data-type="contract">
-                            <td><span class="holder-name">Earningsbaystaking</span><span class="holder-tag tag-holder">Stake (no lock)</span></td>
-                            <td><span class="addr-cell"><a href="https://snowscan.xyz/address/0x2Bf32c61786b8A7b8035a029a82a23bE556DE537" target="_blank" rel="noopener">0x2Bf3...E537</a><button class="copy-btn" onclick="copyAddr('0x2Bf32c61786b8A7b8035a029a82a23bE556DE537')" title="Copy">📋</button></span></td>
-                            <td><span class="balance-val">162,414,159</span><span class="pct-val">12.03%</span></td>
-                        </tr>
-                        <tr data-type="contract">
-                            <td><span class="holder-name">Upgradeable Proxy</span><span class="holder-tag tag-contract">Contract</span></td>
-                            <td><span class="addr-cell"><a href="https://snowscan.xyz/address/0x950a98dd06c898950460b0D1FCaD75D4A23Ff373" target="_blank" rel="noopener">0x950a...f373</a><button class="copy-btn" onclick="copyAddr('0x950a98dd06c898950460b0D1FCaD75D4A23Ff373')" title="Copy">📋</button></span></td>
-                            <td><span class="balance-val">22,975,639</span><span class="pct-val">1.70%</span></td>
-                        </tr>
-
-                        <!-- Team / Project -->
-                        <tr data-type="team">
-                            <td><span class="holder-name">Treasury (in-contract)</span><span class="holder-tag tag-team">Team</span></td>
-                            <td><span class="addr-cell"><a href="https://snowscan.xyz/address/0xfE85C993605Dd02FFD2b0B7db041f51071e45cd1" target="_blank" rel="noopener">0xfE85...5cd1</a><button class="copy-btn" onclick="copyAddr('0xfE85C993605Dd02FFD2b0B7db041f51071e45cd1')" title="Copy">📋</button></span></td>
-                            <td><span class="balance-val">—</span><span class="pct-val">ERC20 Treasury</span></td>
-                        </tr>
-                        <tr data-type="team">
-                            <td><span class="holder-name">Pharaoh Team Multisig</span><span class="holder-tag tag-team">Team</span></td>
-                            <td><span class="addr-cell"><a href="https://snowscan.xyz/address/0x244A4a90e148Ec318a85f8C138A274e16FFE3032" target="_blank" rel="noopener">0x244A...3032</a><button class="copy-btn" onclick="copyAddr('0x244A4a90e148Ec318a85f8C138A274e16FFE3032')" title="Copy">📋</button></span></td>
-                            <td><span class="balance-val">228,476</span><span class="pct-val">&lt;0.1%</span></td>
-                        </tr>
-                        <tr data-type="team">
-                            <td><span class="holder-name">Treasury Helper (Pharaoh)</span><span class="holder-tag tag-team">Team</span></td>
-                            <td><span class="addr-cell"><a href="https://snowscan.xyz/address/0x660862D49E92f80f29E56C2770027E8d83e97882" target="_blank" rel="noopener">0x6608...7882</a><button class="copy-btn" onclick="copyAddr('0x660862D49E92f80f29E56C2770027E8d83e97882')" title="Copy">📋</button></span></td>
-                            <td><span class="balance-val">291,429</span><span class="pct-val">&lt;0.1%</span></td>
-                        </tr>
-
-                        <!-- DAO -->
-                        <tr data-type="team">
-                            <td><span class="holder-name">DAO LIL</span><span class="holder-tag tag-team">DAO</span></td>
-                            <td><span class="addr-cell"><a href="https://snowscan.xyz/address/0x5b5a1503f491B2935BF757b21d2832a2B3D0df44" target="_blank" rel="noopener">0x5b5a...df44</a><button class="copy-btn" onclick="copyAddr('0x5b5a1503f491B2935BF757b21d2832a2B3D0df44')" title="Copy">📋</button></span></td>
-                            <td><span class="balance-val">98,155,090</span><span class="pct-val">7.27%</span></td>
-                        </tr>
-
-                        <!-- Top Holders (EOA) -->
-                        <tr data-type="holder">
-                            <td><span class="holder-name">Whale #2</span><span class="holder-tag tag-holder">Holder</span></td>
-                            <td><span class="addr-cell"><a href="https://snowscan.xyz/address/0x28DA3DdE285D8F1f87B2D858f89961Bb8B9Af180" target="_blank" rel="noopener">0x28DA...f180</a><button class="copy-btn" onclick="copyAddr('0x28DA3DdE285D8F1f87B2D858f89961Bb8B9Af180')" title="Copy">📋</button></span></td>
-                            <td><span class="balance-val">25,022,772</span><span class="pct-val">1.85%</span></td>
-                        </tr>
-                    </tbody>
+                    <tbody id="holdersBody"></tbody>
                 </table>
             </div>
 
@@ -1339,6 +1281,157 @@
 
         // Initial calculation
         recalculate();
+
+        // ── Top 100 Holders Data (from Avascan, 17.03.2026) ──
+        const TOTAL_SUPPLY = 1350000000;
+        const HOLDERS_DATA = [
+            {a:'0x000000000000000000000000000000000000dEaD',b:363187841,n:'Burn Address',t:'contract',tag:'Burn',tc:'tag-burn'},
+            {a:'0x8acc49857A1259D25eb3CA0aa15B398D0E149EF2',b:353508945,n:'Pharaoh LP (LIL/WAVAX)',t:'contract',tag:'LP',tc:'tag-lp'},
+            {a:'0x7A4D20261a765Bd9bA67D49FBf8189843eEC3393',b:282139473,n:'MultiLockMoat (Locker)',t:'contract',tag:'Contract',tc:'tag-contract'},
+            {a:'0x2Bf32c61786b8A7b8035a029a82a23bE556DE537',b:162414159,n:'Earningsbaystaking',t:'contract',tag:'Stake (no lock)',tc:'tag-holder'},
+            {a:'0x5b5a1503f491B2935BF757b21d2832a2B3D0df44',b:98155090,n:'DAO LIL',t:'team',tag:'DAO',tc:'tag-team'},
+            {a:'0x28DA3DdE285D8F1f87B2D858f89961Bb8B9Af180',b:25022772,n:null,t:'holder'},
+            {a:'0x950a98dd06c898950460b0D1FCaD75D4A23Ff373',b:22975639,n:'EarningsBay Protocol',t:'contract',tag:'Contract',tc:'tag-contract'},
+            {a:'0x8afF5e5527845f2a1A0a6b7d727Db22f7b6C99A7',b:2500000,n:null,t:'holder'},
+            {a:'0x60B615967Db702Be1c4470982E47d5f0A20F88E7',b:2500000,n:'Stars Arena User',t:'holder'},
+            {a:'0xF1B1C792487e47B2580a5639190287aE0d26968e',b:2376194,n:null,t:'holder'},
+            {a:'0x7Cc4d060738EDD2DA04f58f0d832A8e00b595eAd',b:2335391,n:null,t:'holder'},
+            {a:'0x9b26fFC2A359ca46A36024D9820BB02045FEB3A0',b:1500000,n:null,t:'holder'},
+            {a:'0x7Ecd5f3964121F7B4a631A4515EafB05B4DFebbE',b:1500000,n:null,t:'holder'},
+            {a:'0x0ba64D006093845b4D77bDfC6E5fD8fe8e57CBE2',b:1500000,n:null,t:'holder'},
+            {a:'0x4d86B5A1a65B4097f1B94C9b8995D793A16C03C1',b:1250000,n:null,t:'holder'},
+            {a:'0x1CE8538df8341Ef84C239D7894D3c02E3AcF9Be6',b:1000000,n:null,t:'holder'},
+            {a:'0xbA109916A5f1381845d6FC4a2758C1abD196ff93',b:999999,n:null,t:'holder'},
+            {a:'0xB39EDf83279177F8399Ba8583B104F532f7D52Ff',b:969825,n:null,t:'holder'},
+            {a:'0xfE85C993605Dd02FFD2b0B7db041f51071e45cd1',b:946276,n:'Treasury',t:'team',tag:'Team',tc:'tag-team'},
+            {a:'0x9d4b9c2Ab573d0316609326521E18fB37f0ec392',b:875600,n:null,t:'holder'},
+            {a:'0xdf9C3Dc94f1Ab2f44da4A313ed0AC74465F1c3f2',b:875000,n:null,t:'holder'},
+            {a:'0x886A94c3f534813586c59Cc0091f0640e4777F97',b:875000,n:null,t:'holder'},
+            {a:'0x5D8652226E1BcBe99897f18a4c9b8995d793A16C',b:875000,n:null,t:'holder'},
+            {a:'0x3f31fCd1BE6b4B019Dc75ED77965309652Cbb2Ad',b:875000,n:null,t:'holder'},
+            {a:'0x211eF567C3DB15E5553B1D02abde685fD642c560',b:875000,n:null,t:'holder'},
+            {a:'0x151104237Df519386E05BeCa007398F08751e1CC',b:875000,n:null,t:'holder'},
+            {a:'0x06833acCC167D7d27508832D1538916b075188a8',b:875000,n:null,t:'holder'},
+            {a:'0xfF0ddb910Dd9356ACE9Bc4AB4fc46de233C7ccf6',b:800000,n:null,t:'holder'},
+            {a:'0x10a6B3F80bC4405260c1ac85Ef0b4C1f86C039b5',b:750000,n:null,t:'holder'},
+            {a:'0x3737AB1829d1496d3bd6fc4DEc599Ff0F72f81A7',b:625000,n:null,t:'holder'},
+            {a:'0xf84825664e8A056D41E14fCB04FC67e7F9427DbA',b:543750,n:null,t:'holder'},
+            {a:'0xB09406633B8b62087732404073a6668b26D244Bf',b:539926,n:null,t:'holder'},
+            {a:'0xBd85dB7baD1A5B54AE2c979E631a5e6067d8833C',b:500000,n:null,t:'holder'},
+            {a:'0x75dAC2A468A4A1Db7d715D6f6a93a566fCe0361e',b:475000,n:null,t:'holder'},
+            {a:'0xe673d59ed552D6D417ea508233397197daA2645b',b:436375,n:null,t:'holder'},
+            {a:'0xb96b79B74709fA5124d9A0B1253e95133A07A162',b:423287,n:null,t:'holder'},
+            {a:'0x0A2e1a76ED641f8a47b8Ab7016a3d05bAeC1ED99',b:421125,n:null,t:'holder'},
+            {a:'0xc2B20506830c7B227E4399B65eA64fD12486C46D',b:332963,n:null,t:'holder'},
+            {a:'0x330625bFee406c96717bFBD179dbBAD4AcE18BE6',b:303522,n:null,t:'holder'},
+            {a:'0xF7D666E7d37F3D350bCb6c688C850055Da92E2Fc',b:292377,n:null,t:'holder'},
+            {a:'0x660862D49E92f80f29E56C2770027E8d83e97882',b:291429,n:'Treasury Helper (Pharaoh)',t:'team',tag:'Team',tc:'tag-team'},
+            {a:'0x394C82976a57c4309138c072149Ee57Aea16560b',b:232905,n:null,t:'holder'},
+            {a:'0x244A4a90e148Ec318a85f8C138A274e16FFE3032',b:228476,n:'Pharaoh Team Multisig',t:'team',tag:'Team',tc:'tag-team'},
+            {a:'0x5836E7d37F3D350bCb6c688C850055Da9269CD08',b:202023,n:null,t:'holder'},
+            {a:'0x7fa527A8561cDb3cB16dE66369cb99Bb6f023588',b:179613,n:null,t:'holder'},
+            {a:'0x5d481170Ad927a7220150702150d70e4FDA9082C',b:169166,n:null,t:'holder'},
+            {a:'0xBeF2b0b004B254Ac30F46DC06B0ACB483C1BBBA2',b:155000,n:null,t:'holder'},
+            {a:'0x8bF0c1f5541744509d26608cbC28e2Ef50606c82',b:150000,n:null,t:'holder'},
+            {a:'0xcD6b980029E6E6e0733ac8eC3E02be9410D09799',b:126691,n:null,t:'holder'},
+            {a:'0x650F464e70B1D41f9B30490db16B50F9f0B7C964',b:121539,n:null,t:'holder'},
+            {a:'0x19932B45836E7d37F3D350bCb6c688C850055Da9',b:104264,n:null,t:'holder'},
+            {a:'0x8995D793A16C03C142a7220150702150d70e4FDA',b:104264,n:null,t:'holder'},
+            {a:'0x07A162F39DB0940733a7638cE99cE8E47d5f0A20',b:100000,n:null,t:'holder'},
+            {a:'0xB02045FEB3A675dAC1CE8538df8341Ef84C239D7',b:100000,n:null,t:'holder'},
+            {a:'0xB573d0316609326521E18fB37f0ec39211eF567C',b:100000,n:null,t:'holder'},
+            {a:'0x1E5B4097f1B94C9b8995D793A16C03C142a7D220',b:94228,n:null,t:'holder'},
+            {a:'0x46ED74dFA275B64E2D3FD6B9AF86f8a2E1CE8538',b:87500,n:null,t:'holder'},
+            {a:'0xdf8341Ef84C239D7894D3c02E3AcF9Be6bA10991',b:75000,n:null,t:'holder'},
+            {a:'0x6A5f1381845d6FC4a2758C1abD196ff93B39EDf8',b:70000,n:null,t:'holder'},
+            {a:'0xCBBBf30A775Bc88c0693A971F29B275D386a7ce5',b:54581,n:null,t:'holder'},
+            {a:'0xc93929c43698A6F4e7684b12688e1a71A9344Ec6',b:53931,n:null,t:'holder'},
+            {a:'0xa171dD4D59167E3256831Ab5015cB4fd1C44EcC1',b:53777,n:null,t:'holder'},
+            {a:'0x88de50B233052e4Fb783d4F6db78Cc34fEa3e9FC',b:52831,n:'Odos Router V2',t:'contract',tag:'Contract',tc:'tag-contract'},
+            {a:'0x8be93f0a9435D487E84a164469E0b24B46F7B5eE',b:52486,n:null,t:'holder'},
+            {a:'0xf3dFB6485C7df16F68a65eD98d6212B108FfC38B',b:50637,n:null,t:'holder'},
+            {a:'0x00D77a45ea3D4E978c3dd5fD3b2A9f268f0B8c14',b:50000,n:null,t:'holder'},
+            {a:'0x49386AC6127212eF998d311975BF616eF713809D',b:47927,n:null,t:'holder'},
+            {a:'0x8D413dB42D6901De42b2C481Cc0F6D0fd1C52828',b:43801,n:null,t:'holder'},
+            {a:'0x9300fBfa53d04331f28fBa005C7148FDec6C260B',b:42882,n:null,t:'holder'},
+            {a:'0xB1E1a5771883016422235c910Ec3Bca22682CC39',b:42322,n:null,t:'holder'},
+            {a:'0xF25f313802d8a6F36A6E40d76264572951eE8127',b:40400,n:null,t:'holder'},
+            {a:'0xe6A5AFf36346344914883874c11a3054A9195284',b:35000,n:null,t:'holder'},
+            {a:'0x8d5284f04Dc6881452B40CD0B172d9374a76265D',b:32500,n:null,t:'holder'},
+            {a:'0x800b52226E1BcBe99897f18a4c9b8995d793A16C',b:30000,n:null,t:'holder'},
+            {a:'0xd1f2B20BE7d37F3D350bCb6c688C850055Da9264',b:28185,n:null,t:'holder'},
+            {a:'0xEDc67d3D1734f59155687f414F9870CA8492b9Ae',b:27985,n:null,t:'holder'},
+            {a:'0xEa7d9e0Ce6544887D58661369f806b5F89279F2e',b:27985,n:null,t:'holder'},
+            {a:'0xe86474F97bE2506E8256DD75CB132099E389f520',b:27985,n:null,t:'holder'},
+            {a:'0xe6C35D0aDEeC59101aBE9368154595fdD7278Cf8',b:27985,n:null,t:'holder'},
+            {a:'0xE21cfA919336e1733B2B808307A162F39DB09407',b:27985,n:null,t:'holder'},
+            {a:'0xe1733B2B80830e11758c179dbBAD4AcE18BE6df9',b:27985,n:null,t:'holder'},
+            {a:'0xe11758ce7A7220150702150d70e4FDA908c1ED99',b:27985,n:null,t:'holder'},
+            {a:'0x9336e1733B2B808307A162F39DB0940733a7638c',b:27985,n:null,t:'holder'},
+            {a:'0x9a5064D7E3D350bCb6c688C850055Da9269CD080',b:27985,n:null,t:'holder'},
+            {a:'0xDe639c005cC85690517E29Fe4CCc52b81729c005',b:27985,n:null,t:'holder'},
+            {a:'0xf3B76Be9B660060FfFdFCFB08746d773A7f3776c',b:27985,n:null,t:'holder'},
+            {a:'0x2609F5fdD7278Cf8E21cfA919336e1733B2B8083',b:27985,n:null,t:'holder'},
+            {a:'0x15070215070E4FDA908c1ED99B65eA64fD12486C',b:27985,n:null,t:'holder'},
+            {a:'0x6EcB3dB42D6901De42b2C481Cc0F6D0fd1C52d2E',b:27985,n:null,t:'holder'},
+            {a:'0xEF125070215070E4FDA908c1ED99B65eA64fD124',b:27985,n:null,t:'holder'},
+            {a:'0x3dB42D6901De42b2C481Cc0F6D0fd1C52828E6cB',b:27985,n:null,t:'holder'},
+            {a:'0x4B46F7B5eE8be93f0a9435D487E84a164469E0b2',b:27985,n:null,t:'holder'},
+            {a:'0x7f3776cf3B76Be9B660060FfFdFCFB08746d773A',b:27985,n:null,t:'holder'},
+            {a:'0x81729c005De639c005cC85690517E29Fe4CCc52b8',b:27985,n:null,t:'holder'},
+            {a:'0xCA8492b9AeEDc67d3D1734f59155687f414F9870',b:27985,n:null,t:'holder'},
+            {a:'0x89279F2eEa7d9e0Ce6544887D58661369f806b5F',b:27985,n:null,t:'holder'},
+            {a:'0xE389f520e86474F97bE2506E8256DD75CB132099',b:27985,n:null,t:'holder'},
+        ];
+
+        function shortAddr(a) { return a.slice(0,6) + '...' + a.slice(-4); }
+        function fmtBal(n) { return n.toLocaleString('en-US'); }
+
+        function renderHolders() {
+            const tbody = document.getElementById('holdersBody');
+            tbody.innerHTML = '';
+            HOLDERS_DATA.forEach((h, i) => {
+                const rank = i + 1;
+                const pct = ((h.b / TOTAL_SUPPLY) * 100);
+                const pctStr = pct >= 1 ? pct.toFixed(2) + '%' : pct >= 0.01 ? pct.toFixed(3) + '%' : '<0.01%';
+                const type = h.t || 'holder';
+                const tagClass = h.tc || 'tag-holder';
+                const tagText = h.tag || 'Holder';
+
+                const tr = document.createElement('tr');
+                tr.setAttribute('data-type', type);
+
+                // Rank
+                const tdRank = document.createElement('td');
+                tdRank.style.cssText = 'color: var(--text-muted); font-size:11px; text-align:center;';
+                tdRank.textContent = rank;
+
+                // Name + address
+                const tdName = document.createElement('td');
+                let nameHtml = '';
+                if (h.n) {
+                    nameHtml += `<span class="holder-name">${h.n}</span>`;
+                    nameHtml += `<span class="holder-tag ${tagClass}">${tagText}</span>`;
+                    nameHtml += '<br>';
+                }
+                nameHtml += `<span class="addr-cell"><a href="https://snowscan.xyz/address/${h.a}" target="_blank" rel="noopener">${shortAddr(h.a)}</a>`;
+                nameHtml += `<button class="copy-btn" onclick="copyAddr('${h.a}')" title="Copy">📋</button></span>`;
+                if (!h.n) {
+                    nameHtml += `<span class="holder-tag ${tagClass}" style="margin-left:6px">${tagText}</span>`;
+                }
+                tdName.innerHTML = nameHtml;
+
+                // Balance
+                const tdBal = document.createElement('td');
+                tdBal.innerHTML = `<span class="balance-val">${fmtBal(h.b)}</span><span class="pct-val">${pctStr}</span>`;
+
+                tr.appendChild(tdRank);
+                tr.appendChild(tdName);
+                tr.appendChild(tdBal);
+                tbody.appendChild(tr);
+            });
+        }
+        renderHolders();
 
         // ── Toggle CA & Team visibility ──
         let caTeamHidden = false;
