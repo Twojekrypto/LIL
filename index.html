@@ -1489,8 +1489,8 @@
                                 <th class="col-rank">#</th>
                                 <th>Address</th>
                                 <th class="col-bal sortable" onclick="sortLocks('totalLocked')" style="text-align:right">Locked LIL <span class="sort-arrow">▼</span></th>
-                                <th style="text-align:center">Locks</th>
-                                <th style="text-align:center">Duration</th>
+                                <th class="sortable" onclick="sortLocks('lockCount')" style="text-align:center">Locks <span class="sort-arrow">⇅</span></th>
+                                <th class="sortable" onclick="sortLocks('maxDuration')" style="text-align:center">Duration <span class="sort-arrow">⇅</span></th>
                                 <th style="text-align:center">Status</th>
                             </tr>
                         </thead>
@@ -1526,8 +1526,8 @@
                                 <th class="col-rank">#</th>
                                 <th>Address</th>
                                 <th class="col-bal sortable" onclick="sortStakes('moatStake')" style="text-align:right">Moat Stake <span class="sort-arrow">⇅</span></th>
-                                <th style="text-align:right">EB Protocol <span class="sort-arrow">⇅</span></th>
-                                <th style="text-align:right">EB Staking <span class="sort-arrow">⇅</span></th>
+                                <th class="sortable" onclick="sortStakes('ebProto')" style="text-align:right">EB Protocol <span class="sort-arrow">⇅</span></th>
+                                <th class="sortable" onclick="sortStakes('ebStake')" style="text-align:right">EB Staking <span class="sort-arrow">⇅</span></th>
                                 <th class="sortable" onclick="sortStakes('totalStaked')" style="text-align:right">Total <span class="sort-arrow">▼</span></th>
                             </tr>
                         </thead>
@@ -1567,9 +1567,9 @@
                             <tr>
                                 <th class="col-rank">#</th>
                                 <th>Address</th>
-                                <th style="text-align:right">Wallet</th>
-                                <th style="text-align:right">🔒 Locked</th>
-                                <th style="text-align:right">📊 Staked</th>
+                                <th class="sortable" onclick="sortPortfolio('wallet')" style="text-align:right">Wallet <span class="sort-arrow">⇅</span></th>
+                                <th class="sortable" onclick="sortPortfolio('locked')" style="text-align:right">🔒 Locked <span class="sort-arrow">⇅</span></th>
+                                <th class="sortable" onclick="sortPortfolio('staked')" style="text-align:right">📊 Staked <span class="sort-arrow">⇅</span></th>
                                 <th class="sortable" onclick="sortPortfolio('total')" style="text-align:right">Total <span class="sort-arrow">▼</span></th>
                             </tr>
                         </thead>
@@ -2052,15 +2052,21 @@
         }
 
         // ── LOCK TABLE ──
+        // Pre-compute maxDuration for sorting
+        LOCK_DATA.forEach(h => { h.maxDuration = h.locks.reduce((m, l) => Math.max(m, l.durationDays), 0); });
+
         let lockBodyPage = 0;
         let filteredLocks = [...LOCK_DATA];
+        let lockSort = {col: 'totalLocked', dir: -1};
         function filterLocks() {
             const q = (document.getElementById('lockSearch').value || '').toLowerCase();
             filteredLocks = LOCK_DATA.filter(h => !q || h.a.toLowerCase().includes(q) || (h.n && h.n.toLowerCase().includes(q)));
             lockBodyPage = 0; renderlockBody();
         }
         function sortLocks(col) {
-            filteredLocks.sort((a, b) => b[col] - a[col]);
+            if (lockSort.col === col) lockSort.dir *= -1;
+            else { lockSort.col = col; lockSort.dir = -1; }
+            filteredLocks.sort((a, b) => (a[col] - b[col]) * lockSort.dir);
             lockBodyPage = 0; renderlockBody();
         }
         function renderlockBody() {
@@ -2089,13 +2095,16 @@
         // ── STAKE TABLE ──
         let stakeBodyPage = 0;
         let filteredStakes = [...STAKE_DATA];
+        let stakeSort = {col: 'totalStaked', dir: -1};
         function filterStakes() {
             const q = (document.getElementById('stakeSearch').value || '').toLowerCase();
             filteredStakes = STAKE_DATA.filter(h => !q || h.a.toLowerCase().includes(q) || (h.n && h.n.toLowerCase().includes(q)));
             stakeBodyPage = 0; renderstakeBody();
         }
         function sortStakes(col) {
-            filteredStakes.sort((a, b) => b[col] - a[col]);
+            if (stakeSort.col === col) stakeSort.dir *= -1;
+            else { stakeSort.col = col; stakeSort.dir = -1; }
+            filteredStakes.sort((a, b) => (a[col] - b[col]) * stakeSort.dir);
             stakeBodyPage = 0; renderstakeBody();
         }
         function renderstakeBody() {
@@ -2116,6 +2125,7 @@
         // ── PORTFOLIO TABLE ──
         let portfolioBodyPage = 0;
         let filteredPortfolio = PORTFOLIO_DATA.filter(h => h.total > 0);
+        let portfolioSort = {col: 'total', dir: -1};
         function filterPortfolio() {
             const q = (document.getElementById('portfolioSearch').value || '').toLowerCase();
             const hideZero = document.getElementById('hideZeroPortfolio').checked;
@@ -2127,7 +2137,9 @@
             portfolioBodyPage = 0; renderportfolioBody();
         }
         function sortPortfolio(col) {
-            filteredPortfolio.sort((a, b) => b[col] - a[col]);
+            if (portfolioSort.col === col) portfolioSort.dir *= -1;
+            else { portfolioSort.col = col; portfolioSort.dir = -1; }
+            filteredPortfolio.sort((a, b) => (a[col] - b[col]) * portfolioSort.dir);
             portfolioBodyPage = 0; renderportfolioBody();
         }
         function renderportfolioBody() {
