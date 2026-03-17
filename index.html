@@ -1552,6 +1552,11 @@
                         <span class="holders-toggle-track"></span>
                         <span>Ukryj zerowe</span>
                     </label>
+                    <label class="holders-toggle" title="Ukryj DAO i Team" style="margin-left:12px">
+                        <input type="checkbox" id="hideTeamPortfolio" onchange="filterPortfolio()" checked>
+                        <span class="holders-toggle-track"></span>
+                        <span>Ukryj CA & Team</span>
+                    </label>
                 </div>
                 <div class="holders-table-scroll">
                     <table class="holders-tbl">
@@ -2163,13 +2168,15 @@
 
         // ── PORTFOLIO TABLE ──
         let portfolioBodyPage = 0;
-        let filteredPortfolio = PORTFOLIO_DATA.filter(h => h.total > 0);
+        let filteredPortfolio = PORTFOLIO_DATA.filter(h => h.total > 0 && h.t !== 'team' && h.t !== 'contract' && h.t !== 'lp');
         let portfolioSort = {col: 'total', dir: -1};
         function filterPortfolio() {
             const q = (document.getElementById('portfolioSearch').value || '').toLowerCase();
             const hideZero = document.getElementById('hideZeroPortfolio').checked;
+            const hideTeam = document.getElementById('hideTeamPortfolio').checked;
             filteredPortfolio = PORTFOLIO_DATA.filter(h => {
                 if (hideZero && h.total <= 0) return false;
+                if (hideTeam && (h.t === 'team' || h.t === 'contract' || h.t === 'lp')) return false;
                 if (q && !h.a.toLowerCase().includes(q) && !(h.n && h.n.toLowerCase().includes(q))) return false;
                 return true;
             });
