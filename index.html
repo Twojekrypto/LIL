@@ -1562,11 +1562,12 @@
                     <table class="holders-tbl">
                         <colgroup>
                             <col style="width:36px">
-                            <col style="width:32%">
-                            <col style="width:17%">
-                            <col style="width:17%">
-                            <col style="width:17%">
-                            <col style="width:17%">
+                            <col style="width:30%">
+                            <col style="width:14%">
+                            <col style="width:14%">
+                            <col style="width:14%">
+                            <col style="width:14%">
+                            <col style="width:10%">
                         </colgroup>
                         <thead>
                             <tr>
@@ -1576,6 +1577,7 @@
                                 <th class="sortable" onclick="sortPortfolio('locked')" style="text-align:right">🔒 Locked <span class="sort-arrow">⇅</span></th>
                                 <th class="sortable" onclick="sortPortfolio('staked')" style="text-align:right">📊 Staked <span class="sort-arrow">⇅</span></th>
                                 <th class="sortable" onclick="sortPortfolio('total')" style="text-align:right">Total <span class="sort-arrow">▼</span></th>
+                                <th style="text-align:right">%</th>
                             </tr>
                         </thead>
                         <tbody id="portfolioBody"></tbody>
@@ -2214,6 +2216,7 @@
                     <td style="text-align:right;font-size:12px;color:var(--accent-blue)">${lockedCell}</td>
                     <td style="text-align:right;font-size:12px;color:var(--accent-green)">${fmtVal(h.staked)}</td>
                     <td class="td-bal" style="text-align:right;${totalColor}"><span class="bal-num">${fmtBal(h.total)}</span><span class="bal-unit">LIL</span></td>
+                    <td class="td-pct"><span class="pct-num pct-${h.total/EFFECTIVE_SUPPLY*100 > 1 ? 'high' : h.total/EFFECTIVE_SUPPLY*100 > 0.1 ? 'mid' : 'low'}">${(h.total/EFFECTIVE_SUPPLY*100).toFixed(2)}%</span></td>
                 </tr>`;
             });
         }
