@@ -1027,64 +1027,60 @@
             font-size:14px;line-height:1;
         }
         .holders-tbl .td-addr {
-            line-height:1.4;padding-top:8px;padding-bottom:8px;
+            padding:5px 6px;white-space:nowrap;overflow:visible;
         }
-        .holders-tbl .td-addr .h-line1 {
-            display:flex;align-items:center;gap:6px;margin-bottom:3px;
+        .holders-tbl .td-addr .addr-wrap {
+            display:inline-flex;align-items:center;gap:4px;white-space:nowrap;
         }
-        .holders-tbl .td-addr .h-name {
-            font-weight:700;font-size:13px;color:#fff;
-            white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-            max-width:340px;
+        .holders-tbl .td-addr .addr-link {
+            color:#fff;font-size:11px;font-weight:600;text-decoration:none;
+            white-space:nowrap;transition:color .2s;
         }
-        .holders-tbl .td-addr .h-line2 {
-            display:flex;align-items:center;gap:5px;
+        .holders-tbl .td-addr .addr-link:hover { color:#22d3ee; }
+        .holders-tbl .td-addr .addr-link.addr-hex {
+            font-family:'SF Mono','Fira Code',monospace;font-weight:400;
         }
-        .holders-tbl .td-addr .h-hex {
-            font-family:'SF Mono','Fira Code','Cascadia Code',monospace;
-            font-size:11px;color:rgba(255,255,255,.35);
-            letter-spacing:.3px;
+        /* Badges — exact DOLO pattern */
+        .holders-tbl .td-addr .type-badge {
+            display:inline-block;font-size:7px;font-weight:600;
+            padding:1px 4px;border-radius:3px;margin-left:4px;
+            letter-spacing:.3px;white-space:nowrap;vertical-align:middle;
+            text-transform:uppercase;
         }
-        /* Unnamed: hex is primary */
-        .holders-tbl .td-addr .h-hex.h-primary {
-            font-size:12px;color:rgba(255,255,255,.6);font-weight:500;
+        .holders-tbl .td-addr .type-badge.b-burn {
+            background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.25);
         }
-        .holders-tbl .td-addr .h-hex a {
-            color:inherit;text-decoration:none;transition:color .15s;
+        .holders-tbl .td-addr .type-badge.b-lp {
+            background:rgba(59,130,246,.15);color:#60a5fa;border:1px solid rgba(59,130,246,.25);
         }
-        .holders-tbl .td-addr .h-hex a:hover {
-            color:var(--accent-blue);
+        .holders-tbl .td-addr .type-badge.b-contract {
+            background:rgba(139,92,246,.15);color:#a78bfa;border:1px solid rgba(139,92,246,.25);
         }
-        /* Tags */
-        .holders-tbl .td-addr .h-tag {
-            display:inline-flex;align-items:center;gap:3px;
-            font-size:9px;font-weight:700;letter-spacing:.6px;
-            text-transform:uppercase;padding:2px 7px;border-radius:4px;
+        .holders-tbl .td-addr .type-badge.b-team {
+            background:rgba(139,92,246,.15);color:#a78bfa;border:1px solid rgba(139,92,246,.25);
         }
-        .holders-tbl .td-addr .h-tag.t-burn { background:rgba(239,68,68,.18);color:#f87171; }
-        .holders-tbl .td-addr .h-tag.t-lp { background:rgba(245,158,11,.15);color:#fbbf24; }
-        .holders-tbl .td-addr .h-tag.t-contract { background:rgba(59,130,246,.12);color:#60a5fa; }
-        .holders-tbl .td-addr .h-tag.t-team { background:rgba(139,92,246,.12);color:#a78bfa; }
-        .holders-tbl .td-addr .h-tag.t-dao { background:rgba(236,72,153,.12);color:#f472b6; }
-        .holders-tbl .td-addr .h-tag.t-holder { background:rgba(16,185,129,.10);color:#34d399; }
-        .holders-tbl .td-addr .h-tag.t-staking { background:rgba(16,185,129,.12);color:#34d399; }
-        /* Icon buttons */
-        .holders-tbl .td-addr .h-icon-btn {
-            display:inline-flex;align-items:center;justify-content:center;
-            background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);
-            border-radius:4px;width:22px;height:22px;
-            color:rgba(255,255,255,.3);cursor:pointer;
-            font-size:10px;padding:0;text-decoration:none;
-            transition:all .15s;
+        .holders-tbl .td-addr .type-badge.b-dao {
+            background:rgba(236,72,153,.15);color:#f472b6;border:1px solid rgba(236,72,153,.25);
         }
-        .holders-tbl .td-addr .h-icon-btn:hover {
-            background:rgba(59,130,246,.12);border-color:rgba(59,130,246,.25);
-            color:var(--accent-blue);
+        .holders-tbl .td-addr .type-badge.b-staking {
+            background:rgba(245,158,11,.15);color:#f59e0b;border:1px solid rgba(245,158,11,.25);
         }
-        .holders-tbl .td-addr .h-icon-btn.copied {
-            background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.25);
-            color:#34d399;
+        .holders-tbl .td-addr .type-badge.b-holder {
+            background:rgba(16,185,129,.10);color:#34d399;border:1px solid rgba(16,185,129,.2);
         }
+        /* Copy icon */
+        .holders-tbl .copy-addr-icon {
+            display:inline-flex;align-items:center;cursor:pointer;
+            opacity:.35;transition:opacity .15s;
+        }
+        .holders-tbl .copy-addr-icon:hover { opacity:.8; }
+        .holders-tbl .copy-addr-icon.copied { opacity:1;color:#34d399; }
+        /* DeBank icon */
+        .holders-tbl .debank-icon {
+            display:inline-flex;align-items:center;opacity:.5;
+            transition:opacity .15s;
+        }
+        .holders-tbl .debank-icon:hover { opacity:1; }
         .holders-tbl .td-bal {
             text-align:right;font-variant-numeric:tabular-nums;
         }
@@ -1800,7 +1796,11 @@
         }
 
         const MAX_BAL = HOLDERS_DATA[0].b;
-        const RANK_MEDALS = {1:'🥇',2:'🥈',3:'🥉'};
+        const COPY_SVG = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>';
+        const BADGE_CLS = {
+            burn:'b-burn', lp:'b-lp', contract:'b-contract',
+            team:'b-team', dao:'b-dao', holder:'b-holder', staking:'b-staking'
+        };
 
         function renderHoldersPage() {
             const tbody = document.getElementById('holdersBody');
@@ -1810,89 +1810,84 @@
             const start = holderPage * PAGE_SIZE;
             const page = filteredHolders.slice(start, start + PAGE_SIZE);
 
-            tbody.innerHTML = '';
-            page.forEach((h, idx) => {
+            const dbUrl = addr => `https://debank.com/profile/${addr}`;
+            const snowUrl = addr => `https://snowscan.xyz/address/${addr}`;
+            const dbIcon = addr => `<a href="${dbUrl(addr)}" target="_blank" onclick="event.stopPropagation()" class="debank-icon" title="DeBank"><img src="https://debank.com/favicon.ico" width="14" height="14" onerror="this.parentElement.style.display='none'"></a>`;
+
+            tbody.innerHTML = page.map((h, idx) => {
                 const isBurn = h.a === '0x000000000000000000000000000000000000dEaD';
                 const pct = isBurn ? 0 : ((h.b / EFFECTIVE_SUPPLY) * 100);
                 const pctStr = isBurn ? '🔥' : pct >= 1 ? pct.toFixed(2) + '%' : pct >= 0.01 ? pct.toFixed(3) + '%' : '<0.01%';
                 const barW = isBurn ? 0 : Math.max(2, Math.min(100, (h.b / MAX_BAL) * 100));
-                // Tier: high (>5%), mid (>1%), low
                 const tier = isBurn ? 'low' : pct > 5 ? 'high' : pct > 1 ? 'mid' : 'low';
-                const tagCls = TAG_MAP[h.tc || h.t] || 't-holder';
-                const tagLbl = h.tl || TAG_LABEL[h.t] || 'Holder';
-                const medal = RANK_MEDALS[h.rank];
 
-                const tr = document.createElement('tr');
-                tr.style.animationDelay = (idx * 20) + 'ms';
-                // Row type class for tinting
-                if (isBurn) tr.className = 'row-burn';
-                else if (h.t === 'lp') tr.className = 'row-lp';
-                else if (h.t === 'contract') tr.className = 'row-contract';
-                else if (h.t === 'team') tr.className = 'row-team';
-                // Full address tooltip
-                tr.title = h.a;
+                // Badge
+                const badgeType = h.tc || h.t || 'holder';
+                const badgeLbl = h.tl || TAG_LABEL[h.t] || 'Holder';
+                const badgeCls = BADGE_CLS[badgeType] || 'b-holder';
 
-                // Rank (with medal for top 3)
-                tr.innerHTML = `<td class="td-rank">${medal ? '<span class="rank-medal">' + medal + '</span>' : h.rank}</td>`;
-
-                // Address cell — two-line layout
-                let addrHtml = '<td class="td-addr">';
+                // Address cell — DOLO Holders format: single-line inline-flex
+                let addrCell;
                 if (h.n) {
-                    // Named: Line1 = name + tag, Line2 = hex + icons
-                    addrHtml += `<div class="h-line1"><span class="h-name">${h.n}</span><span class="h-tag ${tagCls}">${tagLbl}</span></div>`;
-                    addrHtml += `<div class="h-line2">`;
-                    addrHtml += `<span class="h-hex"><a href="https://snowscan.xyz/address/${h.a}" target="_blank" rel="noopener">${shortAddr(h.a)}</a></span>`;
+                    // Named: name link + badge + copy + debank
+                    addrCell = `<td class="td-addr"><span class="addr-wrap">` +
+                        `<a href="${snowUrl(h.a)}" target="_blank" onclick="event.stopPropagation()" class="addr-link addr-tooltip-wrap" data-full-addr="${h.a}">${h.n}</a>` +
+                        `<span class="type-badge ${badgeCls}">${badgeLbl.toUpperCase()}</span>` +
+                        `<span class="copy-addr-icon" onclick="event.stopPropagation();copyAddr('${h.a}',this)" title="Kopiuj adres">${COPY_SVG}</span>` +
+                        dbIcon(h.a) +
+                        `</span></td>`;
                 } else {
-                    // Unnamed: Line1 = hex (primary) + tag, Line2 = icons
-                    addrHtml += `<div class="h-line1"><span class="h-hex h-primary"><a href="https://snowscan.xyz/address/${h.a}" target="_blank" rel="noopener">${shortAddr(h.a)}</a></span><span class="h-tag ${tagCls}">${tagLbl}</span></div>`;
-                    addrHtml += `<div class="h-line2">`;
+                    // Unnamed: hex link + copy + debank
+                    addrCell = `<td class="td-addr"><span class="addr-wrap">` +
+                        `<a href="${snowUrl(h.a)}" target="_blank" onclick="event.stopPropagation()" class="addr-link addr-hex addr-tooltip-wrap" data-full-addr="${h.a}">${shortAddr(h.a)}</a>` +
+                        `<span class="copy-addr-icon" onclick="event.stopPropagation();copyAddr('${h.a}',this)" title="Kopiuj adres">${COPY_SVG}</span>` +
+                        dbIcon(h.a) +
+                        `</span></td>`;
                 }
-                addrHtml += `<button class="h-icon-btn" onclick="copyAddr('${h.a}',this)" title="Kopiuj adres">⧉</button>`;
-                addrHtml += `<a class="h-icon-btn" href="https://debank.com/profile/${h.a}" target="_blank" rel="noopener" title="DeBank">↗</a>`;
-                addrHtml += `</div></td>`;
-                tr.innerHTML += addrHtml;
 
-                // Balance with LIL unit
-                tr.innerHTML += `<td class="td-bal"><span class="bal-num">${fmtBal(h.b)}</span><span class="bal-unit">LIL</span></td>`;
+                // Row type class
+                let rowCls = '';
+                if (isBurn) rowCls = 'row-burn';
+                else if (h.t === 'lp') rowCls = 'row-lp';
+                else if (h.t === 'contract') rowCls = 'row-contract';
+                else if (h.t === 'team') rowCls = 'row-team';
 
-                // % Effective with tiered color + bar
-                tr.innerHTML += `<td class="td-pct"><span class="pct-num pct-${tier}">${pctStr}</span><span class="pct-bar bar-${tier}" style="width:${barW}%"></span></td>`;
-                tbody.appendChild(tr);
-            });
+                const balExact = h.b.toLocaleString('en-US');
+
+                return `<tr class="${rowCls}" style="border-bottom:1px solid rgba(255,255,255,0.04);transition:transform .15s,background .15s;cursor:pointer;animation:rowFadeIn .25s ease forwards;animation-delay:${idx*20}ms" onmouseenter="this.style.transform='scale(1.01)';this.style.background='rgba(255,255,255,0.03)'" onmouseleave="this.style.transform='';this.style.background=''" onclick="window.open('${snowUrl(h.a)}','_blank')" title="${h.a}">
+                    <td class="td-rank">${h.rank}</td>
+                    ${addrCell}
+                    <td class="td-bal" title="${balExact} LIL"><span class="bal-num">${fmtBal(h.b)}</span><span class="bal-unit">LIL</span></td>
+                    <td class="td-pct"><span class="pct-num pct-${tier}">${pctStr}</span><span class="pct-bar bar-${tier}" style="width:${barW}%"></span></td>
+                </tr>`;
+            }).join('');
 
             // Empty row padding (fixed height)
             const emptyRows = PAGE_SIZE - page.length;
             for (let i = 0; i < emptyRows; i++) {
-                const tr = document.createElement('tr');
-                tr.className = 'empty-row';
-                tr.innerHTML = '<td>&nbsp;</td><td></td><td></td><td></td>';
-                tbody.appendChild(tr);
+                tbody.innerHTML += '<tr class="empty-row"><td>&nbsp;</td><td></td><td></td><td></td></tr>';
             }
 
-            // Always-visible pagination
+            // Pagination — DOLO format: « ‹ 1 / N › »
             const pager = document.getElementById('holdersPager');
-            let pgHtml = `<button onclick="holderPage=0;renderHoldersPage()" ${holderPage===0?'disabled':''}>«</button>`;
-            pgHtml += `<button onclick="holderPage--;renderHoldersPage()" ${holderPage===0?'disabled':''}>‹</button>`;
-            // Page numbers
-            for (let p = 0; p < totalPages; p++) {
-                pgHtml += `<button class="${p===holderPage?'pg-active':''}" onclick="holderPage=${p};renderHoldersPage()">${p+1}</button>`;
-            }
-            pgHtml += `<button onclick="holderPage++;renderHoldersPage()" ${holderPage>=totalPages-1?'disabled':''}>›</button>`;
-            pgHtml += `<button onclick="holderPage=${totalPages-1};renderHoldersPage()" ${holderPage>=totalPages-1?'disabled':''}>»</button>`;
-            pgHtml += `<span class="pg-info">${filteredHolders.length} holderów</span>`;
-            pager.innerHTML = pgHtml;
+            pager.innerHTML =
+                `<button onclick="holderPage=0;renderHoldersPage()" ${holderPage===0?'disabled':''}>«</button>` +
+                `<button onclick="holderPage--;renderHoldersPage()" ${holderPage===0?'disabled':''}>‹</button>` +
+                `<span class="pg-info">${holderPage+1} / ${totalPages}</span>` +
+                `<button onclick="holderPage++;renderHoldersPage()" ${holderPage>=totalPages-1?'disabled':''}>›</button>` +
+                `<button onclick="holderPage=${totalPages-1};renderHoldersPage()" ${holderPage>=totalPages-1?'disabled':''}>»</button>`;
         }
 
         // Copy address to clipboard
-        function copyAddr(addr, btn) {
+        function copyAddr(addr, el) {
             navigator.clipboard.writeText(addr).then(() => {
-                if (btn) {
-                    const orig = btn.textContent;
-                    btn.textContent = '✓';
-                    btn.classList.add('copied');
+                if (el) {
+                    el.classList.add('copied');
+                    const origHTML = el.innerHTML;
+                    el.innerHTML = '✓';
                     setTimeout(() => {
-                        btn.textContent = orig;
-                        btn.classList.remove('copied');
+                        el.innerHTML = origHTML;
+                        el.classList.remove('copied');
                     }, 1200);
                 }
             });
