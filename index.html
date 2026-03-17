@@ -875,21 +875,24 @@
         .view-section { display:none; }
         .view-section.active { display:block; }
 
-        /* ═══ Holders Card (Dolomite-style) ═══ */
+        /* ═══ Holders Card (Premium) ═══ */
         .holders-card {
             background:var(--bg-card);border:1px solid var(--border);
             border-radius:16px;overflow:hidden;
+            box-shadow:0 4px 24px rgba(0,0,0,.3), 0 0 0 1px rgba(255,255,255,.03) inset;
         }
         .holders-card-header {
             display:flex;align-items:center;justify-content:space-between;
             padding:20px 24px 0;flex-wrap:wrap;gap:12px;
+            background:linear-gradient(180deg, rgba(59,130,246,.04) 0%, transparent 100%);
         }
         .holders-card-header h3 {
             font-size:16px;font-weight:700;color:#fff;margin:0;
             display:flex;align-items:center;gap:8px;
         }
         .holders-card-header h3 .h-count {
-            font-size:13px;font-weight:500;color:var(--text-muted);
+            font-size:12px;font-weight:500;color:var(--text-muted);
+            background:rgba(255,255,255,.05);padding:2px 8px;border-radius:6px;
         }
         .holders-toolbar {
             display:flex;align-items:center;gap:12px;padding:12px 24px 0;
@@ -912,7 +915,8 @@
         .holders-search::placeholder { color:var(--text-muted); }
         .holders-toggle {
             display:flex;align-items:center;gap:8px;cursor:pointer;
-            font-size:12px;color:var(--text-secondary);user-select:none;
+            font-size:12px;color:var(--text-secondary);
+            -webkit-user-select:none;user-select:none;
         }
         .holders-toggle input { display:none; }
         .holders-toggle-track {
@@ -941,47 +945,65 @@
             position:sticky;top:0;z-index:2;background:var(--bg-card);
         }
         .holders-tbl th {
-            padding:8px 12px;text-align:left;color:rgba(255,255,255,.4);
-            font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:600;
-            border-bottom:1px solid rgba(255,255,255,.08);user-select:none;
+            padding:10px 12px;text-align:left;color:rgba(255,255,255,.4);
+            font-size:10px;text-transform:uppercase;letter-spacing:.6px;font-weight:600;
+            border-bottom:1px solid rgba(255,255,255,.08);
+            -webkit-user-select:none;user-select:none;
         }
         .holders-tbl th.col-bal, .holders-tbl th.col-pct { text-align:right; }
         .holders-tbl th.col-rank { text-align:center;width:36px; }
-        .holders-tbl th.sortable { cursor:pointer; }
-        .holders-tbl th.sortable:hover { color:rgba(255,255,255,.6); }
-        .holders-tbl th.sort-active { color:rgba(255,255,255,.7); }
+        .holders-tbl th.sortable { cursor:pointer;transition:color .15s; }
+        .holders-tbl th.sortable:hover { color:rgba(255,255,255,.7); }
+        .holders-tbl th.sort-active { color:rgba(255,255,255,.8); }
         .holders-tbl th.sort-active .sort-arrow { opacity:1;color:var(--accent-blue); }
-        .holders-tbl .sort-arrow { font-size:9px;margin-left:2px;opacity:.4;transition:opacity .15s; }
+        .holders-tbl .sort-arrow { font-size:9px;margin-left:3px;opacity:.3;transition:all .2s; }
         .holders-tbl td {
             padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.04);
             vertical-align:middle;
         }
         .holders-tbl tbody tr {
-            transition:transform .15s, background .15s, box-shadow .15s;
+            transition:all .2s cubic-bezier(.4,0,.2,1);
             border-left:3px solid transparent;
         }
         .holders-tbl tbody tr:hover {
-            transform:scale(1.008);background:rgba(255,255,255,.03);
+            background:rgba(59,130,246,.04);
             border-left-color:var(--accent-blue);
+            box-shadow:0 2px 8px rgba(0,0,0,.15);
+        }
+        .holders-tbl tbody tr.empty-row {
+            pointer-events:none;
+        }
+        .holders-tbl tbody tr.empty-row td {
+            border-bottom:1px solid rgba(255,255,255,.02);
+        }
+        @keyframes rowFadeIn {
+            from { opacity:0; transform:translateY(4px); }
+            to { opacity:1; transform:translateY(0); }
+        }
+        .holders-tbl tbody tr:not(.empty-row) {
+            animation:rowFadeIn .25s ease forwards;
         }
         .holders-tbl .td-rank {
-            color:var(--text-muted);font-size:11px;text-align:center;font-weight:600;
+            color:var(--text-muted);font-size:11px;text-align:center;font-weight:700;
+        }
+        .holders-tbl .td-rank .rank-medal {
+            font-size:14px;line-height:1;
         }
         .holders-tbl .td-addr {
             line-height:1.55;
         }
         .holders-tbl .td-addr .h-name {
-            font-weight:600;font-size:12px;color:var(--text-primary);
+            font-weight:600;font-size:12px;color:#fff;
         }
         .holders-tbl .td-addr .h-hex {
-            font-family:'SF Mono','Fira Code',monospace;font-size:11px;
-            color:var(--text-muted);
+            font-family:'SF Mono','Fira Code',monospace;font-size:10px;
+            color:var(--text-muted);display:flex;align-items:center;gap:4px;
         }
         .holders-tbl .td-addr .h-hex a {
-            color:inherit;text-decoration:none;
+            color:inherit;text-decoration:none;transition:color .15s;
         }
         .holders-tbl .td-addr .h-hex a:hover {
-            color:var(--accent-blue);text-decoration:underline;
+            color:var(--accent-blue);
         }
         .holders-tbl .td-addr .h-tag {
             display:inline-block;font-size:9px;font-weight:700;letter-spacing:.8px;
@@ -993,49 +1015,77 @@
         .holders-tbl .td-addr .h-tag.t-contract { background:rgba(59,130,246,.15);color:#60a5fa; }
         .holders-tbl .td-addr .h-tag.t-team { background:rgba(139,92,246,.15);color:#a78bfa; }
         .holders-tbl .td-addr .h-tag.t-holder { background:rgba(16,185,129,.12);color:#34d399; }
-        .holders-tbl .td-addr .h-copy {
+        .holders-tbl .td-addr .h-icon {
             background:none;border:none;color:var(--text-muted);cursor:pointer;
-            font-size:11px;padding:0 0 0 4px;vertical-align:middle;
-            transition:color .15s;
+            font-size:10px;padding:0;transition:color .15s;
         }
-        .holders-tbl .td-addr .h-copy:hover { color:var(--accent-blue); }
+        .holders-tbl .td-addr .h-icon:hover { color:var(--accent-blue); }
         .holders-tbl .td-bal {
             text-align:right;font-variant-numeric:tabular-nums;
         }
         .holders-tbl .td-bal .bal-num {
-            font-weight:600;font-size:12px;color:var(--text-primary);
+            font-weight:700;font-size:12px;color:#fff;
+        }
+        .holders-tbl .td-bal .bal-unit {
+            display:block;font-size:9px;color:var(--text-muted);font-weight:400;
+            letter-spacing:.5px;margin-top:1px;
         }
         .holders-tbl .td-pct {
             text-align:right;font-variant-numeric:tabular-nums;
         }
         .holders-tbl .td-pct .pct-num {
-            font-weight:600;font-size:11px;color:var(--text-secondary);
+            font-weight:600;font-size:11px;
         }
+        .holders-tbl .td-pct .pct-num.pct-high { color:var(--accent-blue); }
+        .holders-tbl .td-pct .pct-num.pct-mid { color:var(--accent-green); }
+        .holders-tbl .td-pct .pct-num.pct-low { color:var(--text-muted); }
         .holders-tbl .td-pct .pct-bar {
             display:block;height:3px;border-radius:2px;margin-top:4px;
-            background:linear-gradient(90deg,var(--accent-blue),var(--accent-purple));
-            opacity:.5;transition:width .3s ease;
+            opacity:.6;transition:width .4s cubic-bezier(.4,0,.2,1);
         }
-        /* Pagination */
+        .holders-tbl .td-pct .pct-bar.bar-high {
+            background:linear-gradient(90deg,var(--accent-blue),var(--accent-purple));
+        }
+        .holders-tbl .td-pct .pct-bar.bar-mid {
+            background:linear-gradient(90deg,var(--accent-green),var(--accent-blue));
+        }
+        .holders-tbl .td-pct .pct-bar.bar-low {
+            background:var(--text-muted);
+        }
+        /* Pagination (premium) */
         .holders-pager {
-            display:flex;align-items:center;justify-content:center;gap:8px;
-            padding:12px 24px;border-top:1px solid rgba(255,255,255,.06);
+            display:flex;align-items:center;justify-content:center;gap:6px;
+            padding:14px 24px;border-top:1px solid rgba(255,255,255,.06);
         }
         .holders-pager button {
-            background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
-            border-radius:6px;padding:4px 10px;color:var(--text-secondary);
+            background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+            border-radius:6px;padding:5px 12px;color:var(--text-secondary);
             font-family:inherit;font-size:12px;cursor:pointer;
-            transition:all .15s;
+            transition:all .2s;min-width:32px;
         }
         .holders-pager button:hover:not(:disabled) {
-            background:rgba(255,255,255,.1);color:#fff;
+            background:rgba(59,130,246,.12);border-color:rgba(59,130,246,.25);color:#fff;
+        }
+        .holders-pager button.pg-active {
+            background:rgba(59,130,246,.15);border-color:rgba(59,130,246,.3);
+            color:var(--accent-blue);font-weight:600;
         }
         .holders-pager button:disabled {
-            opacity:.3;cursor:not-allowed;
+            opacity:.25;cursor:not-allowed;
         }
         .holders-pager .pg-info {
-            font-size:11px;color:var(--text-muted);min-width:80px;text-align:center;
+            font-size:11px;color:var(--text-muted);min-width:90px;text-align:center;
+            padding:0 4px;
         }
+        /* Search clear */
+        .holders-search-clear {
+            position:absolute;right:8px;top:50%;transform:translateY(-50%);
+            background:none;border:none;color:var(--text-muted);cursor:pointer;
+            font-size:14px;padding:2px;line-height:1;transition:color .15s;
+            display:none;
+        }
+        .holders-search-clear.visible { display:block; }
+        .holders-search-clear:hover { color:var(--accent-red); }
 
         @media (max-width: 768px) {
             .circ-stats {
@@ -1045,7 +1095,9 @@
             .holders-toolbar { padding:12px 16px 0; }
             .holders-card-header { padding:16px 16px 0; }
             .holders-search-wrap { width:100%; }
-            .holders-tbl td, .holders-tbl th { padding:8px; }
+            .holders-tbl td, .holders-tbl th { padding:8px 10px; }
+            .holders-tbl .td-pct { display:none; }
+            .holders-tbl th.col-pct { display:none; }
         }
     </style>
 </head>
@@ -1317,7 +1369,8 @@
                 <div class="holders-toolbar">
                     <div class="holders-search-wrap">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                        <input type="text" class="holders-search" id="holderSearch" placeholder="Szukaj adresu 0x…" oninput="filterHolders()">
+                        <input type="text" class="holders-search" id="holderSearch" placeholder="Szukaj nazwy lub adresu 0x…" oninput="filterHolders()">
+                        <button class="holders-search-clear" id="searchClear" onclick="clearSearch()">×</button>
                     </div>
                     <label class="holders-toggle" title="Ukryj kontrakty, LP, burn i team">
                         <input type="checkbox" id="hideCaTeam" onchange="filterHolders()">
@@ -1644,6 +1697,8 @@
         function filterHolders() {
             const q = (document.getElementById('holderSearch').value || '').toLowerCase();
             const hideCa = document.getElementById('hideCaTeam').checked;
+            // Show/hide clear button
+            document.getElementById('searchClear').classList.toggle('visible', q.length > 0);
             filteredHolders = HOLDERS_DATA.map((h,i) => ({...h, rank: i+1})).filter(h => {
                 if (hideCa && h.t !== 'holder') return false;
                 if (q && !h.a.toLowerCase().includes(q) && !(h.n && h.n.toLowerCase().includes(q))) return false;
@@ -1651,6 +1706,12 @@
             });
             holderPage = 0;
             renderHoldersPage();
+        }
+
+        function clearSearch() {
+            document.getElementById('holderSearch').value = '';
+            document.getElementById('searchClear').classList.remove('visible');
+            filterHolders();
         }
 
         function sortHolders(col) {
@@ -1665,7 +1726,6 @@
             });
             filteredHolders = sorted;
             holderPage = 0;
-            // Update active sort header
             document.querySelectorAll('.holders-tbl th.sortable').forEach(th => th.classList.remove('sort-active'));
             const colMap = {rank:'col-rank', address:null, balance:'col-bal', pct:'col-pct'};
             const cls = colMap[col];
@@ -1674,7 +1734,8 @@
             renderHoldersPage();
         }
 
-        const MAX_BAL = HOLDERS_DATA[0].b; // largest balance for bar scaling
+        const MAX_BAL = HOLDERS_DATA[0].b;
+        const RANK_MEDALS = {1:'🥇',2:'🥈',3:'🥉'};
 
         function renderHoldersPage() {
             const tbody = document.getElementById('holdersBody');
@@ -1685,51 +1746,74 @@
             const page = filteredHolders.slice(start, start + PAGE_SIZE);
 
             tbody.innerHTML = '';
-            page.forEach(h => {
+            page.forEach((h, idx) => {
                 const isBurn = h.a === '0x000000000000000000000000000000000000dEaD';
                 const pct = isBurn ? 0 : ((h.b / EFFECTIVE_SUPPLY) * 100);
                 const pctStr = isBurn ? '🔥' : pct >= 1 ? pct.toFixed(2) + '%' : pct >= 0.01 ? pct.toFixed(3) + '%' : '<0.01%';
                 const barW = isBurn ? 0 : Math.max(2, Math.min(100, (h.b / MAX_BAL) * 100));
+                // Tier: high (>5%), mid (>1%), low
+                const tier = isBurn ? 'low' : pct > 5 ? 'high' : pct > 1 ? 'mid' : 'low';
                 const tagCls = TAG_MAP[h.tc || h.t] || 't-holder';
                 const tagLbl = h.tl || TAG_LABEL[h.t] || 'Holder';
+                const medal = RANK_MEDALS[h.rank];
 
                 const tr = document.createElement('tr');
-                // Rank
-                tr.innerHTML = `<td class="td-rank">${h.rank}</td>`;
-                // Address cell
+                tr.style.animationDelay = (idx * 20) + 'ms';
+
+                // Rank (with medal for top 3)
+                tr.innerHTML = `<td class="td-rank">${medal ? '<span class="rank-medal">' + medal + '</span>' : h.rank}</td>`;
+
+                // Address cell with DeBank link
                 let addrHtml = '<td class="td-addr">';
                 if (h.n) {
                     addrHtml += `<span class="h-name">${h.n}</span><span class="h-tag ${tagCls}">${tagLbl}</span><br>`;
                 }
-                addrHtml += `<span class="h-hex"><a href="https://snowscan.xyz/address/${h.a}" target="_blank" rel="noopener">${shortAddr(h.a)}</a>`;
-                addrHtml += `<button class="h-copy" onclick="copyAddr('${h.a}')" title="Kopiuj adres">📋</button></span>`;
+                addrHtml += `<span class="h-hex">`;
+                addrHtml += `<a href="https://snowscan.xyz/address/${h.a}" target="_blank" rel="noopener">${shortAddr(h.a)}</a>`;
+                addrHtml += `<button class="h-icon" onclick="copyAddr('${h.a}')" title="Kopiuj">📋</button>`;
+                addrHtml += `<a class="h-icon" href="https://debank.com/profile/${h.a}" target="_blank" rel="noopener" title="DeBank">🔗</a>`;
+                addrHtml += `</span>`;
                 if (!h.n) addrHtml += `<span class="h-tag ${tagCls}">${tagLbl}</span>`;
                 addrHtml += '</td>';
                 tr.innerHTML += addrHtml;
-                // Balance (amount only)
-                tr.innerHTML += `<td class="td-bal"><span class="bal-num">${fmtBal(h.b)}</span></td>`;
-                // % Supply (separate column with bar)
-                tr.innerHTML += `<td class="td-pct"><span class="pct-num">${pctStr}</span><span class="pct-bar" style="width:${barW}%"></span></td>`;
+
+                // Balance with LIL unit
+                tr.innerHTML += `<td class="td-bal"><span class="bal-num">${fmtBal(h.b)}</span><span class="bal-unit">LIL</span></td>`;
+
+                // % Effective with tiered color + bar
+                tr.innerHTML += `<td class="td-pct"><span class="pct-num pct-${tier}">${pctStr}</span><span class="pct-bar bar-${tier}" style="width:${barW}%"></span></td>`;
                 tbody.appendChild(tr);
             });
 
-            // Pagination
+            // Empty row padding (fixed height)
+            const emptyRows = PAGE_SIZE - page.length;
+            for (let i = 0; i < emptyRows; i++) {
+                const tr = document.createElement('tr');
+                tr.className = 'empty-row';
+                tr.innerHTML = '<td>&nbsp;</td><td></td><td></td><td></td>';
+                tbody.appendChild(tr);
+            }
+
+            // Always-visible pagination
             const pager = document.getElementById('holdersPager');
-            if (filteredHolders.length <= PAGE_SIZE) { pager.innerHTML = ''; return; }
-            pager.innerHTML = `
-                <button onclick="holderPage=0;renderHoldersPage()" ${holderPage===0?'disabled':''}>«</button>
-                <button onclick="holderPage--;renderHoldersPage()" ${holderPage===0?'disabled':''}>‹</button>
-                <span class="pg-info">${start+1}–${Math.min(start+PAGE_SIZE, filteredHolders.length)} z ${filteredHolders.length}</span>
-                <button onclick="holderPage++;renderHoldersPage()" ${holderPage>=totalPages-1?'disabled':''}>›</button>
-                <button onclick="holderPage=${totalPages-1};renderHoldersPage()" ${holderPage>=totalPages-1?'disabled':''}>»</button>`;
+            let pgHtml = `<button onclick="holderPage=0;renderHoldersPage()" ${holderPage===0?'disabled':''}>«</button>`;
+            pgHtml += `<button onclick="holderPage--;renderHoldersPage()" ${holderPage===0?'disabled':''}>‹</button>`;
+            // Page numbers
+            for (let p = 0; p < totalPages; p++) {
+                pgHtml += `<button class="${p===holderPage?'pg-active':''}" onclick="holderPage=${p};renderHoldersPage()">${p+1}</button>`;
+            }
+            pgHtml += `<button onclick="holderPage++;renderHoldersPage()" ${holderPage>=totalPages-1?'disabled':''}>›</button>`;
+            pgHtml += `<button onclick="holderPage=${totalPages-1};renderHoldersPage()" ${holderPage>=totalPages-1?'disabled':''}>»</button>`;
+            pgHtml += `<span class="pg-info">${filteredHolders.length} holderów</span>`;
+            pager.innerHTML = pgHtml;
         }
 
         // Copy address to clipboard
         function copyAddr(addr) {
             navigator.clipboard.writeText(addr).then(() => {
-                const btns = document.querySelectorAll('.h-copy');
+                const btns = document.querySelectorAll('.h-icon');
                 btns.forEach(b => {
-                    if (b.getAttribute('onclick').includes(addr.slice(0, 8))) {
+                    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(addr.slice(0, 8))) {
                         const orig = b.textContent;
                         b.textContent = '✓';
                         setTimeout(() => b.textContent = orig, 1200);
