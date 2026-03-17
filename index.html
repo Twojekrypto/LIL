@@ -2142,16 +2142,30 @@
             filteredPortfolio.sort((a, b) => (a[col] - b[col]) * portfolioSort.dir);
             portfolioBodyPage = 0; renderportfolioBody();
         }
+        // Build lock lookup for avg duration in portfolio
+        const lockByAddr = {};
+        LOCK_DATA.forEach(l => { lockByAddr[l.a.toLowerCase()] = l; });
+
         function renderportfolioBody() {
             document.getElementById('portfolioCount').textContent = `(${filteredPortfolio.length} adresów)`;
             portfolioBodyPage = renderGenericTable(filteredPortfolio, 'portfolioBody', 'portfolioPager', portfolioBodyPage, PAGE_SIZE, (h, rank, idx) => {
                 const fmtVal = v => v > 0 ? fmtBal(v) : '<span style="color:rgba(255,255,255,0.15)">—</span>';
                 const totalColor = h.total > 10000000 ? 'color:#22d3ee;font-weight:600' : h.total > 1000000 ? 'color:#34d399;font-weight:600' : '';
+                // Avg lock duration from LOCK_DATA
+                let lockedCell = fmtVal(h.locked);
+                const lockInfo = lockByAddr[h.a.toLowerCase()];
+                if (lockInfo && lockInfo.locks.length > 0) {
+                    const totalAmt = lockInfo.locks.reduce((s, l) => s + l.amount, 0);
+                    const weightedDays = lockInfo.locks.reduce((s, l) => s + l.durationDays * l.amount, 0);
+                    const avgDays = Math.round(weightedDays / totalAmt);
+                    const avgLabel = avgDays >= 365 ? (avgDays / 365).toFixed(1) + 'y' : avgDays + 'd';
+                    lockedCell = `${fmtBal(h.locked)}<br><span style="font-size:9px;color:var(--text-muted)">avg ${avgLabel}</span>`;
+                }
                 return `<tr style="border-bottom:1px solid rgba(255,255,255,0.04);transition:transform .15s,background .15s;cursor:pointer;animation:rowFadeIn .25s ease forwards;animation-delay:${idx*20}ms" onmouseenter="this.style.transform='scale(1.01)';this.style.background='rgba(255,255,255,0.03)'" onmouseleave="this.style.transform='';this.style.background=''" onclick="window.open('https://snowscan.xyz/address/${h.a}','_blank')" title="${h.a}">
                     <td class="td-rank">${rank}</td>
                     <td class="td-addr">${makeAddr(h)}</td>
                     <td style="text-align:right;font-size:12px">${fmtVal(h.wallet)}</td>
-                    <td style="text-align:right;font-size:12px;color:var(--accent-blue)">${fmtVal(h.locked)}</td>
+                    <td style="text-align:right;font-size:12px;color:var(--accent-blue)">${lockedCell}</td>
                     <td style="text-align:right;font-size:12px;color:var(--accent-green)">${fmtVal(h.staked)}</td>
                     <td class="td-bal" style="text-align:right;${totalColor}"><span class="bal-num">${fmtBal(h.total)}</span><span class="bal-unit">LIL</span></td>
                 </tr>`;
