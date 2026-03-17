@@ -1075,22 +1075,40 @@
             </div>
 
             <!-- Circulation stats -->
-            <div class="circ-stats">
+            <div class="circ-stats" style="grid-template-columns: repeat(3, 1fr);">
                 <div class="circ-stat">
                     <div class="label">Total Supply</div>
-                    <div class="value">1,350,000,000</div>
+                    <div class="value" style="font-size: 13px;">1,350,000,000</div>
                 </div>
                 <div class="circ-stat">
-                    <div class="label">Burned</div>
+                    <div class="label">🔥 Burned</div>
                     <div class="value red">363,187,841</div>
                 </div>
-                <div class="circ-stat">
-                    <div class="label">Staked + Locked</div>
-                    <div class="value blue">444,553,632</div>
+                <div class="circ-stat" style="border-color: rgba(16, 185, 129, 0.25);">
+                    <div class="label">Effective Supply (post-burn)</div>
+                    <div class="value green">986,812,159</div>
                 </div>
-                <div class="circ-stat">
-                    <div class="label">Free Float</div>
-                    <div class="value green">542,258,527</div>
+            </div>
+            <div class="circ-stats" style="grid-template-columns: repeat(4, 1fr);">
+                <div class="circ-stat" style="border-color: rgba(59, 130, 246, 0.25);">
+                    <div class="label">🔒 Locked / Staked</div>
+                    <div class="value blue">467,529,271</div>
+                    <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-blue);">47.4%</div>
+                </div>
+                <div class="circ-stat" style="border-color: rgba(245, 158, 11, 0.25);">
+                    <div class="label">💧 LP (Pharaoh)</div>
+                    <div class="value amber">353,508,945</div>
+                    <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-amber);">35.8%</div>
+                </div>
+                <div class="circ-stat" style="border-color: rgba(139, 92, 246, 0.25);">
+                    <div class="label">👥 Team / DAO</div>
+                    <div class="value" style="color: var(--accent-purple);">98,674,995</div>
+                    <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-purple);">10.0%</div>
+                </div>
+                <div class="circ-stat" style="border-color: rgba(16, 185, 129, 0.25);">
+                    <div class="label">🟢 Free Float</div>
+                    <div class="value green">67,098,948</div>
+                    <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-green);">6.8%</div>
                 </div>
             </div>
 
