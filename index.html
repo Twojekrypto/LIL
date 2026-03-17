@@ -1461,10 +1461,7 @@
                 <div class="holders-pager" id="holdersPager"></div>
             </div>
 
-            <div class="info-bar" style="margin-top: 12px;">
-                <span class="info-icon">ℹ️</span>
-                <span>Dane on-chain z <a href="https://snowscan.xyz/token/0x22683bbadd01473969f23709879187705a253763" target="_blank" rel="noopener" style="color: var(--accent-blue);">Snowscan</a> — 679 holderów. CA LIL: <code style="font-size:10px; color: var(--text-muted);">0x2268...3763</code></span>
-            </div>
+
 
             <!-- ══════ LOCK POSITIONS TABLE ══════ -->
             <div class="holders-card" style="margin-top:32px;">
@@ -1749,7 +1746,7 @@
             const slider = document.getElementById('tabSlider');
             slider.style.width = activeBtn.offsetWidth + 'px';
             slider.style.transform = 'translateX(' + (activeBtn.offsetLeft - 3) + 'px)';
-            if (view === 'holders') renderHoldersPage();
+            if (view === 'holders') { renderHoldersPage(); if (typeof renderlockBody === 'function') { renderlockBody(); renderstakeBody(); renderportfolioBody(); } }
         }
         // Init slider position
         requestAnimationFrame(() => {
@@ -2149,28 +2146,10 @@
             });
         }
 
-        // Initialize all on-chain tables when holders tab is shown
-        const origSwitchView = switchView;
-        switchView = function(view) {
-            origSwitchView(view);
-            if (view === 'holders') {
-                renderlockBody();
-                renderstakeBody();
-                renderportfolioBody();
-            }
-        };
-        // Also render on initial load
-        document.addEventListener('DOMContentLoaded', () => {
-            renderlockBody();
-            renderstakeBody();
-            renderportfolioBody();
-        });
-        // Fallback for already-loaded DOM
-        if (document.readyState !== 'loading') {
-            renderlockBody();
-            renderstakeBody();
-            renderportfolioBody();
-        }
+        // Initialize all on-chain tables immediately
+        renderlockBody();
+        renderstakeBody();
+        renderportfolioBody();
     </script>
 </body>
 </html>
