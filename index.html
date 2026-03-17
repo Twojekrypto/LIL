@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIL Moat Rewards Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-card: #111827;
+            --bg-card-hover: #1a2332;
+            --bg-input: #0d1525;
+            --border: #1e2a3a;
+            --border-focus: #3b82f6;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-red: #ef4444;
+            --glow-blue: rgba(59, 130, 246, 0.15);
+            --glow-purple: rgba(139, 92, 246, 0.15);
+            --glow-green: rgba(16, 185, 129, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse 600px 400px at 20% 20%, rgba(59, 130, 246, 0.06) 0%, transparent 70%),
+                radial-gradient(ellipse 500px 350px at 80% 80%, rgba(139, 92, 246, 0.06) 0%, transparent 70%),
+                radial-gradient(ellipse 400px 300px at 50% 50%, rgba(16, 185, 129, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(139, 92, 246, 0.12));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 100px;
+            padding: 6px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-blue);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .header-badge .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f1f5f9 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        /* Grid layout */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            border-color: rgba(59, 130, 246, 0.2);
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 20px;
+        }
+
+        .card-title .icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+        }
+
+        .icon-blue { background: var(--glow-blue); color: var(--accent-blue); }
+        .icon-purple { background: var(--glow-purple); color: var(--accent-purple); }
+        .icon-green { background: var(--glow-green); color: var(--accent-green); }
+
+        /* Inputs */
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        .input-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .input-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-label .value-hint {
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .input-field {
+            width: 100%;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .input-field:focus {
+            border-color: var(--border-focus);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .input-field::placeholder {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* Range slider */
+        .range-container {
+            position: relative;
+        }
+
+        .range-value-display {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .range-value-display .unit {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-left: 4px;
+        }
+
+        .range-multiplier {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-purple);
+            margin-bottom: 16px;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            outline: none;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.4), 0 2px 6px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.15s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+
+        .range-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Duration presets */
+        .presets {
+            display: flex;
+            gap: 6px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+
+        .preset-btn {
+            flex: 1;
+            min-width: 60px;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 7px 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .preset-btn:hover {
+            border-color: var(--accent-purple);
+            color: var(--text-primary);
+            background: rgba(139, 92, 246, 0.08);
+        }
+
+        .preset-btn.active {
+            border-color: var(--accent-purple);
+            background: rgba(139, 92, 246, 0.12);
+            color: var(--accent-purple);
+        }
+
+        /* Current moat stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-item {
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+
+        .stat-item:hover {
+            border-color: rgba(59, 130, 246, 0.15);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 6px;
+        }
+
+        .stat-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .stat-sub {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Results section */
+        .results-card {
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(17, 24, 39, 0.98));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 28px;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .results-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-green));
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .result-item {
+            text-align: center;
+        }
+
+        .result-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+        }
+
+        .result-value {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .result-value.blue { color: var(--accent-blue); }
+        .result-value.purple { color: var(--accent-purple); }
+        .result-value.green { color: var(--accent-green); }
+
+        .result-sub {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Big reward highlight */
+        .reward-highlight {
+            margin-top: 24px;
+            text-align: center;
+            padding: 24px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.06), rgba(59, 130, 246, 0.06));
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            border-radius: 14px;
+        }
+
+        .reward-highlight .label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .reward-highlight .big-value {
+            font-size: 42px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .reward-highlight .big-value .avax {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .reward-highlight .sub {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+        }
+
+        /* Extra results row */
+        .extra-results {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .extra-result-item {
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .extra-result-item .label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .extra-result-item .value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent-amber);
+        }
+
+        .extra-result-item .sub {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Info bar */
+        .info-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            padding: 12px 16px;
+            background: rgba(245, 158, 11, 0.06);
+            border: 1px solid rgba(245, 158, 11, 0.12);
+            border-radius: 10px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .info-bar .info-icon {
+            color: var(--accent-amber);
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        /* Section spacing */
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .results-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .header h1 {
+                font-size: 28px;
+            }
+            .reward-highlight .big-value {
+                font-size: 32px;
+            }
+            .extra-results {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Multiplier table */
+        .multiplier-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+        }
+
+        .multiplier-table th {
+            text-align: left;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 6px 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .multiplier-table td {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            padding: 5px 8px;
+            border-bottom: 1px solid rgba(30, 42, 58, 0.5);
+        }
+
+        .multiplier-table td:last-child {
+            font-weight: 700;
+            color: var(--accent-purple);
+        }
+
+        .multiplier-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Comparison mode */
+        .mode-toggle {
+            display: flex;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 3px;
+            margin-bottom: 20px;
+        }
+
+        .mode-btn {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .mode-btn.active {
+            background: rgba(59, 130, 246, 0.12);
+            color: var(--accent-blue);
+        }
+
+        /* ── Circulation Section ── */
+        .circulation-section {
+            margin-bottom: 32px;
+        }
+
+        .circ-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .circ-header .section-title {
+            margin-bottom: 0;
+        }
+
+        .toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.25s;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .toggle-btn:hover {
+            border-color: var(--accent-purple);
+            color: var(--text-primary);
+            background: rgba(139, 92, 246, 0.08);
+        }
+
+        .toggle-btn.active {
+            border-color: var(--accent-purple);
+            background: rgba(139, 92, 246, 0.12);
+            color: var(--accent-purple);
+        }
+
+        .toggle-indicator {
+            width: 28px;
+            height: 14px;
+            border-radius: 7px;
+            background: var(--border);
+            position: relative;
+            transition: background 0.25s;
+        }
+
+        .toggle-indicator::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            transition: all 0.25s;
+        }
+
+        .toggle-btn.active .toggle-indicator {
+            background: rgba(139, 92, 246, 0.35);
+        }
+
+        .toggle-btn.active .toggle-indicator::after {
+            left: 16px;
+            background: var(--accent-purple);
+        }
+
+        /* ── Circulation Stats Bar ── */
+        .circ-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .circ-stat {
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 12px;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+
+        .circ-stat:hover {
+            border-color: rgba(59, 130, 246, 0.15);
+        }
+
+        .circ-stat .label {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 5px;
+        }
+
+        .circ-stat .value {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .circ-stat .value.green { color: var(--accent-green); }
+        .circ-stat .value.red   { color: var(--accent-red); }
+        .circ-stat .value.blue  { color: var(--accent-blue); }
+        .circ-stat .value.amber { color: var(--accent-amber); }
+
+        /* ── Holders / Contracts Table ── */
+        .holders-table-wrap {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .holders-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .holders-table th {
+            text-align: left;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-input);
+        }
+
+        .holders-table th:last-child,
+        .holders-table td:last-child {
+            text-align: right;
+            padding-right: 16px;
+        }
+
+        .holders-table td {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            padding: 10px 16px;
+            border-bottom: 1px solid rgba(30, 42, 58, 0.5);
+            vertical-align: middle;
+        }
+
+        .holders-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .holders-table tr {
+            transition: background 0.15s;
+        }
+
+        .holders-table tbody tr:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .holder-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .holder-tag {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        .tag-team    { background: rgba(139, 92, 246, 0.15); color: var(--accent-purple); }
+        .tag-contract{ background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); }
+        .tag-holder  { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+        .tag-lp      { background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); }
+        .tag-burn    { background: rgba(239, 68, 68, 0.15);  color: var(--accent-red); }
+
+        .addr-cell {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .addr-cell a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .addr-cell a:hover {
+            color: var(--accent-blue);
+        }
+
+        .copy-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 12px;
+            padding: 2px;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+
+        .copy-btn:hover {
+            color: var(--accent-blue);
+        }
+
+        .balance-val {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .pct-val {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-left: 4px;
+        }
+
+        .row-hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .circ-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+            .holders-table th:nth-child(2),
+            .holders-table td:nth-child(2) {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-badge">
+                <span class="dot"></span>
+                Moats Protocol
+            </div>
+            <h1>LIL Rewards Calculator</h1>
+            <p>Oblicz przybliżone nagrody za locking tokenów LIL w Moat</p>
+        </div>
+
+        <!-- Mode Toggle -->
+        <div class="mode-toggle">
+            <button class="mode-btn active" onclick="setMode('lock')" id="mode-lock">🔒 Lock</button>
+            <button class="mode-btn" onclick="setMode('stake')" id="mode-stake">📌 Stake</button>
+            <button class="mode-btn" onclick="setMode('burn')" id="mode-burn">🔥 Burn</button>
+        </div>
+
+        <!-- Current Moat Stats -->
+        <div class="section">
+            <div class="section-title">Aktualny stan Moat (edytowalne)</div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-label">Total Staked</div>
+                    <div class="stat-value"><input class="input-field" type="text" id="totalStaked" value="144,623,260" oninput="recalculate()" style="text-align:center; font-size:14px; padding:8px;"></div>
+                    <div class="stat-sub">LIL (1x)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Total Locked</div>
+                    <div class="stat-value"><input class="input-field" type="text" id="totalLocked" value="135,232,682" oninput="recalculate()" style="text-align:center; font-size:14px; padding:8px;"></div>
+                    <div class="stat-sub">LIL (avg ~3.53x, 253d)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Total Burned</div>
+                    <div class="stat-value"><input class="input-field" type="text" id="totalBurned" value="301,919,976" oninput="recalculate()" style="text-align:center; font-size:14px; padding:8px;"></div>
+                    <div class="stat-sub">LIL (10x)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main input area -->
+        <div class="grid-2">
+            <!-- Left: Your position -->
+            <div class="card">
+                <div class="card-title">
+                    <div class="icon icon-blue">💰</div>
+                    Twoja pozycja
+                </div>
+
+                <div class="input-group">
+                    <div class="input-label">
+                        <span>Ilość LIL</span>
+                    </div>
+                    <input class="input-field" type="text" id="amountInput" placeholder="np. 1,000,000" oninput="recalculate()" autofocus>
+                </div>
+
+                <div class="input-group" id="lockDurationGroup">
+                    <div class="input-label">
+                        <span>Czas lockowania</span>
+                    </div>
+                    <div class="range-container">
+                        <div class="range-value-display">
+                            <span id="daysDisplay">365</span>
+                            <span class="unit">dni</span>
+                        </div>
+                        <div class="range-multiplier" id="multiplierDisplay">Mnożnik: 4.00x</div>
+                        <input type="range" id="daysSlider" min="1" max="730" value="365" oninput="updateSlider()">
+                        <div class="range-labels">
+                            <span>1 dzień (2x)</span>
+                            <span>730 dni (5x)</span>
+                        </div>
+                    </div>
+                    <div class="presets">
+                        <button class="preset-btn" onclick="setDays(7)">7d</button>
+                        <button class="preset-btn" onclick="setDays(30)">30d</button>
+                        <button class="preset-btn" onclick="setDays(90)">90d</button>
+                        <button class="preset-btn" onclick="setDays(180)">180d</button>
+                        <button class="preset-btn active" onclick="setDays(365)">365d</button>
+                        <button class="preset-btn" onclick="setDays(730)">730d</button>
+                    </div>
+                </div>
+
+                <div class="input-group" style="margin-top: 16px;">
+                    <div class="input-label">
+                        <span>Nagrody co 2 tygodnie</span>
+                        <span class="value-hint">AVAX</span>
+                    </div>
+                    <input class="input-field" type="text" id="rewardPool" value="25" oninput="recalculate()">
+                </div>
+            </div>
+
+            <!-- Right: Lock Multiplier Reference -->
+            <div class="card">
+                <div class="card-title">
+                    <div class="icon icon-purple">📊</div>
+                    Tabela mnożników
+                </div>
+                <table class="multiplier-table">
+                    <thead>
+                        <tr>
+                            <th>Metoda</th>
+                            <th>Czas</th>
+                            <th>Mnożnik</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Stake</td>
+                            <td>Brak locka</td>
+                            <td>1.00x</td>
+                        </tr>
+                        <tr><td colspan="3" style="height:1px; padding:0; background: var(--border);"></td></tr>
+                        <tr>
+                            <td>Lock</td>
+                            <td>7 dni</td>
+                            <td>2.11x</td>
+                        </tr>
+                        <tr>
+                            <td>Lock</td>
+                            <td>30 dni</td>
+                            <td>2.31x</td>
+                        </tr>
+                        <tr>
+                            <td>Lock</td>
+                            <td>90 dni</td>
+                            <td>2.73x</td>
+                        </tr>
+                        <tr>
+                            <td>Lock</td>
+                            <td>180 dni</td>
+                            <td>3.23x</td>
+                        </tr>
+                        <tr>
+                            <td>Lock</td>
+                            <td>365 dni</td>
+                            <td>4.00x</td>
+                        </tr>
+                        <tr>
+                            <td>Lock</td>
+                            <td>730 dni</td>
+                            <td>5.00x</td>
+                        </tr>
+                        <tr><td colspan="3" style="height:1px; padding:0; background: var(--border);"></td></tr>
+                        <tr>
+                            <td>Burn</td>
+                            <td>Permanentnie</td>
+                            <td style="color: var(--accent-red);">10.00x</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-bar" style="margin-top: 16px;">
+                    <span class="info-icon">ℹ️</span>
+                    <span>Mnożnik lock interpolowany liniowo pomiędzy znanymi punktami. Wartości przybliżone.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="results-card" id="resultsCard">
+            <div class="results-grid">
+                <div class="result-item">
+                    <div class="result-label">Twoje Moat Points</div>
+                    <div class="result-value blue" id="yourPoints">—</div>
+                    <div class="result-sub" id="yourPointsSub"></div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Udział w puli</div>
+                    <div class="result-value purple" id="sharePercent">—</div>
+                    <div class="result-sub" id="shareSub"></div>
+                </div>
+                <div class="result-item">
+                    <div class="result-label">Total Moat Points</div>
+                    <div class="result-value" id="totalPoints" style="color: var(--text-secondary); font-size: 20px;">—</div>
+                    <div class="result-sub" id="totalPointsSub">Cały pool (szacunkowo)</div>
+                </div>
+            </div>
+
+            <div class="reward-highlight">
+                <div class="label">Szacunkowa nagroda co 2 tygodnie</div>
+                <div class="big-value" id="rewardValue">— <span class="avax">AVAX</span></div>
+                <div class="sub" id="rewardSub">Wpisz ilość LIL aby obliczyć</div>
+            </div>
+
+            <div class="extra-results">
+                <div class="extra-result-item">
+                    <div class="label">Nagroda miesięczna</div>
+                    <div class="value" id="monthlyReward">—</div>
+                    <div class="sub">~2 okresy</div>
+                </div>
+                <div class="extra-result-item">
+                    <div class="label">Nagroda roczna</div>
+                    <div class="value" id="yearlyReward">—</div>
+                    <div class="sub">~26 okresów</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-bar">
+            <span class="info-icon">⚠️</span>
+            <span>Kalkulator podaje szacunkowe wartości. Rzeczywiste nagrody zależą od aktualnych Moat Points wszystkich uczestników oraz wielkości puli nagród. Dane z 17.03.2026.</span>
+        </div>
+
+        <!-- ═══════ LIL Circulation & Holders ═══════ -->
+        <div class="circulation-section" style="margin-top: 32px;">
+            <div class="circ-header">
+                <div class="section-title">🔄 LIL w obiegu</div>
+                <button class="toggle-btn" id="toggleCaTeam" onclick="toggleCaTeam()">
+                    <span id="toggleLabel">Ukryj CA & Team</span>
+                    <span class="toggle-indicator"></span>
+                </button>
+            </div>
+
+            <!-- Circulation stats -->
+            <div class="circ-stats">
+                <div class="circ-stat">
+                    <div class="label">Total Supply</div>
+                    <div class="value">1,350,000,000</div>
+                </div>
+                <div class="circ-stat">
+                    <div class="label">Burned</div>
+                    <div class="value red">363,187,841</div>
+                </div>
+                <div class="circ-stat">
+                    <div class="label">Staked + Locked</div>
+                    <div class="value blue">444,553,632</div>
+                </div>
+                <div class="circ-stat">
+                    <div class="label">Free Float</div>
+                    <div class="value green">542,258,527</div>
+                </div>
+            </div>
+
+            <!-- Holders & Contracts Table -->
+            <div class="holders-table-wrap">
+                <table class="holders-table">
+                    <thead>
+                        <tr>
+                            <th>Nazwa</th>
+                            <th>Adres</th>
+                            <th>Ilość LIL</th>
+                        </tr>
+                    </thead>
+                    <tbody id="holdersBody">
+                        <!-- Contracts / Infrastructure -->
+                        <tr data-type="contract">
+                            <td><span class="holder-name">Burn Address</span><span class="holder-tag tag-burn">Burn</span></td>
+                            <td><span class="addr-cell"><a href="https://snowscan.xyz/address/0x000000000000000000000000000000000000dEaD" target="_blank" rel="noopener">0x0000...dEaD</a><button class="copy-btn" onclick="copyAddr('0x000000000000000000000000000000000000dEaD')" title="Copy">📋</button></span></td>
+                            <td><span class="balance-val">363,187,841</span><span class="pct-val">26.90%</span></td>
+                        </tr>
+                        <tr data-type="contract">
+                            <td><span class="holder-name">Pharaoh LP (LIL/WAVAX)</span><span class="holder-tag tag-lp">LP</span></td>
+                            <td><span class="addr-cell"><a href="https://snowscan.xyz/address/0x8acc49857A1259D25eb3CA0aa15B398D0E149EF2" target="_blank" rel="noopener">0x8acc...9EF2</a><button class="copy-btn" onclick="copyAddr('0x8acc49857A1259D25eb3CA0aa15B398D0E149EF2')" title="Copy">📋</button></span></td>
+                            <td><span class="balance-val">353,508,945</span><span class="pct-val">26.19%</span></td>
+                        </tr>
+                        <tr data-type="contract">
+                            <td><span class="holder-name">MultiLockMoat (Locker)</span><span class="holder-tag tag-contract">Contract</span></td>
+                            <td><span class="addr-cell"><a href="https://snowscan.xyz/address/0x7A4D20261a765Bd9bA67D49FBf8189843eEC3393" target="_blank" rel="noopener">0x7A4D...3393</a><button class="copy-btn" onclick="copyAddr('0x7A4D20261a765Bd9bA67D49FBf8189843eEC3393')" title="Copy">📋</button></span></td>
+                            <td><span class="balance-val">282,139,473</span><span class="pct-val">20.90%</span></td>
+                        </tr>
+                        <tr data-type="contract">
+                            <td><span class="holder-name">Earningsbaystaking</span><span class="holder-tag tag-contract">Contract</span></td>
+                            <td><span class="addr-cell"><a href="https://snowscan.xyz/address/0x2Bf32c61786b8A7b8035a029a82a23bE556DE537" target="_blank" rel="noopener">0x2Bf3...E537</a><button class="copy-btn" onclick="copyAddr('0x2Bf32c61786b8A7b8035a029a82a23bE556DE537')" title="Copy">📋</button></span></td>
+                            <td><span class="balance-val">162,414,159</span><span class="pct-val">12.03%</span></td>
+                        </tr>
+                        <tr data-type="contract">
+                            <td><span class="holder-name">Upgradeable Proxy</span><span class="holder-tag tag-contract">Contract</span></td>
+                            <td><span class="addr-cell"><a href="https://snowscan.xyz/address/0x950a98dd06c898950460b0D1FCaD75D4A23Ff373" target="_blank" rel="noopener">0x950a...f373</a><button class="copy-btn" onclick="copyAddr('0x950a98dd06c898950460b0D1FCaD75D4A23Ff373')" title="Copy">📋</button></span></td>
+                            <td><span class="balance-val">22,975,639</span><span class="pct-val">1.70%</span></td>
+                        </tr>
+
+                        <!-- Team / Project -->
+                        <tr data-type="team">
+                            <td><span class="holder-name">Treasury (in-contract)</span><span class="holder-tag tag-team">Team</span></td>
+                            <td><span class="addr-cell"><a href="https://snowscan.xyz/address/0xfE85C993605Dd02FFD2b0B7db041f51071e45cd1" target="_blank" rel="noopener">0xfE85...5cd1</a><button class="copy-btn" onclick="copyAddr('0xfE85C993605Dd02FFD2b0B7db041f51071e45cd1')" title="Copy">📋</button></span></td>
+                            <td><span class="balance-val">—</span><span class="pct-val">ERC20 Treasury</span></td>
+                        </tr>
+                        <tr data-type="team">
+                            <td><span class="holder-name">Pharaoh Team Multisig</span><span class="holder-tag tag-team">Team</span></td>
+                            <td><span class="addr-cell"><a href="https://snowscan.xyz/address/0x244A4a90e148Ec318a85f8C138A274e16FFE3032" target="_blank" rel="noopener">0x244A...3032</a><button class="copy-btn" onclick="copyAddr('0x244A4a90e148Ec318a85f8C138A274e16FFE3032')" title="Copy">📋</button></span></td>
+                            <td><span class="balance-val">228,476</span><span class="pct-val">&lt;0.1%</span></td>
+                        </tr>
+                        <tr data-type="team">
+                            <td><span class="holder-name">Treasury Helper (Pharaoh)</span><span class="holder-tag tag-team">Team</span></td>
+                            <td><span class="addr-cell"><a href="https://snowscan.xyz/address/0x660862D49E92f80f29E56C2770027E8d83e97882" target="_blank" rel="noopener">0x6608...7882</a><button class="copy-btn" onclick="copyAddr('0x660862D49E92f80f29E56C2770027E8d83e97882')" title="Copy">📋</button></span></td>
+                            <td><span class="balance-val">291,429</span><span class="pct-val">&lt;0.1%</span></td>
+                        </tr>
+
+                        <!-- Top Holders (EOA) -->
+                        <tr data-type="holder">
+                            <td><span class="holder-name">Whale #1</span><span class="holder-tag tag-holder">Holder</span></td>
+                            <td><span class="addr-cell"><a href="https://snowscan.xyz/address/0x5b5a1503f491B2935BF757b21d2832a2B3D0df44" target="_blank" rel="noopener">0x5b5a...df44</a><button class="copy-btn" onclick="copyAddr('0x5b5a1503f491B2935BF757b21d2832a2B3D0df44')" title="Copy">📋</button></span></td>
+                            <td><span class="balance-val">98,155,090</span><span class="pct-val">7.27%</span></td>
+                        </tr>
+                        <tr data-type="holder">
+                            <td><span class="holder-name">Whale #2</span><span class="holder-tag tag-holder">Holder</span></td>
+                            <td><span class="addr-cell"><a href="https://snowscan.xyz/address/0x28DA3DdE285D8F1f87B2D858f89961Bb8B9Af180" target="_blank" rel="noopener">0x28DA...f180</a><button class="copy-btn" onclick="copyAddr('0x28DA3DdE285D8F1f87B2D858f89961Bb8B9Af180')" title="Copy">📋</button></span></td>
+                            <td><span class="balance-val">25,022,772</span><span class="pct-val">1.85%</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-bar" style="margin-top: 12px;">
+                <span class="info-icon">ℹ️</span>
+                <span>Dane on-chain z <a href="https://snowscan.xyz/token/0x22683bbadd01473969f23709879187705a253763" target="_blank" rel="noopener" style="color: var(--accent-blue);">Snowscan</a> — 679 holderów. CA LIL: <code style="font-size:10px; color: var(--text-muted);">0x2268...3763</code>. Przycisk wyżej ukrywa kontrakty i team.</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Known lock multiplier data points (from moats.app)
+        const LOCK_POINTS = [
+            { days: 1, mult: 2.04 },
+            { days: 7, mult: 2.11 },
+            { days: 30, mult: 2.31 },
+            { days: 90, mult: 2.73 },
+            { days: 180, mult: 3.23 },
+            { days: 365, mult: 4.00 },
+            { days: 730, mult: 5.00 }
+        ];
+
+        // Average lock multiplier for estimating total locked points
+        const AVG_LOCK_MULTIPLIER = 3.53; // ~253 days average
+
+        let currentMode = 'lock';
+
+        function parseNumber(str) {
+            if (!str) return 0;
+            return parseFloat(str.replace(/[^0-9.]/g, '')) || 0;
+        }
+
+        function formatNumber(n, decimals = 0) {
+            if (n >= 1e9) return (n / 1e9).toFixed(2) + 'B';
+            if (n >= 1e6) return (n / 1e6).toFixed(2) + 'M';
+            if (n >= 1e3 && decimals === 0) return n.toLocaleString('en-US', { maximumFractionDigits: 0 });
+            return n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+        }
+
+        function getLockMultiplier(days) {
+            if (days <= 1) return LOCK_POINTS[0].mult;
+            if (days >= 730) return LOCK_POINTS[LOCK_POINTS.length - 1].mult;
+
+            // Linear interpolation between known points
+            for (let i = 0; i < LOCK_POINTS.length - 1; i++) {
+                const p1 = LOCK_POINTS[i];
+                const p2 = LOCK_POINTS[i + 1];
+                if (days >= p1.days && days <= p2.days) {
+                    const t = (days - p1.days) / (p2.days - p1.days);
+                    return p1.mult + t * (p2.mult - p1.mult);
+                }
+            }
+            return 2.0;
+        }
+
+        function setMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('mode-' + mode).classList.add('active');
+
+            const lockGroup = document.getElementById('lockDurationGroup');
+            lockGroup.style.display = mode === 'lock' ? 'block' : 'none';
+
+            recalculate();
+        }
+
+        function setDays(days) {
+            document.getElementById('daysSlider').value = days;
+            updateSlider();
+        }
+
+        function updateSlider() {
+            const days = parseInt(document.getElementById('daysSlider').value);
+            const multiplier = getLockMultiplier(days);
+
+            document.getElementById('daysDisplay').textContent = days;
+            document.getElementById('multiplierDisplay').textContent = `Mnożnik: ${multiplier.toFixed(2)}x`;
+
+            // Update preset buttons
+            document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+            const presetDays = [7, 30, 90, 180, 365, 730];
+            const idx = presetDays.indexOf(days);
+            if (idx !== -1) {
+                document.querySelectorAll('.preset-btn')[idx].classList.add('active');
+            }
+
+            recalculate();
+        }
+
+        function recalculate() {
+            const amount = parseNumber(document.getElementById('amountInput').value);
+            const totalStaked = parseNumber(document.getElementById('totalStaked').value);
+            const totalLocked = parseNumber(document.getElementById('totalLocked').value);
+            const totalBurned = parseNumber(document.getElementById('totalBurned').value);
+            const rewardPool = parseNumber(document.getElementById('rewardPool').value);
+
+            const days = parseInt(document.getElementById('daysSlider').value);
+
+            // Calculate multiplier based on mode
+            let userMultiplier;
+            let modeLabel;
+            if (currentMode === 'lock') {
+                userMultiplier = getLockMultiplier(days);
+                modeLabel = `${days}d lock @ ${userMultiplier.toFixed(2)}x`;
+            } else if (currentMode === 'stake') {
+                userMultiplier = 1.0;
+                modeLabel = 'stake @ 1.00x';
+            } else {
+                userMultiplier = 10.0;
+                modeLabel = 'burn @ 10.00x';
+            }
+
+            // User's moat points
+            const userPoints = amount * userMultiplier;
+
+            // Estimate total existing moat points
+            const stakedPoints = totalStaked * 1.0;
+            const lockedPoints = totalLocked * AVG_LOCK_MULTIPLIER;
+            const burnedPoints = totalBurned * 10.0;
+            const existingTotalPoints = stakedPoints + lockedPoints + burnedPoints;
+
+            // New total includes user's contribution
+            const newTotalPoints = existingTotalPoints + userPoints;
+
+            // User's share
+            const shareRatio = newTotalPoints > 0 ? userPoints / newTotalPoints : 0;
+            const reward = shareRatio * rewardPool;
+
+            // Update UI
+            if (amount > 0) {
+                document.getElementById('yourPoints').textContent = formatNumber(userPoints);
+                document.getElementById('yourPointsSub').textContent = `${formatNumber(amount)} LIL × ${userMultiplier.toFixed(2)}x`;
+                document.getElementById('sharePercent').textContent = (shareRatio * 100).toFixed(4) + '%';
+                document.getElementById('shareSub').textContent = modeLabel;
+                document.getElementById('totalPoints').textContent = formatNumber(existingTotalPoints);
+                document.getElementById('totalPointsSub').textContent = `+ Twoje ${formatNumber(userPoints)} pts`;
+
+                document.getElementById('rewardValue').innerHTML = `${reward.toFixed(4)} <span class="avax">AVAX</span>`;
+                document.getElementById('rewardSub').textContent = `${(shareRatio * 100).toFixed(4)}% z ${rewardPool} AVAX puli`;
+
+                document.getElementById('monthlyReward').textContent = (reward * 2).toFixed(4) + ' AVAX';
+                document.getElementById('yearlyReward').textContent = (reward * 26).toFixed(2) + ' AVAX';
+            } else {
+                document.getElementById('yourPoints').textContent = '—';
+                document.getElementById('yourPointsSub').textContent = '';
+                document.getElementById('sharePercent').textContent = '—';
+                document.getElementById('shareSub').textContent = '';
+                document.getElementById('totalPoints').textContent = formatNumber(existingTotalPoints);
+                document.getElementById('totalPointsSub').textContent = 'Cały pool (szacunkowo)';
+                document.getElementById('rewardValue').innerHTML = '— <span class="avax">AVAX</span>';
+                document.getElementById('rewardSub').textContent = 'Wpisz ilość LIL aby obliczyć';
+                document.getElementById('monthlyReward').textContent = '—';
+                document.getElementById('yearlyReward').textContent = '—';
+            }
+        }
+
+        // Initial calculation
+        recalculate();
+
+        // ── Toggle CA & Team visibility ──
+        let caTeamHidden = false;
+
+        function toggleCaTeam() {
+            caTeamHidden = !caTeamHidden;
+            const btn = document.getElementById('toggleCaTeam');
+            const label = document.getElementById('toggleLabel');
+            btn.classList.toggle('active', caTeamHidden);
+            label.textContent = caTeamHidden ? 'Pokaż CA & Team' : 'Ukryj CA & Team';
+
+            document.querySelectorAll('#holdersBody tr').forEach(row => {
+                const type = row.getAttribute('data-type');
+                if (type === 'contract' || type === 'team') {
+                    row.classList.toggle('row-hidden', caTeamHidden);
+                }
+            });
+        }
+
+        // Copy address to clipboard
+        function copyAddr(addr) {
+            navigator.clipboard.writeText(addr).then(() => {
+                // Brief visual feedback
+                const btns = document.querySelectorAll('.copy-btn');
+                btns.forEach(b => {
+                    if (b.getAttribute('onclick').includes(addr.slice(0, 8))) {
+                        const orig = b.textContent;
+                        b.textContent = '✓';
+                        setTimeout(() => b.textContent = orig, 1200);
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
