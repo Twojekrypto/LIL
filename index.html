@@ -1027,14 +1027,27 @@
             font-size:14px;line-height:1;
         }
         .holders-tbl .td-addr {
-            line-height:1.55;
+            line-height:1.4;padding-top:8px;padding-bottom:8px;
+        }
+        .holders-tbl .td-addr .h-line1 {
+            display:flex;align-items:center;gap:6px;margin-bottom:3px;
         }
         .holders-tbl .td-addr .h-name {
-            font-weight:600;font-size:12px;color:#fff;
+            font-weight:700;font-size:13px;color:#fff;
+            white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+            max-width:340px;
+        }
+        .holders-tbl .td-addr .h-line2 {
+            display:flex;align-items:center;gap:5px;
         }
         .holders-tbl .td-addr .h-hex {
-            font-family:'SF Mono','Fira Code',monospace;font-size:10px;
-            color:var(--text-muted);display:flex;align-items:center;gap:4px;
+            font-family:'SF Mono','Fira Code','Cascadia Code',monospace;
+            font-size:11px;color:rgba(255,255,255,.35);
+            letter-spacing:.3px;
+        }
+        /* Unnamed: hex is primary */
+        .holders-tbl .td-addr .h-hex.h-primary {
+            font-size:12px;color:rgba(255,255,255,.6);font-weight:500;
         }
         .holders-tbl .td-addr .h-hex a {
             color:inherit;text-decoration:none;transition:color .15s;
@@ -1042,21 +1055,36 @@
         .holders-tbl .td-addr .h-hex a:hover {
             color:var(--accent-blue);
         }
+        /* Tags */
         .holders-tbl .td-addr .h-tag {
-            display:inline-block;font-size:9px;font-weight:700;letter-spacing:.8px;
-            text-transform:uppercase;padding:2px 6px;border-radius:4px;
-            margin-left:6px;vertical-align:middle;
+            display:inline-flex;align-items:center;gap:3px;
+            font-size:9px;font-weight:700;letter-spacing:.6px;
+            text-transform:uppercase;padding:2px 7px;border-radius:4px;
         }
-        .holders-tbl .td-addr .h-tag.t-burn { background:rgba(239,68,68,.15);color:#f87171; }
+        .holders-tbl .td-addr .h-tag.t-burn { background:rgba(239,68,68,.18);color:#f87171; }
         .holders-tbl .td-addr .h-tag.t-lp { background:rgba(245,158,11,.15);color:#fbbf24; }
-        .holders-tbl .td-addr .h-tag.t-contract { background:rgba(59,130,246,.15);color:#60a5fa; }
-        .holders-tbl .td-addr .h-tag.t-team { background:rgba(139,92,246,.15);color:#a78bfa; }
-        .holders-tbl .td-addr .h-tag.t-holder { background:rgba(16,185,129,.12);color:#34d399; }
-        .holders-tbl .td-addr .h-icon {
-            background:none;border:none;color:var(--text-muted);cursor:pointer;
-            font-size:10px;padding:0;transition:color .15s;
+        .holders-tbl .td-addr .h-tag.t-contract { background:rgba(59,130,246,.12);color:#60a5fa; }
+        .holders-tbl .td-addr .h-tag.t-team { background:rgba(139,92,246,.12);color:#a78bfa; }
+        .holders-tbl .td-addr .h-tag.t-dao { background:rgba(236,72,153,.12);color:#f472b6; }
+        .holders-tbl .td-addr .h-tag.t-holder { background:rgba(16,185,129,.10);color:#34d399; }
+        .holders-tbl .td-addr .h-tag.t-staking { background:rgba(16,185,129,.12);color:#34d399; }
+        /* Icon buttons */
+        .holders-tbl .td-addr .h-icon-btn {
+            display:inline-flex;align-items:center;justify-content:center;
+            background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);
+            border-radius:4px;width:22px;height:22px;
+            color:rgba(255,255,255,.3);cursor:pointer;
+            font-size:10px;padding:0;text-decoration:none;
+            transition:all .15s;
         }
-        .holders-tbl .td-addr .h-icon:hover { color:var(--accent-blue); }
+        .holders-tbl .td-addr .h-icon-btn:hover {
+            background:rgba(59,130,246,.12);border-color:rgba(59,130,246,.25);
+            color:var(--accent-blue);
+        }
+        .holders-tbl .td-addr .h-icon-btn.copied {
+            background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.25);
+            color:#34d399;
+        }
         .holders-tbl .td-bal {
             text-align:right;font-variant-numeric:tabular-nums;
         }
@@ -1807,18 +1835,21 @@
                 // Rank (with medal for top 3)
                 tr.innerHTML = `<td class="td-rank">${medal ? '<span class="rank-medal">' + medal + '</span>' : h.rank}</td>`;
 
-                // Address cell with DeBank link
+                // Address cell — two-line layout
                 let addrHtml = '<td class="td-addr">';
                 if (h.n) {
-                    addrHtml += `<span class="h-name">${h.n}</span><span class="h-tag ${tagCls}">${tagLbl}</span><br>`;
+                    // Named: Line1 = name + tag, Line2 = hex + icons
+                    addrHtml += `<div class="h-line1"><span class="h-name">${h.n}</span><span class="h-tag ${tagCls}">${tagLbl}</span></div>`;
+                    addrHtml += `<div class="h-line2">`;
+                    addrHtml += `<span class="h-hex"><a href="https://snowscan.xyz/address/${h.a}" target="_blank" rel="noopener">${shortAddr(h.a)}</a></span>`;
+                } else {
+                    // Unnamed: Line1 = hex (primary) + tag, Line2 = icons
+                    addrHtml += `<div class="h-line1"><span class="h-hex h-primary"><a href="https://snowscan.xyz/address/${h.a}" target="_blank" rel="noopener">${shortAddr(h.a)}</a></span><span class="h-tag ${tagCls}">${tagLbl}</span></div>`;
+                    addrHtml += `<div class="h-line2">`;
                 }
-                addrHtml += `<span class="h-hex">`;
-                addrHtml += `<a href="https://snowscan.xyz/address/${h.a}" target="_blank" rel="noopener">${shortAddr(h.a)}</a>`;
-                addrHtml += `<button class="h-icon" onclick="copyAddr('${h.a}')" title="Kopiuj">📋</button>`;
-                addrHtml += `<a class="h-icon" href="https://debank.com/profile/${h.a}" target="_blank" rel="noopener" title="DeBank">🔗</a>`;
-                addrHtml += `</span>`;
-                if (!h.n) addrHtml += `<span class="h-tag ${tagCls}">${tagLbl}</span>`;
-                addrHtml += '</td>';
+                addrHtml += `<button class="h-icon-btn" onclick="copyAddr('${h.a}',this)" title="Kopiuj adres">⧉</button>`;
+                addrHtml += `<a class="h-icon-btn" href="https://debank.com/profile/${h.a}" target="_blank" rel="noopener" title="DeBank">↗</a>`;
+                addrHtml += `</div></td>`;
                 tr.innerHTML += addrHtml;
 
                 // Balance with LIL unit
@@ -1853,16 +1884,17 @@
         }
 
         // Copy address to clipboard
-        function copyAddr(addr) {
+        function copyAddr(addr, btn) {
             navigator.clipboard.writeText(addr).then(() => {
-                const btns = document.querySelectorAll('.h-icon');
-                btns.forEach(b => {
-                    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(addr.slice(0, 8))) {
-                        const orig = b.textContent;
-                        b.textContent = '✓';
-                        setTimeout(() => b.textContent = orig, 1200);
-                    }
-                });
+                if (btn) {
+                    const orig = btn.textContent;
+                    btn.textContent = '✓';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.textContent = orig;
+                        btn.classList.remove('copied');
+                    }, 1200);
+                }
             });
         }
     </script>
