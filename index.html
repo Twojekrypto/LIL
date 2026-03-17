@@ -966,9 +966,46 @@
             border-left:3px solid transparent;
         }
         .holders-tbl tbody tr:hover {
-            background:rgba(59,130,246,.04);
+            background:rgba(59,130,246,.06);
             border-left-color:var(--accent-blue);
             box-shadow:0 2px 8px rgba(0,0,0,.15);
+        }
+        /* Zebra striping */
+        .holders-tbl tbody tr:nth-child(even):not(.empty-row):not(.row-burn) {
+            background:rgba(255,255,255,.012);
+        }
+        /* Burn row — red gradient */
+        .holders-tbl tbody tr.row-burn {
+            background:linear-gradient(90deg, rgba(239,68,68,.12) 0%, rgba(239,68,68,.04) 60%, transparent 100%);
+            border-left-color:#ef4444;
+        }
+        .holders-tbl tbody tr.row-burn:hover {
+            background:linear-gradient(90deg, rgba(239,68,68,.18) 0%, rgba(239,68,68,.06) 60%, transparent 100%);
+            border-left-color:#f87171;
+        }
+        .holders-tbl tbody tr.row-burn .td-rank .rank-medal { filter:none; }
+        .holders-tbl tbody tr.row-burn .bal-num { color:#fca5a5; }
+        .holders-tbl tbody tr.row-burn .bal-unit { color:rgba(248,113,113,.5); }
+        /* LP row */
+        .holders-tbl tbody tr.row-lp {
+            background:rgba(245,158,11,.03);
+        }
+        .holders-tbl tbody tr.row-lp:hover {
+            background:rgba(245,158,11,.06);border-left-color:#f59e0b;
+        }
+        /* Contract row */
+        .holders-tbl tbody tr.row-contract {
+            background:rgba(59,130,246,.02);
+        }
+        .holders-tbl tbody tr.row-contract:hover {
+            background:rgba(59,130,246,.05);border-left-color:#3b82f6;
+        }
+        /* Team/DAO row */
+        .holders-tbl tbody tr.row-team {
+            background:rgba(139,92,246,.03);
+        }
+        .holders-tbl tbody tr.row-team:hover {
+            background:rgba(139,92,246,.06);border-left-color:#8b5cf6;
         }
         .holders-tbl tbody tr.empty-row {
             pointer-events:none;
@@ -1759,6 +1796,13 @@
 
                 const tr = document.createElement('tr');
                 tr.style.animationDelay = (idx * 20) + 'ms';
+                // Row type class for tinting
+                if (isBurn) tr.className = 'row-burn';
+                else if (h.t === 'lp') tr.className = 'row-lp';
+                else if (h.t === 'contract') tr.className = 'row-contract';
+                else if (h.t === 'team') tr.className = 'row-team';
+                // Full address tooltip
+                tr.title = h.a;
 
                 // Rank (with medal for top 3)
                 tr.innerHTML = `<td class="td-rank">${medal ? '<span class="rank-medal">' + medal + '</span>' : h.rank}</td>`;
