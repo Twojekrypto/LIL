@@ -849,14 +849,191 @@
             display: none !important;
         }
 
+        /* ═══ Tab Navigation (Dolomite-style) ═══ */
+        .tab-nav {
+            display:flex;align-items:center;gap:0;
+            background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
+            border-radius:12px;padding:3px;margin-bottom:28px;
+            width:fit-content;margin-left:auto;margin-right:auto;
+            position:relative;
+        }
+        .tab-btn {
+            position:relative;z-index:1;
+            padding:9px 28px;border:none;border-radius:10px;
+            background:none;color:var(--text-muted);font-family:inherit;
+            font-size:13px;font-weight:600;letter-spacing:.3px;cursor:pointer;
+            transition:color .25s;
+        }
+        .tab-btn:hover { color:var(--text-secondary); }
+        .tab-btn.active { color:#fff; }
+        .tab-slider {
+            position:absolute;top:3px;bottom:3px;left:3px;
+            border-radius:10px;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.25);
+            transition:transform .3s cubic-bezier(.4,0,.2,1), width .3s cubic-bezier(.4,0,.2,1);
+            pointer-events:none;z-index:0;
+        }
+        .view-section { display:none; }
+        .view-section.active { display:block; }
+
+        /* ═══ Holders Card (Dolomite-style) ═══ */
+        .holders-card {
+            background:var(--bg-card);border:1px solid var(--border);
+            border-radius:16px;overflow:hidden;
+        }
+        .holders-card-header {
+            display:flex;align-items:center;justify-content:space-between;
+            padding:20px 24px 0;flex-wrap:wrap;gap:12px;
+        }
+        .holders-card-header h3 {
+            font-size:16px;font-weight:700;color:#fff;margin:0;
+            display:flex;align-items:center;gap:8px;
+        }
+        .holders-card-header h3 .h-count {
+            font-size:13px;font-weight:500;color:var(--text-muted);
+        }
+        .holders-toolbar {
+            display:flex;align-items:center;gap:12px;padding:12px 24px 0;
+            flex-wrap:wrap;
+        }
+        .holders-search-wrap {
+            position:relative;width:300px;min-width:160px;
+        }
+        .holders-search-wrap svg {
+            position:absolute;left:10px;top:50%;transform:translateY(-50%);
+            width:14px;height:14px;color:var(--text-muted);pointer-events:none;
+        }
+        .holders-search {
+            width:100%;background:var(--bg-input);border:1px solid var(--border);
+            border-radius:8px;padding:7px 12px 7px 32px;
+            color:var(--text-primary);font-family:inherit;font-size:12px;
+            outline:none;transition:border-color .2s;
+        }
+        .holders-search:focus { border-color:var(--accent-blue); }
+        .holders-search::placeholder { color:var(--text-muted); }
+        .holders-toggle {
+            display:flex;align-items:center;gap:8px;cursor:pointer;
+            font-size:12px;color:var(--text-secondary);user-select:none;
+        }
+        .holders-toggle input { display:none; }
+        .holders-toggle-track {
+            width:32px;height:18px;border-radius:9px;
+            background:rgba(255,255,255,.1);position:relative;
+            transition:background .25s;
+        }
+        .holders-toggle-track::after {
+            content:'';position:absolute;top:2px;left:2px;
+            width:14px;height:14px;border-radius:50%;background:#fff;
+            transition:transform .25s;
+        }
+        .holders-toggle input:checked ~ .holders-toggle-track {
+            background:var(--accent-blue);
+        }
+        .holders-toggle input:checked ~ .holders-toggle-track::after {
+            transform:translateX(14px);
+        }
+        .holders-table-scroll {
+            overflow-x:auto;padding:0;
+        }
+        .holders-tbl {
+            table-layout:fixed;width:100%;border-collapse:collapse;font-size:12px;
+        }
+        .holders-tbl thead {
+            position:sticky;top:0;z-index:2;background:var(--bg-card);
+        }
+        .holders-tbl th {
+            padding:8px 12px;text-align:left;color:rgba(255,255,255,.4);
+            font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:600;
+            border-bottom:1px solid rgba(255,255,255,.08);user-select:none;
+        }
+        .holders-tbl th.col-bal { text-align:right; }
+        .holders-tbl th.col-rank { text-align:center;width:36px; }
+        .holders-tbl th.sortable { cursor:pointer; }
+        .holders-tbl th.sortable:hover { color:rgba(255,255,255,.6); }
+        .holders-tbl .sort-arrow { font-size:9px;margin-left:2px;opacity:.5; }
+        .holders-tbl td {
+            padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.04);
+            vertical-align:middle;
+        }
+        .holders-tbl tbody tr {
+            transition:transform .15s, background .15s;
+        }
+        .holders-tbl tbody tr:hover {
+            transform:scale(1.01);background:rgba(255,255,255,.03);
+        }
+        .holders-tbl .td-rank {
+            color:var(--text-muted);font-size:11px;text-align:center;font-weight:600;
+        }
+        .holders-tbl .td-addr {
+            line-height:1.55;
+        }
+        .holders-tbl .td-addr .h-name {
+            font-weight:600;font-size:12px;color:var(--text-primary);
+        }
+        .holders-tbl .td-addr .h-hex {
+            font-family:'SF Mono','Fira Code',monospace;font-size:11px;
+            color:var(--text-muted);
+        }
+        .holders-tbl .td-addr .h-hex a {
+            color:inherit;text-decoration:none;
+        }
+        .holders-tbl .td-addr .h-hex a:hover {
+            color:var(--accent-blue);text-decoration:underline;
+        }
+        .holders-tbl .td-addr .h-tag {
+            display:inline-block;font-size:9px;font-weight:700;letter-spacing:.8px;
+            text-transform:uppercase;padding:2px 6px;border-radius:4px;
+            margin-left:6px;vertical-align:middle;
+        }
+        .holders-tbl .td-addr .h-tag.t-burn { background:rgba(239,68,68,.15);color:#f87171; }
+        .holders-tbl .td-addr .h-tag.t-lp { background:rgba(245,158,11,.15);color:#fbbf24; }
+        .holders-tbl .td-addr .h-tag.t-contract { background:rgba(59,130,246,.15);color:#60a5fa; }
+        .holders-tbl .td-addr .h-tag.t-team { background:rgba(139,92,246,.15);color:#a78bfa; }
+        .holders-tbl .td-addr .h-tag.t-holder { background:rgba(16,185,129,.12);color:#34d399; }
+        .holders-tbl .td-addr .h-copy {
+            background:none;border:none;color:var(--text-muted);cursor:pointer;
+            font-size:11px;padding:0 0 0 4px;vertical-align:middle;
+            transition:color .15s;
+        }
+        .holders-tbl .td-addr .h-copy:hover { color:var(--accent-blue); }
+        .holders-tbl .td-bal {
+            text-align:right;font-variant-numeric:tabular-nums;
+        }
+        .holders-tbl .td-bal .bal-num {
+            font-weight:600;font-size:12px;color:var(--text-primary);
+        }
+        .holders-tbl .td-bal .bal-pct {
+            font-size:10px;color:var(--text-muted);margin-left:6px;
+        }
+        /* Pagination */
+        .holders-pager {
+            display:flex;align-items:center;justify-content:center;gap:8px;
+            padding:12px 24px;border-top:1px solid rgba(255,255,255,.06);
+        }
+        .holders-pager button {
+            background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+            border-radius:6px;padding:4px 10px;color:var(--text-secondary);
+            font-family:inherit;font-size:12px;cursor:pointer;
+            transition:all .15s;
+        }
+        .holders-pager button:hover:not(:disabled) {
+            background:rgba(255,255,255,.1);color:#fff;
+        }
+        .holders-pager button:disabled {
+            opacity:.3;cursor:not-allowed;
+        }
+        .holders-pager .pg-info {
+            font-size:11px;color:var(--text-muted);min-width:80px;text-align:center;
+        }
+
         @media (max-width: 768px) {
             .circ-stats {
                 grid-template-columns: 1fr 1fr;
             }
-            .holders-table th:nth-child(2),
-            .holders-table td:nth-child(2) {
-                display: none;
-            }
+            .tab-btn { padding:8px 18px;font-size:12px; }
+            .holders-toolbar { padding:12px 16px 0; }
+            .holders-card-header { padding:16px 16px 0; }
+            .holders-search-wrap { width:100%; }
+            .holders-tbl td, .holders-tbl th { padding:8px; }
         }
     </style>
 </head>
@@ -868,10 +1045,19 @@
                 <span class="dot"></span>
                 Moats Protocol
             </div>
-            <h1>LIL Rewards Calculator</h1>
-            <p>Oblicz przybliżone nagrody za locking tokenów LIL w Moat</p>
+            <h1>LIL Moat Rewards</h1>
+            <p>Kalkulator estymowanych nagród za Locking & Staking LIL</p>
         </div>
 
+        <!-- Tab Navigation -->
+        <div class="tab-nav" id="tabNav">
+            <div class="tab-slider" id="tabSlider"></div>
+            <button class="tab-btn active" data-view="calculator" onclick="switchTab('calculator')">🧮 Kalkulator</button>
+            <button class="tab-btn" data-view="holders" onclick="switchTab('holders')">👥 Holders</button>
+        </div>
+
+        <!-- ═══ CALCULATOR VIEW ═══ -->
+        <div id="view-calculator" class="view-section active">
         <!-- Mode Toggle -->
         <div class="mode-toggle">
             <button class="mode-btn active" onclick="setMode('lock')" id="mode-lock">🔒 Lock</button>
@@ -1063,74 +1249,95 @@
             <span class="info-icon">⚠️</span>
             <span>Kalkulator podaje szacunkowe wartości. Rzeczywiste nagrody zależą od aktualnych Moat Points wszystkich uczestników oraz wielkości puli nagród. Dane z 17.03.2026.</span>
         </div>
+        </div><!-- /view-calculator -->
 
-        <!-- ═══════ LIL Circulation & Holders ═══════ -->
-        <div class="circulation-section" style="margin-top: 32px;">
-            <div class="circ-header">
-                <div class="section-title">🔄 LIL w obiegu</div>
-                <button class="toggle-btn" id="toggleCaTeam" onclick="toggleCaTeam()">
-                    <span id="toggleLabel">Ukryj CA & Team</span>
-                    <span class="toggle-indicator"></span>
-                </button>
-            </div>
+        <!-- ═══ HOLDERS VIEW ═══ -->
+        <div id="view-holders" class="view-section">
 
             <!-- Circulation stats -->
-            <div class="circ-stats" style="grid-template-columns: repeat(3, 1fr);">
-                <div class="circ-stat">
-                    <div class="label">Total Supply</div>
-                    <div class="value" style="font-size: 13px;">1,350,000,000</div>
+            <div class="circulation-section">
+                <div class="circ-header">
+                    <div class="section-title">🔄 LIL w obiegu</div>
                 </div>
-                <div class="circ-stat">
-                    <div class="label">🔥 Burned</div>
-                    <div class="value red">363,187,841</div>
+                <div class="circ-stats" style="grid-template-columns: repeat(3, 1fr);">
+                    <div class="circ-stat">
+                        <div class="label">Total Supply</div>
+                        <div class="value" style="font-size: 13px;">1,350,000,000</div>
+                    </div>
+                    <div class="circ-stat">
+                        <div class="label">🔥 Burned</div>
+                        <div class="value red">363,187,841</div>
+                    </div>
+                    <div class="circ-stat" style="border-color: rgba(16, 185, 129, 0.25);">
+                        <div class="label">Effective Supply (post-burn)</div>
+                        <div class="value green">986,812,159</div>
+                    </div>
                 </div>
-                <div class="circ-stat" style="border-color: rgba(16, 185, 129, 0.25);">
-                    <div class="label">Effective Supply (post-burn)</div>
-                    <div class="value green">986,812,159</div>
-                </div>
-            </div>
-            <div class="circ-stats" style="grid-template-columns: repeat(4, 1fr);">
-                <div class="circ-stat" style="border-color: rgba(59, 130, 246, 0.25);">
-                    <div class="label">🔒 Locked / Staked</div>
-                    <div class="value blue">467,529,271</div>
-                    <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-blue);">47.4%</div>
-                </div>
-                <div class="circ-stat" style="border-color: rgba(245, 158, 11, 0.25);">
-                    <div class="label">💧 LP (Pharaoh)</div>
-                    <div class="value amber">353,508,945</div>
-                    <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-amber);">35.8%</div>
-                </div>
-                <div class="circ-stat" style="border-color: rgba(139, 92, 246, 0.25);">
-                    <div class="label">👥 Team / DAO</div>
-                    <div class="value" style="color: var(--accent-purple);">98,674,995</div>
-                    <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-purple);">10.0%</div>
-                </div>
-                <div class="circ-stat" style="border-color: rgba(16, 185, 129, 0.25);">
-                    <div class="label">🟢 Free Float</div>
-                    <div class="value green">67,098,948</div>
-                    <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-green);">6.8%</div>
+                <div class="circ-stats" style="grid-template-columns: repeat(4, 1fr);">
+                    <div class="circ-stat" style="border-color: rgba(59, 130, 246, 0.25);">
+                        <div class="label">🔒 Locked / Staked</div>
+                        <div class="value blue">467,529,271</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-blue);">47.4%</div>
+                    </div>
+                    <div class="circ-stat" style="border-color: rgba(245, 158, 11, 0.25);">
+                        <div class="label">💧 LP (Pharaoh)</div>
+                        <div class="value amber">353,508,945</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-amber);">35.8%</div>
+                    </div>
+                    <div class="circ-stat" style="border-color: rgba(139, 92, 246, 0.25);">
+                        <div class="label">👥 Team / DAO</div>
+                        <div class="value" style="color: var(--accent-purple);">98,674,995</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-purple);">10.0%</div>
+                    </div>
+                    <div class="circ-stat" style="border-color: rgba(16, 185, 129, 0.25);">
+                        <div class="label">🟢 Free Float</div>
+                        <div class="value green">67,098,948</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-green);">6.8%</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Holders & Contracts Table -->
-            <div class="holders-table-wrap" style="max-height: 620px; overflow-y: auto;">
-                <table class="holders-table">
-                    <thead style="position: sticky; top: 0; z-index: 2;">
-                        <tr>
-                            <th style="width:36px">#</th>
-                            <th>Nazwa / Adres</th>
-                            <th>Ilość LIL</th>
-                        </tr>
-                    </thead>
-                    <tbody id="holdersBody"></tbody>
-                </table>
+            <!-- DOLO-style Holders Card -->
+            <div class="holders-card" style="margin-top:24px;">
+                <div class="holders-card-header">
+                    <h3>🐓 LIL Holders <span class="h-count">(top 100 z 679)</span></h3>
+                </div>
+                <div class="holders-toolbar">
+                    <div class="holders-search-wrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <input type="text" class="holders-search" id="holderSearch" placeholder="Szukaj adresu 0x…" oninput="filterHolders()">
+                    </div>
+                    <label class="holders-toggle" title="Ukryj kontrakty, LP, burn i team">
+                        <input type="checkbox" id="hideCaTeam" onchange="filterHolders()">
+                        <span class="holders-toggle-track"></span>
+                        <span>Ukryj CA & Team</span>
+                    </label>
+                </div>
+                <div class="holders-table-scroll">
+                    <table class="holders-tbl">
+                        <colgroup>
+                            <col style="width:36px">
+                            <col style="width:55%">
+                            <col style="width:calc(45% - 36px)">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th class="col-rank sortable" onclick="sortHolders('rank')"># <span class="sort-arrow">▲</span></th>
+                                <th class="sortable" onclick="sortHolders('address')">Address <span class="sort-arrow">⇅</span></th>
+                                <th class="col-bal sortable" onclick="sortHolders('balance')">Balance <span class="sort-arrow">⇅</span></th>
+                            </tr>
+                        </thead>
+                        <tbody id="holdersBody"></tbody>
+                    </table>
+                </div>
+                <div class="holders-pager" id="holdersPager"></div>
             </div>
 
             <div class="info-bar" style="margin-top: 12px;">
                 <span class="info-icon">ℹ️</span>
-                <span>Dane on-chain z <a href="https://snowscan.xyz/token/0x22683bbadd01473969f23709879187705a253763" target="_blank" rel="noopener" style="color: var(--accent-blue);">Snowscan</a> — 679 holderów. CA LIL: <code style="font-size:10px; color: var(--text-muted);">0x2268...3763</code>. Przycisk wyżej ukrywa kontrakty i team.</span>
+                <span>Dane on-chain z <a href="https://snowscan.xyz/token/0x22683bbadd01473969f23709879187705a253763" target="_blank" rel="noopener" style="color: var(--accent-blue);">Snowscan</a> — 679 holderów. CA LIL: <code style="font-size:10px; color: var(--text-muted);">0x2268...3763</code></span>
             </div>
-        </div>
+        </div><!-- /view-holders -->
     </div>
 
     <script>
@@ -1282,16 +1489,41 @@
         // Initial calculation
         recalculate();
 
+        // ── Tab Navigation ──
+        function switchTab(view) {
+            document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+            document.getElementById('view-' + view).classList.add('active');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            const activeBtn = document.querySelector(`.tab-btn[data-view="${view}"]`);
+            activeBtn.classList.add('active');
+            // Slide indicator
+            const slider = document.getElementById('tabSlider');
+            slider.style.width = activeBtn.offsetWidth + 'px';
+            slider.style.transform = 'translateX(' + (activeBtn.offsetLeft - 3) + 'px)';
+            if (view === 'holders') renderHoldersPage();
+        }
+        // Init slider position
+        requestAnimationFrame(() => {
+            const first = document.querySelector('.tab-btn.active');
+            if (first) {
+                const slider = document.getElementById('tabSlider');
+                slider.style.width = first.offsetWidth + 'px';
+                slider.style.transform = 'translateX(' + (first.offsetLeft - 3) + 'px)';
+            }
+        });
+
         // ── Top 100 Holders Data (from Avascan, 17.03.2026) ──
         const TOTAL_SUPPLY = 1350000000;
+        const TAG_MAP = {burn:'t-burn',lp:'t-lp',contract:'t-contract',team:'t-team',holder:'t-holder'};
+        const TAG_LABEL = {burn:'Burn',lp:'LP',contract:'Contract',team:'Team',holder:'Holder'};
         const HOLDERS_DATA = [
-            {a:'0x000000000000000000000000000000000000dEaD',b:363187841,n:'Burn Address',t:'contract',tag:'Burn',tc:'tag-burn'},
-            {a:'0x8acc49857A1259D25eb3CA0aa15B398D0E149EF2',b:353508945,n:'Pharaoh LP (LIL/WAVAX)',t:'contract',tag:'LP',tc:'tag-lp'},
-            {a:'0x7A4D20261a765Bd9bA67D49FBf8189843eEC3393',b:282139473,n:'MultiLockMoat (Locker)',t:'contract',tag:'Contract',tc:'tag-contract'},
-            {a:'0x2Bf32c61786b8A7b8035a029a82a23bE556DE537',b:162414159,n:'Earningsbaystaking',t:'contract',tag:'Stake (no lock)',tc:'tag-holder'},
-            {a:'0x5b5a1503f491B2935BF757b21d2832a2B3D0df44',b:98155090,n:'DAO LIL',t:'team',tag:'DAO',tc:'tag-team'},
+            {a:'0x000000000000000000000000000000000000dEaD',b:363187841,n:'Burn Address',t:'contract',tl:'Burn',tc:'burn'},
+            {a:'0x8acc49857A1259D25eb3CA0aa15B398D0E149EF2',b:353508945,n:'Pharaoh LP (LIL/WAVAX)',t:'contract',tl:'LP',tc:'lp'},
+            {a:'0x7A4D20261a765Bd9bA67D49FBf8189843eEC3393',b:282139473,n:'MultiLockMoat (Locker)',t:'contract',tl:'Contract',tc:'contract'},
+            {a:'0x2Bf32c61786b8A7b8035a029a82a23bE556DE537',b:162414159,n:'Earningsbaystaking',t:'contract',tl:'Stake (no lock)',tc:'holder'},
+            {a:'0x5b5a1503f491B2935BF757b21d2832a2B3D0df44',b:98155090,n:'DAO LIL',t:'team',tl:'DAO',tc:'team'},
             {a:'0x28DA3DdE285D8F1f87B2D858f89961Bb8B9Af180',b:25022772,n:null,t:'holder'},
-            {a:'0x950a98dd06c898950460b0D1FCaD75D4A23Ff373',b:22975639,n:'EarningsBay Protocol',t:'contract',tag:'Contract',tc:'tag-contract'},
+            {a:'0x950a98dd06c898950460b0D1FCaD75D4A23Ff373',b:22975639,n:'EarningsBay Protocol',t:'contract',tl:'Contract',tc:'contract'},
             {a:'0x8afF5e5527845f2a1A0a6b7d727Db22f7b6C99A7',b:2500000,n:null,t:'holder'},
             {a:'0x60B615967Db702Be1c4470982E47d5f0A20F88E7',b:2500000,n:'Stars Arena User',t:'holder'},
             {a:'0xF1B1C792487e47B2580a5639190287aE0d26968e',b:2376194,n:null,t:'holder'},
@@ -1303,7 +1535,7 @@
             {a:'0x1CE8538df8341Ef84C239D7894D3c02E3AcF9Be6',b:1000000,n:null,t:'holder'},
             {a:'0xbA109916A5f1381845d6FC4a2758C1abD196ff93',b:999999,n:null,t:'holder'},
             {a:'0xB39EDf83279177F8399Ba8583B104F532f7D52Ff',b:969825,n:null,t:'holder'},
-            {a:'0xfE85C993605Dd02FFD2b0B7db041f51071e45cd1',b:946276,n:'Treasury',t:'team',tag:'Team',tc:'tag-team'},
+            {a:'0xfE85C993605Dd02FFD2b0B7db041f51071e45cd1',b:946276,n:'Treasury',t:'team',tl:'Team',tc:'team'},
             {a:'0x9d4b9c2Ab573d0316609326521E18fB37f0ec392',b:875600,n:null,t:'holder'},
             {a:'0xdf9C3Dc94f1Ab2f44da4A313ed0AC74465F1c3f2',b:875000,n:null,t:'holder'},
             {a:'0x886A94c3f534813586c59Cc0091f0640e4777F97',b:875000,n:null,t:'holder'},
@@ -1325,9 +1557,9 @@
             {a:'0xc2B20506830c7B227E4399B65eA64fD12486C46D',b:332963,n:null,t:'holder'},
             {a:'0x330625bFee406c96717bFBD179dbBAD4AcE18BE6',b:303522,n:null,t:'holder'},
             {a:'0xF7D666E7d37F3D350bCb6c688C850055Da92E2Fc',b:292377,n:null,t:'holder'},
-            {a:'0x660862D49E92f80f29E56C2770027E8d83e97882',b:291429,n:'Treasury Helper (Pharaoh)',t:'team',tag:'Team',tc:'tag-team'},
+            {a:'0x660862D49E92f80f29E56C2770027E8d83e97882',b:291429,n:'Treasury Helper (Pharaoh)',t:'team',tl:'Team',tc:'team'},
             {a:'0x394C82976a57c4309138c072149Ee57Aea16560b',b:232905,n:null,t:'holder'},
-            {a:'0x244A4a90e148Ec318a85f8C138A274e16FFE3032',b:228476,n:'Pharaoh Team Multisig',t:'team',tag:'Team',tc:'tag-team'},
+            {a:'0x244A4a90e148Ec318a85f8C138A274e16FFE3032',b:228476,n:'Pharaoh Team Multisig',t:'team',tl:'Team',tc:'team'},
             {a:'0x5836E7d37F3D350bCb6c688C850055Da9269CD08',b:202023,n:null,t:'holder'},
             {a:'0x7fa527A8561cDb3cB16dE66369cb99Bb6f023588',b:179613,n:null,t:'holder'},
             {a:'0x5d481170Ad927a7220150702150d70e4FDA9082C',b:169166,n:null,t:'holder'},
@@ -1347,7 +1579,7 @@
             {a:'0xCBBBf30A775Bc88c0693A971F29B275D386a7ce5',b:54581,n:null,t:'holder'},
             {a:'0xc93929c43698A6F4e7684b12688e1a71A9344Ec6',b:53931,n:null,t:'holder'},
             {a:'0xa171dD4D59167E3256831Ab5015cB4fd1C44EcC1',b:53777,n:null,t:'holder'},
-            {a:'0x88de50B233052e4Fb783d4F6db78Cc34fEa3e9FC',b:52831,n:'Odos Router V2',t:'contract',tag:'Contract',tc:'tag-contract'},
+            {a:'0x88de50B233052e4Fb783d4F6db78Cc34fEa3e9FC',b:52831,n:'Odos Router V2',t:'contract',tl:'Contract',tc:'contract'},
             {a:'0x8be93f0a9435D487E84a164469E0b24B46F7B5eE',b:52486,n:null,t:'holder'},
             {a:'0xf3dFB6485C7df16F68a65eD98d6212B108FfC38B',b:50637,n:null,t:'holder'},
             {a:'0x00D77a45ea3D4E978c3dd5fD3b2A9f268f0B8c14',b:50000,n:null,t:'holder'},
@@ -1384,78 +1616,90 @@
             {a:'0xE389f520e86474F97bE2506E8256DD75CB132099',b:27985,n:null,t:'holder'},
         ];
 
-        function shortAddr(a) { return a.slice(0,6) + '...' + a.slice(-4); }
+        // ── Holders Rendering (Dolomite-style with pagination) ──
+        const PAGE_SIZE = 25;
+        let holderPage = 0;
+        let holderSort = {col:'rank', dir:1};
+        let filteredHolders = [...HOLDERS_DATA.map((h,i) => ({...h, rank: i+1}))];
+
+        function shortAddr(a) { return a.slice(0,6) + '…' + a.slice(-4); }
         function fmtBal(n) { return n.toLocaleString('en-US'); }
 
-        function renderHolders() {
+        function filterHolders() {
+            const q = (document.getElementById('holderSearch').value || '').toLowerCase();
+            const hideCa = document.getElementById('hideCaTeam').checked;
+            filteredHolders = HOLDERS_DATA.map((h,i) => ({...h, rank: i+1})).filter(h => {
+                if (hideCa && h.t !== 'holder') return false;
+                if (q && !h.a.toLowerCase().includes(q) && !(h.n && h.n.toLowerCase().includes(q))) return false;
+                return true;
+            });
+            holderPage = 0;
+            renderHoldersPage();
+        }
+
+        function sortHolders(col) {
+            if (holderSort.col === col) holderSort.dir *= -1;
+            else { holderSort.col = col; holderSort.dir = col === 'balance' ? -1 : 1; }
+            const sorted = [...filteredHolders];
+            sorted.sort((a,b) => {
+                if (col === 'rank') return (a.rank - b.rank) * holderSort.dir;
+                if (col === 'balance') return (a.b - b.b) * holderSort.dir;
+                if (col === 'address') return (a.n||a.a).localeCompare(b.n||b.a) * holderSort.dir;
+                return 0;
+            });
+            filteredHolders = sorted;
+            holderPage = 0;
+            renderHoldersPage();
+        }
+
+        function renderHoldersPage() {
             const tbody = document.getElementById('holdersBody');
+            const totalPages = Math.max(1, Math.ceil(filteredHolders.length / PAGE_SIZE));
+            if (holderPage >= totalPages) holderPage = totalPages - 1;
+            if (holderPage < 0) holderPage = 0;
+            const start = holderPage * PAGE_SIZE;
+            const page = filteredHolders.slice(start, start + PAGE_SIZE);
+
             tbody.innerHTML = '';
-            HOLDERS_DATA.forEach((h, i) => {
-                const rank = i + 1;
+            page.forEach(h => {
                 const pct = ((h.b / TOTAL_SUPPLY) * 100);
                 const pctStr = pct >= 1 ? pct.toFixed(2) + '%' : pct >= 0.01 ? pct.toFixed(3) + '%' : '<0.01%';
-                const type = h.t || 'holder';
-                const tagClass = h.tc || 'tag-holder';
-                const tagText = h.tag || 'Holder';
+                const tagCls = TAG_MAP[h.tc || h.t] || 't-holder';
+                const tagLbl = h.tl || TAG_LABEL[h.t] || 'Holder';
 
                 const tr = document.createElement('tr');
-                tr.setAttribute('data-type', type);
-
                 // Rank
-                const tdRank = document.createElement('td');
-                tdRank.style.cssText = 'color: var(--text-muted); font-size:11px; text-align:center;';
-                tdRank.textContent = rank;
-
-                // Name + address
-                const tdName = document.createElement('td');
-                let nameHtml = '';
+                tr.innerHTML = `<td class="td-rank">${h.rank}</td>`;
+                // Address cell
+                let addrHtml = '<td class="td-addr">';
                 if (h.n) {
-                    nameHtml += `<span class="holder-name">${h.n}</span>`;
-                    nameHtml += `<span class="holder-tag ${tagClass}">${tagText}</span>`;
-                    nameHtml += '<br>';
+                    addrHtml += `<span class="h-name">${h.n}</span><span class="h-tag ${tagCls}">${tagLbl}</span><br>`;
                 }
-                nameHtml += `<span class="addr-cell"><a href="https://snowscan.xyz/address/${h.a}" target="_blank" rel="noopener">${shortAddr(h.a)}</a>`;
-                nameHtml += `<button class="copy-btn" onclick="copyAddr('${h.a}')" title="Copy">📋</button></span>`;
-                if (!h.n) {
-                    nameHtml += `<span class="holder-tag ${tagClass}" style="margin-left:6px">${tagText}</span>`;
-                }
-                tdName.innerHTML = nameHtml;
-
+                addrHtml += `<span class="h-hex"><a href="https://snowscan.xyz/address/${h.a}" target="_blank" rel="noopener">${shortAddr(h.a)}</a>`;
+                addrHtml += `<button class="h-copy" onclick="copyAddr('${h.a}')" title="Copy">📋</button></span>`;
+                if (!h.n) addrHtml += `<span class="h-tag ${tagCls}">${tagLbl}</span>`;
+                addrHtml += '</td>';
+                tr.innerHTML += addrHtml;
                 // Balance
-                const tdBal = document.createElement('td');
-                tdBal.innerHTML = `<span class="balance-val">${fmtBal(h.b)}</span><span class="pct-val">${pctStr}</span>`;
-
-                tr.appendChild(tdRank);
-                tr.appendChild(tdName);
-                tr.appendChild(tdBal);
+                tr.innerHTML += `<td class="td-bal"><span class="bal-num">${fmtBal(h.b)}</span><span class="bal-pct">${pctStr}</span></td>`;
                 tbody.appendChild(tr);
             });
-        }
-        renderHolders();
 
-        // ── Toggle CA & Team visibility ──
-        let caTeamHidden = false;
-
-        function toggleCaTeam() {
-            caTeamHidden = !caTeamHidden;
-            const btn = document.getElementById('toggleCaTeam');
-            const label = document.getElementById('toggleLabel');
-            btn.classList.toggle('active', caTeamHidden);
-            label.textContent = caTeamHidden ? 'Pokaż CA & Team' : 'Ukryj CA & Team';
-
-            document.querySelectorAll('#holdersBody tr').forEach(row => {
-                const type = row.getAttribute('data-type');
-                if (type === 'contract' || type === 'team') {
-                    row.classList.toggle('row-hidden', caTeamHidden);
-                }
-            });
+            // Pagination
+            const pager = document.getElementById('holdersPager');
+            if (filteredHolders.length <= PAGE_SIZE) { pager.innerHTML = ''; return; }
+            pager.innerHTML = `
+                <button onclick="holderPage=0;renderHoldersPage()" ${holderPage===0?'disabled':''}>«</button>
+                <button onclick="holderPage--;renderHoldersPage()" ${holderPage===0?'disabled':''}>‹</button>
+                <span class="pg-info">${start+1}–${Math.min(start+PAGE_SIZE, filteredHolders.length)} z ${filteredHolders.length}</span>
+                <button onclick="holderPage++;renderHoldersPage()" ${holderPage>=totalPages-1?'disabled':''}>›</button>
+                <button onclick="holderPage=${totalPages-1};renderHoldersPage()" ${holderPage>=totalPages-1?'disabled':''}>»</button>`;
         }
 
         // Copy address to clipboard
         function copyAddr(addr) {
             navigator.clipboard.writeText(addr).then(() => {
-                // Brief visual feedback
-                const btns = document.querySelectorAll('.copy-btn');
+                const btns = document.querySelectorAll('.h-copy');
                 btns.forEach(b => {
                     if (b.getAttribute('onclick').includes(addr.slice(0, 8))) {
                         const orig = b.textContent;
