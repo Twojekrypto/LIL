@@ -1554,7 +1554,7 @@
                         <div class="label" style="margin-top:4px; margin-bottom:0; font-size:11px; color: var(--text-muted);" id="pSum-holdersSub"></div>
                     </div>
                     <div class="circ-stat" style="border-color: rgba(139, 92, 246, 0.25);">
-                        <div class="label">👥 DAO & Treasury</div>
+                        <div class="label">👥 DAO, Treasury & LP</div>
                         <div class="value" id="pSum-dao" style="color: var(--accent-purple); font-size: 13px;">—</div>
                         <div class="label" style="margin-top:4px; margin-bottom:0; font-size:11px; color: var(--accent-purple);" id="pSum-daoSub"></div>
                     </div>
@@ -2120,6 +2120,11 @@
 
             const tTotal = team.reduce((s, h) => s + h.total, 0);
 
+            // LP contract balance (excluded from PORTFOLIO_DATA, grab from HOLDERS_DATA)
+            const lpEntry = HOLDERS_DATA.find(h => (h.tc || h.t) === 'lp');
+            const lpBalance = lpEntry ? lpEntry.b : 0;
+            const daoLpTotal = tTotal + lpBalance;
+
             const fmt = n => n.toLocaleString('en-US', {maximumFractionDigits: 0});
             const effPct = v => (v / EFFECTIVE_SUPPLY * 100).toFixed(1) + '% eff. supply';
 
@@ -2129,8 +2134,10 @@
             document.getElementById('pSum-holders').textContent = activeUsers.length;
             document.getElementById('pSum-holdersSub').textContent = `z ${PORTFOLIO_DATA.length} tracked`;
 
-            document.getElementById('pSum-dao').textContent = fmt(tTotal);
-            document.getElementById('pSum-daoSub').textContent = effPct(tTotal) + ' · ' + team.map(h => h.n || shortAddr(h.a)).join(', ');
+            const daoLabels = team.map(h => h.n || shortAddr(h.a));
+            if (lpEntry) daoLabels.push(lpEntry.n || 'LP');
+            document.getElementById('pSum-dao').textContent = fmt(daoLpTotal);
+            document.getElementById('pSum-daoSub').textContent = effPct(daoLpTotal) + ' · ' + daoLabels.join(', ');
 
             document.getElementById('pSum-wallet').textContent = fmt(uWallet);
             document.getElementById('pSum-walletPct').textContent = effPct(uWallet);
