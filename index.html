@@ -1223,7 +1223,7 @@
 
                 <div class="input-group">
                     <div class="input-label">
-                        <span>Ilość LIL</span>
+                        <span>Balance</span>
                     </div>
                     <input class="input-field" type="text" id="amountInput" placeholder="np. 1,000,000" oninput="recalculate()" autofocus>
                 </div>
@@ -1382,7 +1382,7 @@
             <!-- Circulation stats -->
             <div class="circulation-section">
                 <div class="circ-header">
-                    <div class="section-title">🔄 LIL w obiegu</div>
+                    <div class="section-title">🔄 LIL Circulation</div>
                 </div>
                 <div class="circ-stats" style="grid-template-columns: repeat(3, 1fr);">
                     <div class="circ-stat">
@@ -1425,18 +1425,18 @@
             <!-- DOLO-style Holders Card -->
             <div class="holders-card" style="margin-top:24px;">
                 <div class="holders-card-header">
-                    <h3>🐓 LIL Holders <span class="h-count">(top 100 z 679)</span></h3>
+                    <h3>🐓 LIL Holders <span class="h-count">(top 100 of 679)</span></h3>
                 </div>
                 <div class="holders-toolbar">
                     <div class="holders-search-wrap">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                        <input type="text" class="holders-search" id="holderSearch" placeholder="Szukaj nazwy lub adresu 0x…" oninput="filterHolders()">
+                        <input type="text" class="holders-search" id="holderSearch" placeholder="Search name or address 0x…" oninput="filterHolders()">
                         <button class="holders-search-clear" id="searchClear" onclick="clearSearch()">×</button>
                     </div>
-                    <label class="holders-toggle" title="Ukryj kontrakty, LP, burn i team">
+                    <label class="holders-toggle" title="Hide contracts, LP, burn & team">
                         <input type="checkbox" id="hideCaTeam" onchange="filterHolders()">
                         <span class="holders-toggle-track"></span>
-                        <span>Ukryj CA & Team</span>
+                        <span>Hide CA & Team</span>
                     </label>
                 </div>
                 <div class="holders-table-scroll">
@@ -1451,7 +1451,7 @@
                             <tr>
                                 <th class="col-rank sortable sort-active" onclick="sortHolders('rank')"># <span class="sort-arrow">▲</span></th>
                                 <th class="sortable" onclick="sortHolders('address')">Address <span class="sort-arrow">⇅</span></th>
-                                <th class="col-bal sortable" onclick="sortHolders('balance')">Ilość LIL <span class="sort-arrow">⇅</span></th>
+                                <th class="col-bal sortable" onclick="sortHolders('balance')">Balance <span class="sort-arrow">⇅</span></th>
                                 <th class="col-pct sortable" onclick="sortHolders('pct')">% Effective <span class="sort-arrow">⇅</span></th>
                             </tr>
                         </thead>
@@ -1471,7 +1471,7 @@
                 <div class="holders-toolbar">
                     <div class="holders-search-wrap">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                        <input type="text" class="holders-search" id="lockSearch" placeholder="Szukaj adresu 0x…" oninput="filterLocks()">
+                        <input type="text" class="holders-search" id="lockSearch" placeholder="Search address 0x…" oninput="filterLocks()">
                     </div>
                 </div>
                 <div class="holders-table-scroll">
@@ -1508,7 +1508,7 @@
                 <div class="holders-toolbar">
                     <div class="holders-search-wrap">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                        <input type="text" class="holders-search" id="stakeSearch" placeholder="Szukaj adresu 0x…" oninput="filterStakes()">
+                        <input type="text" class="holders-search" id="stakeSearch" placeholder="Search address 0x…" oninput="filterStakes()">
                     </div>
                 </div>
                 <div class="holders-table-scroll">
@@ -1540,16 +1540,16 @@
             <!-- ══════ PORTFOLIO SUMMARY DASHBOARD ══════ -->
             <div class="circulation-section" style="margin-top:32px;" id="portfolioDashboard">
                 <div class="circ-header">
-                    <div class="section-title">📊 Portfolio — podsumowanie LIL użytkowników</div>
+                    <div class="section-title">📊 Portfolio Overview</div>
                 </div>
                 <div class="circ-stats" style="grid-template-columns: repeat(3, 1fr);">
                     <div class="circ-stat" style="border-color: rgba(34, 211, 238, 0.25);">
-                        <div class="label">🏦 Total LIL (użytkownicy)</div>
+                        <div class="label">🏦 Total LIL (Users)</div>
                         <div class="value" id="pSum-total" style="color: #22d3ee; font-size: 13px;">—</div>
                         <div class="label" style="margin-top:4px; margin-bottom:0; font-size:11px; color: var(--text-muted);" id="pSum-totalSub"></div>
                     </div>
                     <div class="circ-stat">
-                        <div class="label">👛 Holders aktywnych</div>
+                        <div class="label">👛 Active Holders</div>
                         <div class="value" id="pSum-holders" style="font-size: 13px;">—</div>
                         <div class="label" style="margin-top:4px; margin-bottom:0; font-size:11px; color: var(--text-muted);" id="pSum-holdersSub"></div>
                     </div>
@@ -1581,22 +1581,22 @@
             <!-- ══════ COMBINED PORTFOLIO TABLE ══════ -->
             <div class="holders-card" style="margin-top:24px;">
                 <div class="holders-card-header">
-                    <h3>📋 Portfolio (bez contractów) <span class="h-count" id="portfolioCount"></span></h3>
+                    <h3>📋 Combined Portfolio <span class="h-count" id="portfolioCount"></span></h3>
                 </div>
                 <div class="holders-toolbar">
                     <div class="holders-search-wrap">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                        <input type="text" class="holders-search" id="portfolioSearch" placeholder="Szukaj adresu 0x…" oninput="filterPortfolio()">
+                        <input type="text" class="holders-search" id="portfolioSearch" placeholder="Search address 0x…" oninput="filterPortfolio()">
                     </div>
-                    <label class="holders-toggle" title="Ukryj adresy z zerowym saldem">
+                    <label class="holders-toggle" title="Hide zero-balance addresses">
                         <input type="checkbox" id="hideZeroPortfolio" onchange="filterPortfolio()" checked>
                         <span class="holders-toggle-track"></span>
-                        <span>Ukryj zerowe</span>
+                        <span>Hide zero</span>
                     </label>
-                    <label class="holders-toggle" title="Ukryj DAO i Team" style="margin-left:12px">
+                    <label class="holders-toggle" title="Hide DAO & Team" style="margin-left:12px">
                         <input type="checkbox" id="hideTeamPortfolio" onchange="filterPortfolio()" checked>
                         <span class="holders-toggle-track"></span>
-                        <span>Ukryj CA & Team</span>
+                        <span>Hide CA & Team</span>
                     </label>
                 </div>
                 <div class="holders-table-scroll">
@@ -1629,7 +1629,7 @@
 
             <div class="info-bar" style="margin-top: 12px;">
                 <span class="info-icon">⛓️</span>
-                <span>Dane on-chain z Avalanche C-Chain — MultiLockMoat + EarningsBay contracts</span>
+                <span>On-chain data from Avalanche C-Chain — MultiLockMoat + EarningsBay contracts</span>
             </div>
         </div><!-- /view-holders -->
     </div>
@@ -1999,14 +1999,14 @@
                     addrCell = `<td class="td-addr"><span class="addr-wrap">` +
                         `<a href="${snowUrl(h.a)}" target="_blank" onclick="event.stopPropagation()" class="addr-link addr-tooltip-wrap" data-full-addr="${h.a}">${h.n}</a>` +
                         `<span class="type-badge ${badgeCls}">${badgeLbl.toUpperCase()}</span>` +
-                        `<span class="copy-addr-icon" onclick="event.stopPropagation();copyAddr('${h.a}',this)" title="Kopiuj adres">${COPY_SVG}</span>` +
+                        `<span class="copy-addr-icon" onclick="event.stopPropagation();copyAddr('${h.a}',this)" title="Copy address">${COPY_SVG}</span>` +
                         dbIcon(h.a) +
                         `</span></td>`;
                 } else {
                     // Unnamed: hex link + copy + debank
                     addrCell = `<td class="td-addr"><span class="addr-wrap">` +
                         `<a href="${snowUrl(h.a)}" target="_blank" onclick="event.stopPropagation()" class="addr-link addr-hex addr-tooltip-wrap" data-full-addr="${h.a}">${shortAddr(h.a)}</a>` +
-                        `<span class="copy-addr-icon" onclick="event.stopPropagation();copyAddr('${h.a}',this)" title="Kopiuj adres">${COPY_SVG}</span>` +
+                        `<span class="copy-addr-icon" onclick="event.stopPropagation();copyAddr('${h.a}',this)" title="Copy address">${COPY_SVG}</span>` +
                         dbIcon(h.a) +
                         `</span></td>`;
                 }
@@ -2157,7 +2157,7 @@
             const cls = h.n ? 'addr-link' : 'addr-link addr-hex';
             return `<span class="addr-wrap">` +
                 `<a href="${snowUrl}" target="_blank" onclick="event.stopPropagation()" class="${cls}">${label}</a>` +
-                `<span class="copy-addr-icon" onclick="event.stopPropagation();copyAddr('${h.a}',this)" title="Kopiuj">${COPY_SVG}</span>` +
+                `<span class="copy-addr-icon" onclick="event.stopPropagation();copyAddr('${h.a}',this)" title="Copy">${COPY_SVG}</span>` +
                 `<a href="${dbUrl}" target="_blank" onclick="event.stopPropagation()" class="debank-icon" title="DeBank"><img src="https://debank.com/favicon.ico" width="14" height="14" onerror="this.parentElement.style.display='none'"></a>` +
                 `</span>`;
         }
@@ -2278,7 +2278,7 @@
         LOCK_DATA.forEach(l => { lockByAddr[l.a.toLowerCase()] = l; });
 
         function renderportfolioBody() {
-            document.getElementById('portfolioCount').textContent = `(${filteredPortfolio.length} adresów)`;
+            document.getElementById('portfolioCount').textContent = `(${filteredPortfolio.length} addresses)`;
             portfolioBodyPage = renderGenericTable(filteredPortfolio, 'portfolioBody', 'portfolioPager', portfolioBodyPage, PAGE_SIZE, (h, rank, idx) => {
                 const fmtVal = v => v > 0 ? fmtBal(v) : '<span style="color:rgba(255,255,255,0.15)">—</span>';
                 const totalColor = h.total > 10000000 ? 'color:#22d3ee;font-weight:600' : h.total > 1000000 ? 'color:#34d399;font-weight:600' : '';
