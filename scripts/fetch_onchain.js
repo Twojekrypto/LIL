@@ -9,7 +9,7 @@ const provider = new ethers.JsonRpcProvider(RPC);
 const MOAT_ADDR   = '0x7A4D20261a765Bd9bA67D49FBf8189843eEC3393';
 const EB_PROTO    = '0x950a98dd06c898950460b0D1FCaD75D4A23Ff373';
 const EB_STAKE    = '0x2Bf32c61786b8A7b8035a029a82a23bE556DE537';
-const LIL_TOKEN   = '0x22683bBAdd01473969F23709879187705a253763';
+const LIL_TOKEN   = '0x22683BbaDD01473969F23709879187705a253763';
 
 // Known top 100 holder addresses (from existing HOLDERS_DATA)
 const TOP100 = [
@@ -17,7 +17,7 @@ const TOP100 = [
   '0x8acc49857A1259D25eb3CA0aa15B398D0E149EF2',
   '0x7A4D20261a765Bd9bA67D49FBf8189843eEC3393',
   '0x2Bf32c61786b8A7b8035a029a82a23bE556DE537',
-  '0x5b5a1503f491B2935BF757b21d2832a2b3d0df44',
+  '0x5b5a1503f491B2935BF757b21d2832a2B3D0df44',
   '0x28DA3DdE285D8F1f87B2D858f89961Bb8B9Af180',
   '0x950a98dd06c898950460b0D1FCaD75D4A23Ff373',
   '0x8afF5e5527845f2a1A0a6b7d727Db22f7b6C99A7',
@@ -83,8 +83,96 @@ const ERC20_ABI = [
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 const fmt = v => Number(ethers.formatEther(v));
 
+// ── Transfer event scanner ──
+// Scans LIL Transfer events where `to` is a target contract
+// ERC20 Transfer(address indexed from, address indexed to, uint256 value)
+const TRANSFER_TOPIC = ethers.id('Transfer(address,address,uint256)');
+
+// Known contract creation blocks (verified via on-chain binary search)
+const CONTRACT_CREATION = {
+  [EB_PROTO.toLowerCase()]: 58_834_778,
+  [EB_STAKE.toLowerCase()]: 59_474_082,
+};
+
+async function findDepositors(targetAddr, label) {
+  console.log(`\n🔍 Scanning Transfer events → ${label} (${targetAddr.slice(0,10)}...)...`);
+  const toPadded = '0x' + targetAddr.slice(2).toLowerCase().padStart(64, '0');
+  
+  const currentBlock = await provider.getBlockNumber();
+  const depositors = new Set();
+  const CHUNK = 2048;
+  
+  // Start from the contract creation block (with small buffer)
+  const creationBlock = CONTRACT_CREATION[targetAddr.toLowerCase()] || 58_000_000;
+  const startBlock = Math.max(creationBlock - 100, 1);
+  const totalChunks = Math.ceil((currentBlock - startBlock) / CHUNK);
+  console.log(`  Contract created at block ${creationBlock}`);
+  console.log(`  Scanning ${totalChunks} chunks from block ${startBlock} to ${currentBlock}...`);
+  
+  let scanned = 0;
+  let retryQueue = [];
+  
+  for (let from = startBlock; from <= currentBlock; from += CHUNK) {
+    const to = Math.min(from + CHUNK - 1, currentBlock);
+    try {
+      const logs = await provider.getLogs({
+        address: LIL_TOKEN,
+        topics: [TRANSFER_TOPIC, null, toPadded],
+        fromBlock: from,
+        toBlock: to,
+      });
+      for (const log of logs) {
+        const sender = '0x' + log.topics[1].slice(26);
+        depositors.add(ethers.getAddress(sender));
+      }
+    } catch (e) {
+      // Split in half on error and retry both halves
+      const mid = Math.floor((from + to) / 2);
+      for (const [f, t] of [[from, mid], [mid + 1, to]]) {
+        try {
+          const logs = await provider.getLogs({
+            address: LIL_TOKEN,
+            topics: [TRANSFER_TOPIC, null, toPadded],
+            fromBlock: f, toBlock: t,
+          });
+          for (const log of logs) {
+            depositors.add(ethers.getAddress('0x' + log.topics[1].slice(26)));
+          }
+        } catch (e2) {
+          // Quarter-split as last resort
+          const qmid = Math.floor((f + t) / 2);
+          for (const [qf, qt] of [[f, qmid], [qmid + 1, t]]) {
+            try {
+              const logs = await provider.getLogs({
+                address: LIL_TOKEN,
+                topics: [TRANSFER_TOPIC, null, toPadded],
+                fromBlock: qf, toBlock: qt,
+              });
+              for (const log of logs) {
+                depositors.add(ethers.getAddress('0x' + log.topics[1].slice(26)));
+              }
+            } catch (e3) {
+              console.log(`  ⚠ Skip ${qf}-${qt}: ${e3.message?.slice(0, 80)}`);
+            }
+          }
+          await sleep(100);
+        }
+      }
+    }
+    
+    scanned++;
+    if (scanned % 500 === 0 || from + CHUNK > currentBlock) {
+      process.stdout.write(`  ${scanned}/${totalChunks} chunks (${depositors.size} depositors)\r`);
+    }
+    if (scanned % 30 === 0) await sleep(50);
+  }
+  
+  console.log(`  ✅ ${depositors.size} unique depositors found for ${label}                `);
+  return depositors;
+}
+
 async function main() {
-  console.log('🚀 LIL On-Chain Data Fetcher (v2 — fast)');
+  console.log('🚀 LIL On-Chain Data Fetcher (v3 — full EB staker discovery)');
   const block = await provider.getBlockNumber();
   console.log(`  Block: ${block}`);
 
@@ -92,6 +180,14 @@ async function main() {
   const ebProto = new ethers.Contract(EB_PROTO, EB_ABI, provider);
   const ebStake = new ethers.Contract(EB_STAKE, EB_ABI, provider);
   const lilToken = new ethers.Contract(LIL_TOKEN, ERC20_ABI, provider);
+
+  // Verify contract totals first
+  const [ebProtoTotal, ebStakeTotal] = await Promise.all([
+    ebProto.totalStaked().catch(() => 0n),
+    ebStake.totalStaked().catch(() => 0n),
+  ]);
+  console.log(`  EB Protocol totalStaked: ${Math.round(fmt(ebProtoTotal)).toLocaleString()} LIL`);
+  console.log(`  EB Staking totalStaked:  ${Math.round(fmt(ebStakeTotal)).toLocaleString()} LIL`);
 
   // ── 1. Get all Moat active users ──
   console.log('\n🔒 Fetching Moat active users...');
@@ -104,17 +200,26 @@ async function main() {
   }
   console.log(`  ${moatUsers.length} active users`);
 
-  // ── 2. Build master address list (Moat users + Top100 holders) ──
+  // ── 2. Discover ALL EB depositors via Transfer event scanning ──
+  const ebProtoDepositors = await findDepositors(EB_PROTO, 'EB Protocol');
+  const ebStakeDepositors = await findDepositors(EB_STAKE, 'EB Staking');
+
+  // ── 3. Build master address list ──
   const allAddrs = new Set(moatUsers.map(a => a));
   TOP100.forEach(a => allAddrs.add(a));
+  ebProtoDepositors.forEach(a => allAddrs.add(a));
+  ebStakeDepositors.forEach(a => allAddrs.add(a));
   const masterList = [...allAddrs];
   console.log(`\n📋 Master address list: ${masterList.length} unique addresses`);
+  console.log(`  Sources: ${moatUsers.length} Moat + ${TOP100.length} Top100 + ${ebProtoDepositors.size} EB Proto + ${ebStakeDepositors.size} EB Stake`);
 
-  // ── 3. Batch fetch ALL data for each address ──
+  // ── 4. Batch fetch ALL data for each address ──
   console.log('\n⚡ Fetching all user data (locks, stakes, balances)...');
-  const lockPositions = [];  // for lock table
-  const stakeMap = {};       // for stake table
-  const portfolio = {};      // for combined table
+  const lockPositions = [];
+  const stakeMap = {};
+  const portfolio = {};
+
+  let ebProtoSum = 0, ebStakeSum = 0, moatStakeSum = 0;
 
   for (let i = 0; i < masterList.length; i++) {
     const addr = masterList[i];
@@ -122,7 +227,6 @@ async function main() {
     const kn = KNOWN[lc];
 
     try {
-      // Parallel fetch: moat info+locks, EB proto, EB stake, wallet balance
       const [moatInfo, moatLocks, ebProtoInfo, ebStakeInfo, walBal] = await Promise.all([
         moat.userInfo(addr).catch(() => null),
         moat.getUserAllLocks(addr).catch(() => null),
@@ -135,6 +239,10 @@ async function main() {
       const ebProtoStaked = fmt(ebProtoInfo[0]);
       const ebStakeStaked = fmt(ebStakeInfo[0]);
       const walletBal = fmt(walBal);
+
+      moatStakeSum += moatStaked;
+      ebProtoSum += ebProtoStaked;
+      ebStakeSum += ebStakeStaked;
 
       // Process locks
       let totalLocked = 0;
@@ -211,6 +319,14 @@ async function main() {
   console.log(`  Lockers: ${lockArr.length} (${lockArr.reduce((s, l) => s + l.totalLocked, 0).toLocaleString()} LIL locked)`);
   console.log(`  Stakers: ${stakeArr.length} (${stakeArr.reduce((s, l) => s + l.totalStaked, 0).toLocaleString()} LIL staked)`);
   console.log(`  Portfolio: ${portfolioArr.length} addresses`);
+
+  // Verification
+  console.log(`\n🔎 Verification (discovered vs on-chain):`);
+  console.log(`  EB Protocol: ${Math.round(ebProtoSum).toLocaleString()} discovered / ${Math.round(fmt(ebProtoTotal)).toLocaleString()} on-chain`);
+  console.log(`  EB Staking:  ${Math.round(ebStakeSum).toLocaleString()} discovered / ${Math.round(fmt(ebStakeTotal)).toLocaleString()} on-chain`);
+  const protoPct = (ebProtoSum / fmt(ebProtoTotal) * 100).toFixed(1);
+  const stakePct = (ebStakeSum / fmt(ebStakeTotal) * 100).toFixed(1);
+  console.log(`  Coverage: EB Proto ${protoPct}%, EB Stake ${stakePct}%`);
 
   // ── Write output ──
   const dataDir = path.join(__dirname, '..', 'data');
