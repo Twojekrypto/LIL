@@ -1288,13 +1288,13 @@
                 Moats Protocol
             </div>
             <h1>LIL Moat Rewards</h1>
-            <p>Kalkulator estymowanych nagród za Locking & Staking LIL</p>
+            <p>Estimated rewards calculator for Locking & Staking LIL</p>
         </div>
 
         <!-- Tab Navigation -->
         <div class="tab-nav" id="tabNav">
             <div class="tab-slider" id="tabSlider"></div>
-            <button class="tab-btn active" data-view="calculator" onclick="switchTab('calculator')">🧮 Kalkulator</button>
+            <button class="tab-btn active" data-view="calculator" onclick="switchTab('calculator')">🧮 Calculator</button>
             <button class="tab-btn" data-view="holders" onclick="switchTab('holders')">👥 Holders</button>
         </div>
 
@@ -1309,21 +1309,21 @@
 
         <!-- Current Moat Stats -->
         <div class="section">
-            <div class="section-title">Aktualny stan Moat (edytowalne)</div>
+            <div class="section-title">Current Moat State (editable)</div>
             <div class="stats-grid">
                 <div class="stat-item">
                     <div class="stat-label">Total Staked</div>
-                    <div class="stat-value"><input class="input-field" type="text" id="totalStaked" value="144,623,260" oninput="recalculate()" style="text-align:center; font-size:14px; padding:8px;"></div>
+                    <div class="stat-value"><input class="input-field" type="text" id="totalStaked" value="336,325,128" oninput="recalculate()" style="text-align:center; font-size:14px; padding:8px;"></div>
                     <div class="stat-sub">LIL (1x)</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-label">Total Locked</div>
-                    <div class="stat-value"><input class="input-field" type="text" id="totalLocked" value="135,232,682" oninput="recalculate()" style="text-align:center; font-size:14px; padding:8px;"></div>
-                    <div class="stat-sub">LIL (avg ~3.53x, 253d)</div>
+                    <div class="stat-value"><input class="input-field" type="text" id="totalLocked" value="137,732,680" oninput="recalculate()" style="text-align:center; font-size:14px; padding:8px;"></div>
+                    <div class="stat-sub">LIL (avg ~3.52x, 179d)</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-label">Total Burned</div>
-                    <div class="stat-value"><input class="input-field" type="text" id="totalBurned" value="301,919,976" oninput="recalculate()" style="text-align:center; font-size:14px; padding:8px;"></div>
+                    <div class="stat-value"><input class="input-field" type="text" id="totalBurned" value="363,187,841" oninput="recalculate()" style="text-align:center; font-size:14px; padding:8px;"></div>
                     <div class="stat-sub">LIL (10x)</div>
                 </div>
             </div>
@@ -1335,30 +1335,30 @@
             <div class="card">
                 <div class="card-title">
                     <div class="icon icon-blue">💰</div>
-                    Twoja pozycja
+                    Your Position
                 </div>
 
                 <div class="input-group">
                     <div class="input-label">
                         <span>Balance</span>
                     </div>
-                    <input class="input-field" type="text" id="amountInput" placeholder="np. 1,000,000" oninput="recalculate()" autofocus>
+                    <input class="input-field" type="text" id="amountInput" placeholder="e.g. 1,000,000" oninput="recalculate()" autofocus>
                 </div>
 
                 <div class="input-group" id="lockDurationGroup">
                     <div class="input-label">
-                        <span>Czas lockowania</span>
+                        <span>Lock Duration</span>
                     </div>
                     <div class="range-container">
                         <div class="range-value-display">
                             <span id="daysDisplay">365</span>
                             <span class="unit">dni</span>
                         </div>
-                        <div class="range-multiplier" id="multiplierDisplay">Mnożnik: 4.00x</div>
+                        <div class="range-multiplier" id="multiplierDisplay">Multiplier: 4.00x</div>
                         <input type="range" id="daysSlider" min="1" max="730" value="365" oninput="updateSlider()">
                         <div class="range-labels">
-                            <span>1 dzień (2x)</span>
-                            <span>730 dni (5x)</span>
+                            <span>1 day (2x)</span>
+                            <span>730 days (5x)</span>
                         </div>
                     </div>
                     <div class="presets">
@@ -1373,7 +1373,7 @@
 
                 <div class="input-group" style="margin-top: 16px;">
                     <div class="input-label">
-                        <span>Nagrody co 2 tygodnie</span>
+                        <span>Bi-weekly Rewards</span>
                         <span class="value-hint">AVAX</span>
                     </div>
                     <input class="input-field" type="text" id="rewardPool" value="25" oninput="recalculate()">
@@ -1384,14 +1384,14 @@
             <div class="card">
                 <div class="card-title">
                     <div class="icon icon-purple">📊</div>
-                    Tabela mnożników
+                    Multiplier Table
                 </div>
                 <table class="multiplier-table">
                     <thead>
                         <tr>
                             <th>Metoda</th>
                             <th>Czas</th>
-                            <th>Mnożnik</th>
+                            <th>Multiplier</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1442,7 +1442,7 @@
 
                 <div class="info-bar" style="margin-top: 16px;">
                     <span class="info-icon">ℹ️</span>
-                    <span>Mnożnik lock interpolowany liniowo pomiędzy znanymi punktami. Wartości przybliżone.</span>
+                    <span>Lock multiplier linearly interpolated between known data points. Values are approximate.</span>
                 </div>
             </div>
         </div>
@@ -1451,36 +1451,36 @@
         <div class="results-card" id="resultsCard">
             <div class="results-grid">
                 <div class="result-item">
-                    <div class="result-label">Twoje Moat Points</div>
+                    <div class="result-label">Your Moat Points</div>
                     <div class="result-value blue" id="yourPoints">—</div>
                     <div class="result-sub" id="yourPointsSub"></div>
                 </div>
                 <div class="result-item">
-                    <div class="result-label">Udział w puli</div>
+                    <div class="result-label">Pool Share</div>
                     <div class="result-value purple" id="sharePercent">—</div>
                     <div class="result-sub" id="shareSub"></div>
                 </div>
                 <div class="result-item">
                     <div class="result-label">Total Moat Points</div>
                     <div class="result-value" id="totalPoints" style="color: var(--text-secondary); font-size: 20px;">—</div>
-                    <div class="result-sub" id="totalPointsSub">Cały pool (szacunkowo)</div>
+                    <div class="result-sub" id="totalPointsSub">Total pool (estimated)</div>
                 </div>
             </div>
 
             <div class="reward-highlight">
-                <div class="label">Szacunkowa nagroda co 2 tygodnie</div>
+                <div class="label">Estimated bi-weekly reward</div>
                 <div class="big-value" id="rewardValue">— <span class="avax">AVAX</span></div>
-                <div class="sub" id="rewardSub">Wpisz ilość LIL aby obliczyć</div>
+                <div class="sub" id="rewardSub">Enter LIL amount to calculate</div>
             </div>
 
             <div class="extra-results">
                 <div class="extra-result-item">
-                    <div class="label">Nagroda miesięczna</div>
+                    <div class="label">Monthly reward</div>
                     <div class="value" id="monthlyReward">—</div>
                     <div class="sub">~2 okresy</div>
                 </div>
                 <div class="extra-result-item">
-                    <div class="label">Nagroda roczna</div>
+                    <div class="label">Yearly reward</div>
                     <div class="value" id="yearlyReward">—</div>
                     <div class="sub">~26 okresów</div>
                 </div>
@@ -1489,7 +1489,7 @@
 
         <div class="info-bar">
             <span class="info-icon">⚠️</span>
-            <span>Kalkulator podaje szacunkowe wartości. Rzeczywiste nagrody zależą od aktualnych Moat Points wszystkich uczestników oraz wielkości puli nagród. Dane z 17.03.2026.</span>
+            <span>Calculator provides estimated values. Actual rewards depend on current Moat Points of all participants and the size of the reward pool. Data from 18.03.2026.</span>
         </div>
         </div><!-- /view-calculator -->
 
@@ -1714,11 +1714,6 @@
                         <div style="margin-top:6px;height:3px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden"><div id="pSum-whaleBar" style="height:100%;border-radius:2px;background:#ef4444;transition:width 1s cubic-bezier(.4,0,.2,1);width:0%"></div></div>
                     </div>
                 </div>
-                <div style="margin-bottom:16px;padding:0 2px">
-                    <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px">User Allocation Breakdown</span></div>
-                    <div style="display:flex;height:28px;border-radius:8px;overflow:hidden;background:rgba(255,255,255,0.03);gap:2px" id="pSum-allocBar"></div>
-                    <div id="pSum-allocLegend" style="display:flex;gap:16px;margin-top:8px;justify-content:center;flex-wrap:wrap"></div>
-                </div>
                 <div class="circ-stats" style="grid-template-columns: repeat(3, 1fr);">
                     <div class="circ-stat" style="border-color: rgba(16, 185, 129, 0.25);">
                         <div class="label">🟢 In Wallet</div>
@@ -1738,6 +1733,11 @@
                         <div class="label" style="margin-top:4px; margin-bottom:0; font-size:11px; color: var(--text-muted);" id="pSum-stakedPct"></div>
                         <div style="margin-top:6px;height:3px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden"><div id="pSum-stakedBar" style="height:100%;border-radius:2px;background:var(--accent-amber);transition:width 1s cubic-bezier(.4,0,.2,1);width:0%"></div></div>
                     </div>
+                </div>
+                <div style="margin-bottom:16px;padding:0 2px">
+                    <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px">User Allocation Breakdown</span></div>
+                    <div style="display:flex;height:28px;border-radius:8px;overflow:hidden;background:rgba(255,255,255,0.03);gap:2px" id="pSum-allocBar"></div>
+                    <div id="pSum-allocLegend" style="display:flex;gap:16px;margin-top:8px;justify-content:center;flex-wrap:wrap"></div>
                 </div>
             </div>
 
@@ -1863,7 +1863,7 @@
             const multiplier = getLockMultiplier(days);
 
             document.getElementById('daysDisplay').textContent = days;
-            document.getElementById('multiplierDisplay').textContent = `Mnożnik: ${multiplier.toFixed(2)}x`;
+            document.getElementById('multiplierDisplay').textContent = `Multiplier: ${multiplier.toFixed(2)}x`;
 
             // Update preset buttons
             document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
@@ -1922,7 +1922,7 @@
                 document.getElementById('sharePercent').textContent = (shareRatio * 100).toFixed(4) + '%';
                 document.getElementById('shareSub').textContent = modeLabel;
                 document.getElementById('totalPoints').textContent = formatNumber(existingTotalPoints);
-                document.getElementById('totalPointsSub').textContent = `+ Twoje ${formatNumber(userPoints)} pts`;
+                document.getElementById('totalPointsSub').textContent = `+ Your ${formatNumber(userPoints)} pts`;
 
                 document.getElementById('rewardValue').innerHTML = `${reward.toFixed(4)} <span class="avax">AVAX</span>`;
                 document.getElementById('rewardSub').textContent = `${(shareRatio * 100).toFixed(4)}% z ${rewardPool} AVAX puli`;
@@ -1935,9 +1935,9 @@
                 document.getElementById('sharePercent').textContent = '—';
                 document.getElementById('shareSub').textContent = '';
                 document.getElementById('totalPoints').textContent = formatNumber(existingTotalPoints);
-                document.getElementById('totalPointsSub').textContent = 'Cały pool (szacunkowo)';
+                document.getElementById('totalPointsSub').textContent = 'Total pool (estimated)';
                 document.getElementById('rewardValue').innerHTML = '— <span class="avax">AVAX</span>';
-                document.getElementById('rewardSub').textContent = 'Wpisz ilość LIL aby obliczyć';
+                document.getElementById('rewardSub').textContent = 'Enter LIL amount to calculate';
                 document.getElementById('monthlyReward').textContent = '—';
                 document.getElementById('yearlyReward').textContent = '—';
             }
