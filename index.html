@@ -725,6 +725,123 @@
         .circ-stat .value.blue  { color: var(--accent-blue); }
         .circ-stat .value.amber { color: var(--accent-amber); }
 
+        /* ── Premium Analytics Charts ── */
+        .analytics-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .analytics-card {
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .analytics-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(59,130,246,0.3), transparent);
+        }
+        .analytics-card .card-label {
+            font-size: 10px; font-weight: 700;
+            color: var(--text-muted); text-transform: uppercase;
+            letter-spacing: 1px; margin-bottom: 14px;
+        }
+        /* Donut */
+        .donut-wrap {
+            display: flex; align-items: center; gap: 24px;
+        }
+        .donut-svg { flex-shrink: 0; }
+        .donut-svg circle {
+            transition: stroke-dashoffset 1s cubic-bezier(.4,0,.2,1),
+                        opacity 0.3s;
+        }
+        .donut-svg:hover circle { opacity: 0.85; }
+        .donut-center {
+            font-size: 11px; font-weight: 600; fill: var(--text-secondary);
+        }
+        .donut-center-value {
+            font-size: 13px; font-weight: 700; fill: #fff;
+        }
+        .donut-legend {
+            display: flex; flex-direction: column; gap: 6px; flex: 1;
+        }
+        .donut-legend-item {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 11px; color: var(--text-secondary);
+        }
+        .donut-legend-dot {
+            width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+        }
+        .donut-legend-val {
+            margin-left: auto; font-weight: 600; font-variant-numeric: tabular-nums;
+            color: #fff;
+        }
+        .donut-legend-pct {
+            font-size: 10px; color: var(--text-muted); min-width: 36px; text-align: right;
+        }
+        /* Horizontal bar chart */
+        .hbar-list { display: flex; flex-direction: column; gap: 8px; }
+        .hbar-item {
+            display: flex; align-items: center; gap: 10px;
+        }
+        .hbar-label {
+            font-size: 11px; font-weight: 600; color: var(--text-secondary);
+            min-width: 60px; text-align: right;
+        }
+        .hbar-track {
+            flex: 1; height: 22px; background: rgba(255,255,255,0.03);
+            border-radius: 6px; overflow: hidden; position: relative;
+        }
+        .hbar-fill {
+            height: 100%; border-radius: 6px;
+            transition: width 1s cubic-bezier(.4,0,.2,1);
+            min-width: 2px;
+        }
+        .hbar-count {
+            font-size: 11px; font-weight: 700; color: #fff;
+            min-width: 32px;
+        }
+        .hbar-amount {
+            font-size: 10px; color: var(--text-muted);
+            min-width: 70px; text-align: right; font-variant-numeric: tabular-nums;
+        }
+        /* Lock expiry timeline */
+        .expiry-bars { display: flex; flex-direction: column; gap: 8px; }
+        .expiry-bar-item { display: flex; align-items: center; gap: 10px; }
+        .expiry-label {
+            font-size: 10px; font-weight: 600; color: var(--text-secondary);
+            min-width: 72px; text-align: right; text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .expiry-track {
+            flex: 1; height: 20px; background: rgba(255,255,255,0.03);
+            border-radius: 6px; overflow: hidden;
+        }
+        .expiry-fill {
+            height: 100%; border-radius: 6px;
+            transition: width 1s cubic-bezier(.4,0,.2,1);
+            display: flex; align-items: center; justify-content: flex-end;
+            padding-right: 6px;
+        }
+        .expiry-fill-label {
+            font-size: 9px; font-weight: 700; color: rgba(0,0,0,0.7);
+            white-space: nowrap;
+        }
+        .expiry-val {
+            font-size: 10px; font-weight: 600; color: var(--text-muted);
+            min-width: 64px; font-variant-numeric: tabular-nums;
+        }
+        @media (max-width: 768px) {
+            .analytics-row { grid-template-columns: 1fr; }
+            .donut-wrap { flex-direction: column; align-items: center; }
+        }
+
         /* ── Holders / Contracts Table ── */
         .holders-table-wrap {
             background: var(--bg-card);
@@ -1422,6 +1539,35 @@
                 </div>
             </div>
 
+            <!-- ══════ ANALYTICS ROW: Donut + Holder Tiers ══════ -->
+            <div class="analytics-row">
+                <div class="analytics-card">
+                    <div class="card-label">Supply Breakdown</div>
+                    <div class="donut-wrap">
+                        <svg class="donut-svg" width="140" height="140" viewBox="0 0 140 140" id="supplyDonut">
+                            <circle cx="70" cy="70" r="56" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="18"/>
+                            <!-- segments rendered by JS -->
+                            <text class="donut-center" x="70" y="65" text-anchor="middle">Eff. Supply</text>
+                            <text class="donut-center-value" x="70" y="82" text-anchor="middle">986.8M</text>
+                        </svg>
+                        <div class="donut-legend" id="donutLegend"></div>
+                    </div>
+                </div>
+
+                <div class="analytics-card">
+                    <div class="card-label">Holder Distribution</div>
+                    <div class="hbar-list" id="holderTiers"></div>
+                </div>
+            </div>
+
+            <!-- ══════ ANALYTICS ROW: Lock Expiry Timeline ══════ -->
+            <div class="analytics-row" style="grid-template-columns:1fr;">
+                <div class="analytics-card">
+                    <div class="card-label">🔒 Lock Expiry Timeline</div>
+                    <div class="expiry-bars" id="lockExpiry"></div>
+                </div>
+            </div>
+
             <!-- DOLO-style Holders Card -->
             <div class="holders-card" style="margin-top:24px;">
                 <div class="holders-card-header">
@@ -2105,6 +2251,123 @@
                 e.total = e.wallet + e.locked + e.staked;
                 return e;
             }).sort((a,b) => b.total - a.total);
+        })();
+
+        // ── Analytics Charts ──
+        (() => {
+            const fmt = n => n >= 1e6 ? (n/1e6).toFixed(1)+'M' : n >= 1e3 ? (n/1e3).toFixed(0)+'K' : n.toLocaleString();
+
+            // ── 1. DONUT: Supply Breakdown ──
+            const BURN = 363187841;
+            const lockedStaked = 467529271;
+            const lpEntry = HOLDERS_DATA.find(h => (h.tc || h.t) === 'lp');
+            const lpAmount = lpEntry ? lpEntry.b : 353508945;
+            const teamDao = HOLDERS_DATA.filter(h => h.t === 'team').reduce((s,h) => s+h.b, 0);
+            const freeFloat = EFFECTIVE_SUPPLY - lockedStaked - lpAmount - teamDao;
+
+            const segments = [
+                { label: 'Locked / Staked', value: lockedStaked, color: '#3b82f6' },
+                { label: 'LP (Pharaoh)',     value: lpAmount,       color: '#f59e0b' },
+                { label: 'Team / DAO',       value: teamDao,        color: '#8b5cf6' },
+                { label: 'Free Float',       value: freeFloat,      color: '#10b981' },
+            ];
+            const total = segments.reduce((s,d) => s + d.value, 0);
+            const R = 56, C = 2 * Math.PI * R;
+            let offset = C * 0.25; // start at 12 o'clock
+            const svg = document.getElementById('supplyDonut');
+            const legend = document.getElementById('donutLegend');
+
+            segments.forEach(seg => {
+                const pct = seg.value / total;
+                const dash = C * pct;
+                const gap = C - dash;
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', '70');
+                circle.setAttribute('cy', '70');
+                circle.setAttribute('r', String(R));
+                circle.setAttribute('fill', 'none');
+                circle.setAttribute('stroke', seg.color);
+                circle.setAttribute('stroke-width', '18');
+                circle.setAttribute('stroke-dasharray', `${dash} ${gap}`);
+                circle.setAttribute('stroke-dashoffset', String(offset));
+                circle.style.filter = `drop-shadow(0 0 4px ${seg.color}40)`;
+                svg.insertBefore(circle, svg.querySelector('text'));
+                offset -= dash;
+
+                legend.innerHTML += `<div class="donut-legend-item">
+                    <span class="donut-legend-dot" style="background:${seg.color};box-shadow:0 0 6px ${seg.color}60"></span>
+                    <span>${seg.label}</span>
+                    <span class="donut-legend-val">${fmt(seg.value)}</span>
+                    <span class="donut-legend-pct">${(pct*100).toFixed(1)}%</span>
+                </div>`;
+            });
+
+            // ── 2. HOLDER DISTRIBUTION TIERS ──
+            const users = PORTFOLIO_DATA.filter(h => h.t !== 'team' && h.total > 0);
+            const tiers = [
+                { label: '10M+',  min: 10000000, color: '#ef4444' },
+                { label: '1M+',   min: 1000000,  color: '#f59e0b' },
+                { label: '100K+', min: 100000,   color: '#3b82f6' },
+                { label: '10K+',  min: 10000,    color: '#8b5cf6' },
+                { label: '< 10K', min: 0,        color: '#6b7280' },
+            ];
+            const tierData = tiers.map((t, i) => {
+                const max = i === 0 ? Infinity : tiers[i-1].min;
+                const holders = users.filter(h => h.total >= t.min && h.total < max);
+                const amount = holders.reduce((s,h) => s+h.total, 0);
+                return { ...t, count: holders.length, amount };
+            });
+            const maxCount = Math.max(...tierData.map(d => d.count), 1);
+            const tiersEl = document.getElementById('holderTiers');
+            tierData.forEach(d => {
+                const w = (d.count / maxCount * 100).toFixed(1);
+                tiersEl.innerHTML += `<div class="hbar-item">
+                    <span class="hbar-label">${d.label}</span>
+                    <div class="hbar-track">
+                        <div class="hbar-fill" style="width:${w}%;background:${d.color};box-shadow:0 0 8px ${d.color}40"></div>
+                    </div>
+                    <span class="hbar-count">${d.count}</span>
+                    <span class="hbar-amount">${fmt(d.amount)}</span>
+                </div>`;
+            });
+
+            // ── 3. LOCK EXPIRY TIMELINE ──
+            const nowTs = Math.floor(Date.now() / 1000);
+            const DAY = 86400;
+            const buckets = [
+                { label: 'Expired',   max: nowTs,            color: '#ef4444' },
+                { label: '< 30 days', max: nowTs + 30*DAY,   color: '#f59e0b' },
+                { label: '1–3 mo',    max: nowTs + 90*DAY,   color: '#eab308' },
+                { label: '3–6 mo',    max: nowTs + 180*DAY,  color: '#3b82f6' },
+                { label: '6–12 mo',   max: nowTs + 365*DAY,  color: '#8b5cf6' },
+                { label: '1 yr+',     max: Infinity,         color: '#10b981' },
+            ];
+            const allLocks = [];
+            LOCK_DATA.forEach(locker => {
+                locker.locks.forEach(lk => {
+                    allLocks.push({ amount: lk.amount, endTs: lk.endTs });
+                });
+            });
+            const bucketData = buckets.map((b, i) => {
+                const minTs = i === 0 ? 0 : buckets[i-1].max;
+                const locks = allLocks.filter(lk => lk.endTs >= minTs && lk.endTs < b.max);
+                const amount = locks.reduce((s,lk) => s + lk.amount, 0);
+                return { ...b, count: locks.length, amount };
+            });
+            const maxAmt = Math.max(...bucketData.map(d => d.amount), 1);
+            const expiryEl = document.getElementById('lockExpiry');
+            bucketData.forEach(d => {
+                const w = (d.amount / maxAmt * 100).toFixed(1);
+                expiryEl.innerHTML += `<div class="expiry-bar-item">
+                    <span class="expiry-label">${d.label}</span>
+                    <div class="expiry-track">
+                        <div class="expiry-fill" style="width:${w}%;background:${d.color};box-shadow:0 0 8px ${d.color}30">
+                            ${d.count > 0 ? `<span class="expiry-fill-label">${d.count}</span>` : ''}
+                        </div>
+                    </div>
+                    <span class="expiry-val">${fmt(d.amount)}</span>
+                </div>`;
+            });
         })();
 
         // ── Portfolio Summary Dashboard ──
