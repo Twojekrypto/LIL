@@ -1537,8 +1537,49 @@
                 <div class="holders-pager" id="stakePager"></div>
             </div>
 
+            <!-- ══════ PORTFOLIO SUMMARY DASHBOARD ══════ -->
+            <div class="circulation-section" style="margin-top:32px;" id="portfolioDashboard">
+                <div class="circ-header">
+                    <div class="section-title">📊 Portfolio — podsumowanie LIL użytkowników</div>
+                </div>
+                <div class="circ-stats" style="grid-template-columns: repeat(3, 1fr);">
+                    <div class="circ-stat" style="border-color: rgba(34, 211, 238, 0.25);">
+                        <div class="label">🏦 Total LIL (użytkownicy)</div>
+                        <div class="value" id="pSum-total" style="color: #22d3ee; font-size: 13px;">—</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:11px; color: var(--text-muted);" id="pSum-totalSub"></div>
+                    </div>
+                    <div class="circ-stat">
+                        <div class="label">👛 Holders aktywnych</div>
+                        <div class="value" id="pSum-holders" style="font-size: 13px;">—</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:11px; color: var(--text-muted);" id="pSum-holdersSub"></div>
+                    </div>
+                    <div class="circ-stat" style="border-color: rgba(139, 92, 246, 0.25);">
+                        <div class="label">👥 DAO & Treasury</div>
+                        <div class="value" id="pSum-dao" style="color: var(--accent-purple); font-size: 13px;">—</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:11px; color: var(--accent-purple);" id="pSum-daoSub"></div>
+                    </div>
+                </div>
+                <div class="circ-stats" style="grid-template-columns: repeat(3, 1fr);">
+                    <div class="circ-stat" style="border-color: rgba(16, 185, 129, 0.25);">
+                        <div class="label">🟢 Wallet (free float)</div>
+                        <div class="value green" id="pSum-wallet" style="font-size: 13px;">—</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-green);" id="pSum-walletPct"></div>
+                    </div>
+                    <div class="circ-stat" style="border-color: rgba(59, 130, 246, 0.25);">
+                        <div class="label">🔒 Locked</div>
+                        <div class="value blue" id="pSum-locked" style="font-size: 13px;">—</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-blue);" id="pSum-lockedPct"></div>
+                    </div>
+                    <div class="circ-stat" style="border-color: rgba(245, 158, 11, 0.25);">
+                        <div class="label">📊 Staked</div>
+                        <div class="value amber" id="pSum-staked" style="font-size: 13px;">—</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-amber);" id="pSum-stakedPct"></div>
+                    </div>
+                </div>
+            </div>
+
             <!-- ══════ COMBINED PORTFOLIO TABLE ══════ -->
-            <div class="holders-card" style="margin-top:32px;">
+            <div class="holders-card" style="margin-top:24px;">
                 <div class="holders-card-header">
                     <h3>📋 Portfolio (bez contractów) <span class="h-count" id="portfolioCount"></span></h3>
                 </div>
@@ -2064,6 +2105,41 @@
                 e.total = e.wallet + e.locked + e.staked;
                 return e;
             }).sort((a,b) => b.total - a.total);
+        })();
+
+        // ── Portfolio Summary Dashboard ──
+        (() => {
+            const users = PORTFOLIO_DATA.filter(h => h.t !== 'team');
+            const team = PORTFOLIO_DATA.filter(h => h.t === 'team');
+            const activeUsers = users.filter(h => h.total > 0);
+
+            const uTotal = users.reduce((s, h) => s + h.total, 0);
+            const uWallet = users.reduce((s, h) => s + h.wallet, 0);
+            const uLocked = users.reduce((s, h) => s + h.locked, 0);
+            const uStaked = users.reduce((s, h) => s + h.staked, 0);
+
+            const tTotal = team.reduce((s, h) => s + h.total, 0);
+
+            const fmt = n => n.toLocaleString('en-US', {maximumFractionDigits: 0});
+            const pct = (v, base) => base > 0 ? (v / base * 100).toFixed(1) + '%' : '—';
+
+            document.getElementById('pSum-total').textContent = fmt(uTotal);
+            document.getElementById('pSum-totalSub').textContent = `wallet + locked + staked`;
+
+            document.getElementById('pSum-holders').textContent = activeUsers.length;
+            document.getElementById('pSum-holdersSub').textContent = `z ${PORTFOLIO_DATA.length} tracked`;
+
+            document.getElementById('pSum-dao').textContent = fmt(tTotal);
+            document.getElementById('pSum-daoSub').textContent = team.map(h => h.n || shortAddr(h.a)).join(', ');
+
+            document.getElementById('pSum-wallet').textContent = fmt(uWallet);
+            document.getElementById('pSum-walletPct').textContent = pct(uWallet, uTotal);
+
+            document.getElementById('pSum-locked').textContent = fmt(uLocked);
+            document.getElementById('pSum-lockedPct').textContent = pct(uLocked, uTotal);
+
+            document.getElementById('pSum-staked').textContent = fmt(uStaked);
+            document.getElementById('pSum-stakedPct').textContent = pct(uStaked, uTotal);
         })();
 
         // ── Generic table engine ──
