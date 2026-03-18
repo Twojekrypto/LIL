@@ -2121,25 +2121,25 @@
             const tTotal = team.reduce((s, h) => s + h.total, 0);
 
             const fmt = n => n.toLocaleString('en-US', {maximumFractionDigits: 0});
-            const pct = (v, base) => base > 0 ? (v / base * 100).toFixed(1) + '%' : '—';
+            const effPct = v => (v / EFFECTIVE_SUPPLY * 100).toFixed(1) + '% eff. supply';
 
             document.getElementById('pSum-total').textContent = fmt(uTotal);
-            document.getElementById('pSum-totalSub').textContent = `wallet + locked + staked`;
+            document.getElementById('pSum-totalSub').textContent = effPct(uTotal);
 
             document.getElementById('pSum-holders').textContent = activeUsers.length;
             document.getElementById('pSum-holdersSub').textContent = `z ${PORTFOLIO_DATA.length} tracked`;
 
             document.getElementById('pSum-dao').textContent = fmt(tTotal);
-            document.getElementById('pSum-daoSub').textContent = team.map(h => h.n || shortAddr(h.a)).join(', ');
+            document.getElementById('pSum-daoSub').textContent = effPct(tTotal) + ' · ' + team.map(h => h.n || shortAddr(h.a)).join(', ');
 
             document.getElementById('pSum-wallet').textContent = fmt(uWallet);
-            document.getElementById('pSum-walletPct').textContent = pct(uWallet, uTotal);
+            document.getElementById('pSum-walletPct').textContent = effPct(uWallet);
 
             document.getElementById('pSum-locked').textContent = fmt(uLocked);
-            document.getElementById('pSum-lockedPct').textContent = pct(uLocked, uTotal);
+            document.getElementById('pSum-lockedPct').textContent = effPct(uLocked);
 
             document.getElementById('pSum-staked').textContent = fmt(uStaked);
-            document.getElementById('pSum-stakedPct').textContent = pct(uStaked, uTotal);
+            document.getElementById('pSum-stakedPct').textContent = effPct(uStaked);
         })();
 
         // ── Generic table engine ──
