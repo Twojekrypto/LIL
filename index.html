@@ -1688,38 +1688,55 @@
                 <div class="circ-header">
                     <div class="section-title">📊 Portfolio Overview</div>
                 </div>
-                <div class="circ-stats" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="circ-stats" style="grid-template-columns: repeat(4, 1fr);">
                     <div class="circ-stat" style="border-color: rgba(34, 211, 238, 0.25);">
-                        <div class="label">🏦 Total LIL (Users)</div>
-                        <div class="value" id="pSum-total" style="color: #22d3ee; font-size: 13px;">—</div>
+                        <div class="label">🏦 Total User Holdings</div>
+                        <div class="value" id="pSum-total" style="color: #22d3ee;">—</div>
                         <div class="label" style="margin-top:4px; margin-bottom:0; font-size:11px; color: var(--text-muted);" id="pSum-totalSub"></div>
+                        <div style="margin-top:6px;height:3px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden"><div id="pSum-totalBar" style="height:100%;border-radius:2px;background:#22d3ee;transition:width 1s cubic-bezier(.4,0,.2,1);width:0%"></div></div>
                     </div>
                     <div class="circ-stat">
                         <div class="label">👛 Active Holders</div>
-                        <div class="value" id="pSum-holders" style="font-size: 13px;">—</div>
+                        <div class="value" id="pSum-holders">—</div>
                         <div class="label" style="margin-top:4px; margin-bottom:0; font-size:11px; color: var(--text-muted);" id="pSum-holdersSub"></div>
+                        <div style="margin-top:6px;height:3px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden"><div id="pSum-holdersBar" style="height:100%;border-radius:2px;background:var(--text-secondary);transition:width 1s cubic-bezier(.4,0,.2,1);width:0%"></div></div>
                     </div>
                     <div class="circ-stat" style="border-color: rgba(139, 92, 246, 0.25);">
                         <div class="label">👥 DAO, Treasury & LP</div>
-                        <div class="value" id="pSum-dao" style="color: var(--accent-purple); font-size: 13px;">—</div>
+                        <div class="value" id="pSum-dao" style="color: var(--accent-purple);">—</div>
                         <div class="label" style="margin-top:4px; margin-bottom:0; font-size:11px; color: var(--accent-purple);" id="pSum-daoSub"></div>
+                        <div style="margin-top:6px;height:3px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden"><div id="pSum-daoBar" style="height:100%;border-radius:2px;background:var(--accent-purple);transition:width 1s cubic-bezier(.4,0,.2,1);width:0%"></div></div>
                     </div>
+                    <div class="circ-stat" style="border-color: rgba(239, 68, 68, 0.25);">
+                        <div class="label">🐋 Top 10 Concentration</div>
+                        <div class="value" id="pSum-whale" style="color: #ef4444;">—</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:11px; color: var(--text-muted);" id="pSum-whaleSub"></div>
+                        <div style="margin-top:6px;height:3px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden"><div id="pSum-whaleBar" style="height:100%;border-radius:2px;background:#ef4444;transition:width 1s cubic-bezier(.4,0,.2,1);width:0%"></div></div>
+                    </div>
+                </div>
+                <div style="margin-bottom:16px;padding:0 2px">
+                    <div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px">User Allocation Breakdown</span></div>
+                    <div style="display:flex;height:28px;border-radius:8px;overflow:hidden;background:rgba(255,255,255,0.03);gap:2px" id="pSum-allocBar"></div>
+                    <div id="pSum-allocLegend" style="display:flex;gap:16px;margin-top:8px;justify-content:center;flex-wrap:wrap"></div>
                 </div>
                 <div class="circ-stats" style="grid-template-columns: repeat(3, 1fr);">
                     <div class="circ-stat" style="border-color: rgba(16, 185, 129, 0.25);">
-                        <div class="label">🟢 Wallet (free float)</div>
-                        <div class="value green" id="pSum-wallet" style="font-size: 13px;">—</div>
-                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-green);" id="pSum-walletPct"></div>
+                        <div class="label">🟢 In Wallet</div>
+                        <div class="value green" id="pSum-wallet">—</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:11px; color: var(--text-muted);" id="pSum-walletPct"></div>
+                        <div style="margin-top:6px;height:3px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden"><div id="pSum-walletBar" style="height:100%;border-radius:2px;background:var(--accent-green);transition:width 1s cubic-bezier(.4,0,.2,1);width:0%"></div></div>
                     </div>
                     <div class="circ-stat" style="border-color: rgba(59, 130, 246, 0.25);">
-                        <div class="label">🔒 Locked</div>
-                        <div class="value blue" id="pSum-locked" style="font-size: 13px;">—</div>
-                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-blue);" id="pSum-lockedPct"></div>
+                        <div class="label">🔒 Locked (veLIL)</div>
+                        <div class="value blue" id="pSum-locked">—</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:11px; color: var(--text-muted);" id="pSum-lockedPct"></div>
+                        <div style="margin-top:6px;height:3px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden"><div id="pSum-lockedBar" style="height:100%;border-radius:2px;background:var(--accent-blue);transition:width 1s cubic-bezier(.4,0,.2,1);width:0%"></div></div>
                     </div>
                     <div class="circ-stat" style="border-color: rgba(245, 158, 11, 0.25);">
-                        <div class="label">📊 Staked</div>
-                        <div class="value amber" id="pSum-staked" style="font-size: 13px;">—</div>
-                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-amber);" id="pSum-stakedPct"></div>
+                        <div class="label">📊 Staked (EB)</div>
+                        <div class="value amber" id="pSum-staked">—</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:11px; color: var(--text-muted);" id="pSum-stakedPct"></div>
+                        <div style="margin-top:6px;height:3px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden"><div id="pSum-stakedBar" style="height:100%;border-radius:2px;background:var(--accent-amber);transition:width 1s cubic-bezier(.4,0,.2,1);width:0%"></div></div>
                     </div>
                 </div>
             </div>
@@ -2389,27 +2406,63 @@
             const daoLpTotal = tTotal + lpBalance;
 
             const fmt = n => n.toLocaleString('en-US', {maximumFractionDigits: 0});
-            const effPct = v => (v / EFFECTIVE_SUPPLY * 100).toFixed(1) + '% eff. supply';
+            const effPct = v => (v / EFFECTIVE_SUPPLY * 100).toFixed(1);
+            const pctOf = (v, base) => base > 0 ? (v / base * 100).toFixed(1) : '0';
 
+            // Top row: Total, Holders, DAO, Whale
             document.getElementById('pSum-total').textContent = fmt(uTotal);
-            document.getElementById('pSum-totalSub').textContent = effPct(uTotal);
+            document.getElementById('pSum-totalSub').textContent = effPct(uTotal) + '% of effective supply';
 
             document.getElementById('pSum-holders').textContent = activeUsers.length;
-            document.getElementById('pSum-holdersSub').textContent = `z ${PORTFOLIO_DATA.length} tracked`;
+            document.getElementById('pSum-holdersSub').textContent = `of ${PORTFOLIO_DATA.length} tracked addresses`;
 
             const daoLabels = team.map(h => h.n || shortAddr(h.a));
             if (lpEntry) daoLabels.push(lpEntry.n || 'LP');
             document.getElementById('pSum-dao').textContent = fmt(daoLpTotal);
-            document.getElementById('pSum-daoSub').textContent = effPct(daoLpTotal) + ' · ' + daoLabels.join(', ');
+            document.getElementById('pSum-daoSub').textContent = effPct(daoLpTotal) + '% eff. supply';
 
+            // Whale concentration — top 10 users by total
+            const sortedUsers = [...users].sort((a,b) => b.total - a.total);
+            const top10Sum = sortedUsers.slice(0, 10).reduce((s,h) => s + h.total, 0);
+            const top10Pct = effPct(top10Sum);
+            document.getElementById('pSum-whale').textContent = top10Pct + '%';
+            document.getElementById('pSum-whaleSub').textContent = fmt(top10Sum) + ' LIL in top 10';
+
+            // Bottom row: Wallet, Locked, Staked
             document.getElementById('pSum-wallet').textContent = fmt(uWallet);
-            document.getElementById('pSum-walletPct').textContent = effPct(uWallet);
+            document.getElementById('pSum-walletPct').textContent = pctOf(uWallet, uTotal) + '% of user holdings · ' + effPct(uWallet) + '% eff.';
 
             document.getElementById('pSum-locked').textContent = fmt(uLocked);
-            document.getElementById('pSum-lockedPct').textContent = effPct(uLocked);
+            document.getElementById('pSum-lockedPct').textContent = pctOf(uLocked, uTotal) + '% of user holdings · ' + effPct(uLocked) + '% eff.';
 
             document.getElementById('pSum-staked').textContent = fmt(uStaked);
-            document.getElementById('pSum-stakedPct').textContent = effPct(uStaked);
+            document.getElementById('pSum-stakedPct').textContent = pctOf(uStaked, uTotal) + '% of user holdings · ' + effPct(uStaked) + '% eff.';
+
+            // Stacked allocation bar
+            const allocBar = document.getElementById('pSum-allocBar');
+            const allocLegend = document.getElementById('pSum-allocLegend');
+            const alloc = [
+                { label: 'In Wallet', value: uWallet, color: '#10b981' },
+                { label: 'Locked (veLIL)', value: uLocked, color: '#3b82f6' },
+                { label: 'Staked (EB)', value: uStaked, color: '#f59e0b' },
+            ];
+            alloc.forEach(a => {
+                const p = pctOf(a.value, uTotal);
+                allocBar.innerHTML += `<div style="width:${p}%;background:${a.color};transition:width 1s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:rgba(0,0,0,0.7);min-width:${a.value > 0 ? '24px' : '0'}">${p}%</div>`;
+                allocLegend.innerHTML += `<span style="display:flex;align-items:center;gap:4px;font-size:11px;color:var(--text-secondary)"><span style="width:8px;height:8px;border-radius:50%;background:${a.color};box-shadow:0 0 6px ${a.color}60"></span>${a.label}</span>`;
+            });
+
+            // Animate progress bars on load
+            requestAnimationFrame(() => {
+                const totalPct = effPct(uTotal);
+                document.getElementById('pSum-totalBar').style.width = totalPct + '%';
+                document.getElementById('pSum-holdersBar').style.width = (activeUsers.length / PORTFOLIO_DATA.length * 100).toFixed(0) + '%';
+                document.getElementById('pSum-daoBar').style.width = effPct(daoLpTotal) + '%';
+                document.getElementById('pSum-whaleBar').style.width = top10Pct + '%';
+                document.getElementById('pSum-walletBar').style.width = pctOf(uWallet, uTotal) + '%';
+                document.getElementById('pSum-lockedBar').style.width = pctOf(uLocked, uTotal) + '%';
+                document.getElementById('pSum-stakedBar').style.width = pctOf(uStaked, uTotal) + '%';
+            });
         })();
 
         // ── Generic table engine ──
