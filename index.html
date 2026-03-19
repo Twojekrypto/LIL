@@ -1307,23 +1307,26 @@
             <button class="mode-btn" onclick="setMode('burn')" id="mode-burn">🔥 Burn</button>
         </div>
 
-        <!-- Current Moat Stats -->
+        <!-- Current Moat Stats (auto-loaded) -->
         <div class="section">
-            <div class="section-title">Current Moat State (editable)</div>
+            <div class="section-title" style="display:flex;align-items:center;justify-content:space-between;">
+                <span>Current Moat State</span>
+                <span id="dataDate" style="font-size:10px;font-weight:500;color:var(--text-muted);text-transform:none;letter-spacing:0;">Loading…</span>
+            </div>
             <div class="stats-grid">
                 <div class="stat-item">
                     <div class="stat-label">Total Staked</div>
-                    <div class="stat-value"><input class="input-field" type="text" id="totalStaked" value="336,325,128" oninput="recalculate()" style="text-align:center; font-size:14px; padding:8px;"></div>
+                    <div class="stat-value" id="totalStakedDisplay">—</div>
                     <div class="stat-sub">LIL (1x)</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-label">Total Locked</div>
-                    <div class="stat-value"><input class="input-field" type="text" id="totalLocked" value="137,732,680" oninput="recalculate()" style="text-align:center; font-size:14px; padding:8px;"></div>
-                    <div class="stat-sub">LIL (avg ~3.52x, 179d)</div>
+                    <div class="stat-value" id="totalLockedDisplay">—</div>
+                    <div class="stat-sub">LIL (avg ~3.53x)</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-label">Total Burned</div>
-                    <div class="stat-value"><input class="input-field" type="text" id="totalBurned" value="363,187,841" oninput="recalculate()" style="text-align:center; font-size:14px; padding:8px;"></div>
+                    <div class="stat-value" id="totalBurnedDisplay">—</div>
                     <div class="stat-sub">LIL (10x)</div>
                 </div>
             </div>
@@ -1352,7 +1355,7 @@
                     <div class="range-container">
                         <div class="range-value-display">
                             <span id="daysDisplay">365</span>
-                            <span class="unit">dni</span>
+                            <span class="unit">days</span>
                         </div>
                         <div class="range-multiplier" id="multiplierDisplay">Multiplier: 4.00x</div>
                         <input type="range" id="daysSlider" min="1" max="730" value="365" oninput="updateSlider()">
@@ -1389,52 +1392,52 @@
                 <table class="multiplier-table">
                     <thead>
                         <tr>
-                            <th>Metoda</th>
-                            <th>Czas</th>
+                            <th>Method</th>
+                            <th>Duration</th>
                             <th>Multiplier</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>Stake</td>
-                            <td>Brak locka</td>
+                            <td>No lock</td>
                             <td>1.00x</td>
                         </tr>
                         <tr><td colspan="3" style="height:1px; padding:0; background: var(--border);"></td></tr>
                         <tr>
                             <td>Lock</td>
-                            <td>7 dni</td>
+                            <td>7 days</td>
                             <td>2.11x</td>
                         </tr>
                         <tr>
                             <td>Lock</td>
-                            <td>30 dni</td>
+                            <td>30 days</td>
                             <td>2.31x</td>
                         </tr>
                         <tr>
                             <td>Lock</td>
-                            <td>90 dni</td>
+                            <td>90 days</td>
                             <td>2.73x</td>
                         </tr>
                         <tr>
                             <td>Lock</td>
-                            <td>180 dni</td>
+                            <td>180 days</td>
                             <td>3.23x</td>
                         </tr>
                         <tr>
                             <td>Lock</td>
-                            <td>365 dni</td>
+                            <td>365 days</td>
                             <td>4.00x</td>
                         </tr>
                         <tr>
                             <td>Lock</td>
-                            <td>730 dni</td>
+                            <td>730 days</td>
                             <td>5.00x</td>
                         </tr>
                         <tr><td colspan="3" style="height:1px; padding:0; background: var(--border);"></td></tr>
                         <tr>
                             <td>Burn</td>
-                            <td>Permanentnie</td>
+                            <td>Permanent</td>
                             <td style="color: var(--accent-red);">10.00x</td>
                         </tr>
                     </tbody>
@@ -1477,12 +1480,12 @@
                 <div class="extra-result-item">
                     <div class="label">Monthly reward</div>
                     <div class="value" id="monthlyReward">—</div>
-                    <div class="sub">~2 okresy</div>
+                    <div class="sub">~2 periods</div>
                 </div>
                 <div class="extra-result-item">
                     <div class="label">Yearly reward</div>
                     <div class="value" id="yearlyReward">—</div>
-                    <div class="sub">~26 okresów</div>
+                    <div class="sub">~26 periods</div>
                 </div>
             </div>
         </div>
@@ -1814,6 +1817,9 @@
 
         let currentMode = 'lock';
 
+        // Moat data loaded from history.json
+        let moatData = { staked: 0, locked: 0, burned: 0, date: '' };
+
         function parseNumber(str) {
             if (!str) return 0;
             return parseFloat(str.replace(/[^0-9.]/g, '')) || 0;
@@ -1878,9 +1884,9 @@
 
         function recalculate() {
             const amount = parseNumber(document.getElementById('amountInput').value);
-            const totalStaked = parseNumber(document.getElementById('totalStaked').value);
-            const totalLocked = parseNumber(document.getElementById('totalLocked').value);
-            const totalBurned = parseNumber(document.getElementById('totalBurned').value);
+            const totalStaked = moatData.staked;
+            const totalLocked = moatData.locked;
+            const totalBurned = moatData.burned;
             const rewardPool = parseNumber(document.getElementById('rewardPool').value);
 
             const days = parseInt(document.getElementById('daysSlider').value);
@@ -1925,7 +1931,7 @@
                 document.getElementById('totalPointsSub').textContent = `+ Your ${formatNumber(userPoints)} pts`;
 
                 document.getElementById('rewardValue').innerHTML = `${reward.toFixed(4)} <span class="avax">AVAX</span>`;
-                document.getElementById('rewardSub').textContent = `${(shareRatio * 100).toFixed(4)}% z ${rewardPool} AVAX puli`;
+                document.getElementById('rewardSub').textContent = `${(shareRatio * 100).toFixed(4)}% of ${rewardPool} AVAX pool`;
 
                 document.getElementById('monthlyReward').textContent = (reward * 2).toFixed(4) + ' AVAX';
                 document.getElementById('yearlyReward').textContent = (reward * 26).toFixed(2) + ' AVAX';
@@ -1943,8 +1949,43 @@
             }
         }
 
-        // Initial calculation
-        recalculate();
+        // Load moat data from history.json
+        async function loadMoatData() {
+            try {
+                const resp = await fetch('data/history.json');
+                const data = await resp.json();
+                const latest = data.entries[data.entries.length - 1];
+                moatData.staked = latest.staked || 0;
+                moatData.locked = latest.locked || 0;
+                moatData.burned = latest.burned || 0;
+                moatData.date = latest.date || '';
+
+                // Populate read-only displays
+                document.getElementById('totalStakedDisplay').textContent = formatNumber(moatData.staked);
+                document.getElementById('totalLockedDisplay').textContent = formatNumber(moatData.locked);
+                document.getElementById('totalBurnedDisplay').textContent = formatNumber(moatData.burned);
+
+                // Show data date
+                if (moatData.date) {
+                    const [y, m, d] = moatData.date.split('-');
+                    document.getElementById('dataDate').textContent = `Data: ${d}.${m}.${y}`;
+                }
+            } catch (e) {
+                console.warn('Failed to load history.json, using fallback values', e);
+                // Fallback hardcoded values
+                moatData.staked = 336325128;
+                moatData.locked = 137732680;
+                moatData.burned = 363187841;
+                document.getElementById('totalStakedDisplay').textContent = formatNumber(moatData.staked);
+                document.getElementById('totalLockedDisplay').textContent = formatNumber(moatData.locked);
+                document.getElementById('totalBurnedDisplay').textContent = formatNumber(moatData.burned);
+                document.getElementById('dataDate').textContent = 'Data: offline fallback';
+            }
+            recalculate();
+        }
+
+        // Init: load data, then calculate
+        loadMoatData();
 
         // ── Tab Navigation ──
         function switchTab(view) {
