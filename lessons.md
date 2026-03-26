@@ -25,6 +25,11 @@
 - Badge colors: blue=locked, amber/green=staked, purple=team, cyan=total
 - `EFFECTIVE_SUPPLY = 986,812,159` (post-burn)
 
+## Staking Platforms Status
+- **Moat Staked** — ACTIVE, the only platform currently giving rewards
+- **EB Protocol** — INACTIVE FARM, no longer distributing rewards
+- **EB Staking** — LEGACY, rewards migrated to Moat. Tokens still locked in contract
+
 ## Common Pitfalls
 - `totalBurned` is hardcoded (363,187,841) — update only if new burn events happen
 - AVG_LOCK_MULTIPLIER uses interpolated multiplier from LOCK_POINTS, NOT raw `days/365`
