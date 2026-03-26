@@ -1277,7 +1277,252 @@
             .holders-tbl .td-pct { display:none; }
             .holders-tbl th.col-pct { display:none; }
         }
+
+        /* ═══ My Rewards Dashboard ═══ */
+        .rewards-lookup {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+        .rewards-lookup .input-field {
+            flex: 1;
+            font-size: 13px;
+            font-weight: 500;
+            font-family: 'SF Mono', 'Fira Code', 'Inter', monospace;
+            letter-spacing: -0.2px;
+        }
+        .lookup-btn {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border: none;
+            border-radius: 10px;
+            padding: 12px 28px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.25s;
+            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+        .lookup-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+        }
+        .lookup-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .lookup-btn .spinner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .rewards-empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+        .rewards-empty .empty-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+        .rewards-empty h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        .rewards-empty p {
+            font-size: 13px;
+            max-width: 400px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .rwd-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .rwd-grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .rwd-hero {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(59, 130, 246, 0.08));
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .rwd-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-blue), var(--accent-purple));
+        }
+        .rwd-hero .hero-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 10px;
+        }
+        .rwd-hero .hero-value {
+            font-size: 44px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+        .rwd-hero .hero-sub {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+        }
+        .rwd-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            transition: border-color 0.2s;
+        }
+        .rwd-card:hover {
+            border-color: rgba(59, 130, 246, 0.15);
+        }
+        .rwd-card .rwd-card-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .rwd-card .rwd-card-value {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+        .rwd-card .rwd-card-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .rwd-section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .rwd-lock-item {
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: border-color 0.2s;
+        }
+        .rwd-lock-item:hover {
+            border-color: rgba(59, 130, 246, 0.2);
+        }
+        .rwd-lock-left {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .rwd-lock-amount {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .rwd-lock-detail {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        .rwd-lock-status {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .rwd-lock-status.active {
+            background: rgba(16, 185, 129, 0.12);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .rwd-lock-status.expired {
+            background: rgba(245, 158, 11, 0.12);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        .rwd-error {
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-size: 13px;
+            color: #fca5a5;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .rwd-legacy-badge {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .rwd-legacy-badge.inactive {
+            background: rgba(239, 68, 68, 0.12);
+            color: #ef4444;
+        }
+        .rwd-legacy-badge.legacy {
+            background: rgba(245, 158, 11, 0.12);
+            color: #f59e0b;
+        }
+        @media (max-width: 768px) {
+            .rewards-lookup { flex-direction: column; }
+            .rwd-grid { grid-template-columns: 1fr; }
+            .rwd-grid-3 { grid-template-columns: 1fr; }
+            .rwd-hero .hero-value { font-size: 32px; }
+        }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -1295,6 +1540,7 @@
         <div class="tab-nav" id="tabNav">
             <div class="tab-slider" id="tabSlider"></div>
             <button class="tab-btn active" data-view="calculator" onclick="switchTab('calculator')">🧮 Calculator</button>
+            <button class="tab-btn" data-view="rewards" onclick="switchTab('rewards')">🎯 My Rewards</button>
             <button class="tab-btn" data-view="holders" onclick="switchTab('holders')">👥 Holders</button>
         </div>
 
@@ -1495,6 +1741,117 @@
             <span>Calculator provides estimated values. Actual rewards depend on current Moat Points of all participants and the size of the reward pool. Data from 25.03.2026.</span>
         </div>
         </div><!-- /view-calculator -->
+
+        <!-- ═══ MY REWARDS VIEW ═══ -->
+        <div id="view-rewards" class="view-section">
+            <!-- Address Input -->
+            <div class="rewards-lookup">
+                <input class="input-field" type="text" id="rewardsAddrInput" placeholder="Enter your wallet address (0x…)" spellcheck="false">
+                <button class="lookup-btn" id="lookupBtn" onclick="lookupRewards()">Check</button>
+            </div>
+
+            <!-- Error display -->
+            <div id="rewardsError" style="display:none"></div>
+
+            <!-- Empty state -->
+            <div id="rewardsEmpty" class="rewards-empty">
+                <div class="empty-icon">🔍</div>
+                <h3>Check Your Rewards</h3>
+                <p>Enter your wallet address to see your Moat positions, pending AVAX rewards, and staking overview across all platforms.</p>
+            </div>
+
+            <!-- Rewards Dashboard (hidden initially) -->
+            <div id="rewardsDashboard" style="display:none">
+
+                <!-- Hero Card: Pending Rewards -->
+                <div class="rwd-hero">
+                    <div class="hero-label">⏳ Pending Rewards (Claimable)</div>
+                    <div class="hero-value" id="rwd-pending">— AVAX</div>
+                    <div class="hero-sub" id="rwd-pendingSub">Connect to see your pending rewards</div>
+                </div>
+
+                <!-- Top Stats Row -->
+                <div class="rwd-grid-3">
+                    <div class="rwd-card">
+                        <div class="rwd-card-label">🏆 Your Moat Points</div>
+                        <div class="rwd-card-value" id="rwd-points" style="color: var(--accent-blue);">—</div>
+                        <div class="rwd-card-sub" id="rwd-pointsSub">stake + lock + burn</div>
+                    </div>
+                    <div class="rwd-card">
+                        <div class="rwd-card-label">📊 Pool Share</div>
+                        <div class="rwd-card-value" id="rwd-share" style="color: var(--accent-purple);">—</div>
+                        <div class="rwd-card-sub" id="rwd-shareSub">of total moat points</div>
+                    </div>
+                    <div class="rwd-card">
+                        <div class="rwd-card-label">💰 Est. Bi-weekly Reward</div>
+                        <div class="rwd-card-value" id="rwd-biweekly" style="color: var(--accent-green);">—</div>
+                        <div class="rwd-card-sub" id="rwd-biweeklySub">based on 25 AVAX pool</div>
+                    </div>
+                </div>
+
+                <!-- User Reward History -->
+                <div class="rwd-grid">
+                    <div class="rwd-card">
+                        <div class="rwd-card-label">✅ Already Claimed</div>
+                        <div class="rwd-card-value" id="rwd-userClaimed" style="font-size: 18px; color: var(--accent-green);">—</div>
+                        <div class="rwd-card-sub" id="rwd-userClaimedSub">total AVAX you have already collected</div>
+                    </div>
+                    <div class="rwd-card">
+                        <div class="rwd-card-label">🌟 Total Earned (Lifetime)</div>
+                        <div class="rwd-card-value" id="rwd-totalEarned" style="font-size: 18px; color: var(--accent-blue);">—</div>
+                        <div class="rwd-card-sub" id="rwd-totalEarnedSub">claimed + pending</div>
+                    </div>
+                </div>
+
+                <!-- Moat Position Breakdown -->
+                <div class="rwd-section-title">🏰 Your Moat Position</div>
+                <div class="rwd-grid-3">
+                    <div class="rwd-card">
+                        <div class="rwd-card-label">📌 Staked</div>
+                        <div class="rwd-card-value" id="rwd-staked" style="font-size: 18px;">—</div>
+                        <div class="rwd-card-sub">multiplier: 1.00x</div>
+                    </div>
+                    <div class="rwd-card">
+                        <div class="rwd-card-label">🔒 Locked</div>
+                        <div class="rwd-card-value" id="rwd-locked" style="font-size: 18px; color: var(--accent-blue);">—</div>
+                        <div class="rwd-card-sub" id="rwd-lockedSub">active locks</div>
+                    </div>
+                    <div class="rwd-card">
+                        <div class="rwd-card-label">🔥 Burned</div>
+                        <div class="rwd-card-value" id="rwd-burned" style="font-size: 18px; color: var(--accent-red);">—</div>
+                        <div class="rwd-card-sub">multiplier: 10.00x</div>
+                    </div>
+                </div>
+
+                <!-- Lock Positions -->
+                <div id="rwd-locksSection" style="display:none">
+                    <div class="rwd-section-title">🔐 Lock Positions</div>
+                    <div id="rwd-locksList"></div>
+                </div>
+
+                <!-- Legacy Platforms -->
+                <div id="rwd-legacySection" style="display:none; margin-top: 24px;">
+                    <div class="rwd-section-title">📜 Legacy Platforms</div>
+                    <div class="rwd-grid">
+                        <div class="rwd-card">
+                            <div class="rwd-card-label">⚡ EB Protocol <span class="rwd-legacy-badge inactive">INACTIVE FARM</span></div>
+                            <div class="rwd-card-value" id="rwd-ebProto" style="font-size: 18px; color: var(--accent-purple);">—</div>
+                            <div class="rwd-card-sub">no longer distributing rewards</div>
+                        </div>
+                        <div class="rwd-card">
+                            <div class="rwd-card-label">📈 EB Staking <span class="rwd-legacy-badge legacy">LEGACY → MOAT</span></div>
+                            <div class="rwd-card-value" id="rwd-ebStake" style="font-size: 18px; color: var(--accent-amber);">—</div>
+                            <div class="rwd-card-sub">tokens still locked in contract</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-bar" style="margin-top: 20px;">
+                    <span class="info-icon">⛓️</span>
+                    <span>Live on-chain data from Avalanche C-Chain — Moat contract <a href="https://snowscan.xyz/address/0x7A4D20261a765Bd9bA67D49FBf8189843eEC3393" target="_blank" style="color:var(--accent-blue);text-decoration:none">0x7A4D…3393</a></span>
+                </div>
+            </div>
+        </div><!-- /view-rewards -->
 
         <!-- ═══ HOLDERS VIEW ═══ -->
         <div id="view-holders" class="view-section">
@@ -2718,6 +3075,184 @@
         renderlockBody();
         renderstakeBody();
         renderportfolioBody();
+
+        // ═══ MY REWARDS — Live On-Chain Lookup ═══
+        const MOAT_CONTRACT = '0x7A4D20261a765Bd9bA67D49FBf8189843eEC3393';
+        const EB_PROTO_ADDR = '0x950a98dd06c898950460b0D1FCaD75D4A23Ff373';
+        const EB_STAKE_ADDR = '0x2Bf32c61786b8A7b8035a029a82a23bE556DE537';
+        const AVAX_RPC = 'https://api.avax.network/ext/bc/C/rpc';
+
+        const MOAT_REWARD_ABI = [
+            'function userInfo(address) view returns (uint256 stakedAmount, uint256 totalUserBurn, uint256 stakingPoints, uint256 burnPoints, uint256 activeLockCount)',
+            'function getUserAllLocks(address) view returns (uint256[] amounts, uint256[] ends, uint256[] points, uint256[] originalDurations, uint256[] lastUpdated, bool[] active)',
+            'function getAllPendingRewards(address) view returns (address[] tokens, uint256[] amounts)',
+            'function getCurrentPoints(address) view returns (uint256)',
+            'function totalPoints() view returns (uint256)',
+            'event RewardClaimed(address indexed user, address indexed token, uint256 amount)',
+        ];
+
+        const EB_READ_ABI = [
+            'function userInfo(address) view returns (uint256 stakedAmount, uint256 rewardDebt)',
+        ];
+
+        async function lookupRewards() {
+            var addrInput = document.getElementById('rewardsAddrInput').value.trim();
+            var btn = document.getElementById('lookupBtn');
+            var errEl = document.getElementById('rewardsError');
+            var emptyEl = document.getElementById('rewardsEmpty');
+            var dashEl = document.getElementById('rewardsDashboard');
+
+            errEl.style.display = 'none';
+
+            if (!addrInput || !/^0x[a-fA-F0-9]{40}$/.test(addrInput)) {
+                errEl.innerHTML = '<span>\u274c</span> Please enter a valid Avalanche wallet address (0x\u2026)';
+                errEl.className = 'rwd-error';
+                errEl.style.display = 'flex';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Loading\u2026';
+
+            try {
+                var provider = new ethers.JsonRpcProvider(AVAX_RPC);
+                var moatC = new ethers.Contract(MOAT_CONTRACT, MOAT_REWARD_ABI, provider);
+                var ebProtoC = new ethers.Contract(EB_PROTO_ADDR, EB_READ_ABI, provider);
+                var ebStakeC = new ethers.Contract(EB_STAKE_ADDR, EB_READ_ABI, provider);
+                var addr = ethers.getAddress(addrInput);
+
+                var results = await Promise.all([
+                    moatC.userInfo(addr),
+                    moatC.getUserAllLocks(addr),
+                    moatC.getAllPendingRewards(addr),
+                    moatC.getCurrentPoints(addr),
+                    moatC.totalPoints(),
+                    moatC.queryFilter(moatC.filters.RewardClaimed(addr), 0).catch(function() { return []; }),
+                    ebProtoC.userInfo(addr).catch(function() { return [0n, 0n]; }),
+                    ebStakeC.userInfo(addr).catch(function() { return [0n, 0n]; }),
+                ]);
+
+                var userInf = results[0], locks = results[1], pending = results[2];
+                var currentPts = results[3], totalPts = results[4], claimEvents = results[5];
+                var ebProtoInfo = results[6], ebStakeInfo = results[7];
+
+                var fmtE = function(v) { return Number(ethers.formatEther(v)); };
+                var fmtN = function(n, d) { d = d || 0; return n.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }); };
+
+                var stakedAmount = fmtE(userInf.stakedAmount);
+                var totalBurnUser = fmtE(userInf.totalUserBurn);
+                var activeLockCount = Number(userInf.activeLockCount);
+
+                var userLocks = [];
+                var totalLockedUser = 0;
+                if (locks && locks.amounts) {
+                    for (var i = 0; i < locks.amounts.length; i++) {
+                        var amt = fmtE(locks.amounts[i]);
+                        if (amt <= 0) continue;
+                        var isAct = locks.active[i];
+                        var endTs = Number(locks.ends[i]);
+                        var durDays = Math.round(Number(locks.originalDurations[i]) / 86400);
+                        if (isAct) totalLockedUser += amt;
+                        userLocks.push({ amount: amt, endTs: endTs, durDays: durDays, active: isAct });
+                    }
+                }
+
+                var pendingAvax = 0;
+                if (pending && pending.tokens) {
+                    for (var j = 0; j < pending.tokens.length; j++) {
+                        pendingAvax += fmtE(pending.amounts[j]);
+                    }
+                }
+
+                var userClaimedTotal = 0;
+                for (var k = 0; k < claimEvents.length; k++) {
+                    userClaimedTotal += fmtE(claimEvents[k].args.amount);
+                }
+
+                var userPtsRaw = Number(currentPts);
+                var totalPoolRaw = Number(totalPts);
+                var shareRat = totalPoolRaw > 0 ? userPtsRaw / totalPoolRaw : 0;
+                var biWeekly = shareRat * 25;
+                // Scale points for display (divide by 1e9 for readability)
+                var userPtsDisplay = userPtsRaw / 1e9;
+                var totalPoolDisplay = totalPoolRaw / 1e9;
+
+                var ebProtoStk = fmtE(ebProtoInfo[0]);
+                var ebStakeStk = fmtE(ebStakeInfo[0]);
+
+                emptyEl.style.display = 'none';
+                dashEl.style.display = 'block';
+
+                document.getElementById('rwd-pending').textContent = pendingAvax.toFixed(6) + ' AVAX';
+                document.getElementById('rwd-pendingSub').textContent = pendingAvax > 0
+                    ? 'You can claim this on moats.app'
+                    : 'No pending rewards \u2014 recently claimed or no position';
+
+                document.getElementById('rwd-points').textContent = fmtN(userPtsDisplay, 0);
+                document.getElementById('rwd-pointsSub').textContent = 'Total pool: ' + fmtN(totalPoolDisplay, 0) + ' pts';
+                document.getElementById('rwd-share').textContent = (shareRat * 100).toFixed(4) + '%';
+                document.getElementById('rwd-shareSub').textContent = fmtN(userPtsDisplay, 0) + ' / ' + fmtN(totalPoolDisplay, 0) + ' pts';
+                document.getElementById('rwd-biweekly').textContent = biWeekly.toFixed(4) + ' AVAX';
+                document.getElementById('rwd-biweeklySub').textContent = 'Monthly: ~' + (biWeekly * 2).toFixed(4) + ' \u00b7 Yearly: ~' + (biWeekly * 26).toFixed(2) + ' AVAX';
+
+                var totalLifetime = userClaimedTotal + pendingAvax;
+                document.getElementById('rwd-userClaimed').textContent = userClaimedTotal.toFixed(6) + ' AVAX';
+                document.getElementById('rwd-userClaimedSub').textContent = claimEvents.length + ' claim transaction(s)';
+                document.getElementById('rwd-totalEarned').textContent = totalLifetime.toFixed(6) + ' AVAX';
+                document.getElementById('rwd-totalEarnedSub').textContent = userClaimedTotal.toFixed(6) + ' claimed + ' + pendingAvax.toFixed(6) + ' pending';
+
+                document.getElementById('rwd-staked').textContent = fmtN(stakedAmount) + ' LIL';
+                document.getElementById('rwd-locked').textContent = fmtN(totalLockedUser) + ' LIL';
+                document.getElementById('rwd-lockedSub').textContent = activeLockCount + ' active lock(s)';
+                document.getElementById('rwd-burned').textContent = fmtN(totalBurnUser) + ' LIL';
+
+                var locksSection = document.getElementById('rwd-locksSection');
+                var locksList = document.getElementById('rwd-locksList');
+                if (userLocks.length > 0) {
+                    locksSection.style.display = 'block';
+                    var nowTs = Date.now() / 1000;
+                    locksList.innerHTML = userLocks.map(function(lk) {
+                        var endDate = new Date(lk.endTs * 1000).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+                        var isExpired = lk.endTs < nowTs;
+                        var durLabel = lk.durDays >= 365 ? (lk.durDays / 365).toFixed(1) + ' yr' : lk.durDays + ' days';
+                        var mult = getLockMultiplier(lk.durDays);
+                        var statusCls = lk.active && !isExpired ? 'active' : 'expired';
+                        var statusText = lk.active && !isExpired ? 'Active' : isExpired ? 'Unlockable' : 'Inactive';
+                        return '<div class="rwd-lock-item">' +
+                            '<div class="rwd-lock-left">' +
+                            '<div class="rwd-lock-amount">' + fmtN(lk.amount) + ' LIL</div>' +
+                            '<div class="rwd-lock-detail">' + durLabel + ' lock \u00b7 ' + mult.toFixed(2) + 'x multiplier \u00b7 Ends ' + endDate + '</div>' +
+                            '</div>' +
+                            '<span class="rwd-lock-status ' + statusCls + '">' + statusText + '</span>' +
+                            '</div>';
+                    }).join('');
+                } else {
+                    locksSection.style.display = 'none';
+                }
+
+                var legacySec = document.getElementById('rwd-legacySection');
+                if (ebProtoStk > 0 || ebStakeStk > 0) {
+                    legacySec.style.display = 'block';
+                    document.getElementById('rwd-ebProto').textContent = ebProtoStk > 0 ? fmtN(ebProtoStk) + ' LIL' : '\u2014';
+                    document.getElementById('rwd-ebStake').textContent = ebStakeStk > 0 ? fmtN(ebStakeStk) + ' LIL' : '\u2014';
+                } else {
+                    legacySec.style.display = 'none';
+                }
+
+            } catch (err) {
+                console.error('Lookup error:', err);
+                errEl.innerHTML = '<span>\u274c</span> ' + (err.reason || err.message || 'Failed to fetch on-chain data. Check the address and try again.');
+                errEl.className = 'rwd-error';
+                errEl.style.display = 'flex';
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = 'Check';
+            }
+        }
+
+        document.getElementById('rewardsAddrInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') lookupRewards();
+        });
     </script>
 </body>
 </html>

@@ -34,3 +34,13 @@
 - `totalBurned` is hardcoded (363,187,841) — update only if new burn events happen
 - AVG_LOCK_MULTIPLIER uses interpolated multiplier from LOCK_POINTS, NOT raw `days/365`
 - The `embed_data.js` file is NOT loaded by index.html — data is copy-pasted into HTML
+- Moat contract points (`getCurrentPoints`, `totalPoints`) are raw uint256 NOT 18-decimal — don't use `formatEther()` on them. Divide by 1e9 for human-readable display.
+
+## My Rewards Dashboard (added 2026-03-26)
+- Third tab "🎯 My Rewards" in the tab-nav system
+- Uses ethers.js v6 (CDN) to query Moat contract live on Avalanche C-Chain
+- Queries: `userInfo`, `getUserAllLocks`, `getAllPendingRewards`, `getCurrentPoints`, `totalPoints`, `getRewardTokens`
+- Also checks EB Protocol + EB Staking legacy positions via `userInfo` 
+- Displays: pending AVAX rewards, moat points, pool share %, est. bi-weekly reward, staked/locked/burned breakdown, individual lock positions
+- Bi-weekly reward estimation assumes 25 AVAX pool (configurable constant)
+- POINTS_SCALING_FACTOR = 1e12, display scaled by 1e9 for readability
