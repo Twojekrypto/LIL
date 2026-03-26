@@ -1649,8 +1649,41 @@
                 <div class="holders-pager" id="lockPager"></div>
             </div>
 
+            <!-- ══════ STAKE SUMMARY DASHBOARD ══════ -->
+            <div class="circulation-section" style="margin-top:32px;" id="stakeDashboard">
+                <div class="circ-header">
+                    <div class="section-title">📊 Staking Overview</div>
+                </div>
+                <div class="circ-stats" style="grid-template-columns: repeat(4, 1fr);">
+                    <div class="circ-stat" style="border-color: rgba(245, 158, 11, 0.25);">
+                        <div class="label">🏰 Moat Staked</div>
+                        <div class="value amber" id="sSum-moat">—</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:11px; color: var(--accent-amber);" id="sSum-moatPct"></div>
+                        <div style="margin-top:6px;height:3px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden"><div id="sSum-moatBar" style="height:100%;border-radius:2px;background:var(--accent-amber);transition:width 1s cubic-bezier(.4,0,.2,1);width:0%"></div></div>
+                    </div>
+                    <div class="circ-stat" style="border-color: rgba(139, 92, 246, 0.25);">
+                        <div class="label">⚡ EB Protocol</div>
+                        <div class="value" id="sSum-ebProto" style="color: var(--accent-purple);">—</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:11px; color: var(--accent-purple);" id="sSum-ebProtoPct"></div>
+                        <div style="margin-top:6px;height:3px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden"><div id="sSum-ebProtoBar" style="height:100%;border-radius:2px;background:var(--accent-purple);transition:width 1s cubic-bezier(.4,0,.2,1);width:0%"></div></div>
+                    </div>
+                    <div class="circ-stat" style="border-color: rgba(59, 130, 246, 0.25);">
+                        <div class="label">📈 EB Staking</div>
+                        <div class="value blue" id="sSum-ebStake">—</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:11px; color: var(--accent-blue);" id="sSum-ebStakePct"></div>
+                        <div style="margin-top:6px;height:3px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden"><div id="sSum-ebStakeBar" style="height:100%;border-radius:2px;background:var(--accent-blue);transition:width 1s cubic-bezier(.4,0,.2,1);width:0%"></div></div>
+                    </div>
+                    <div class="circ-stat" style="border-color: rgba(16, 185, 129, 0.25);">
+                        <div class="label">🟢 Total Staked</div>
+                        <div class="value green" id="sSum-total">—</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:11px; color: var(--accent-green);" id="sSum-totalPct"></div>
+                        <div style="margin-top:6px;height:3px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden"><div id="sSum-totalBar" style="height:100%;border-radius:2px;background:var(--accent-green);transition:width 1s cubic-bezier(.4,0,.2,1);width:0%"></div></div>
+                    </div>
+                </div>
+            </div>
+
             <!-- ══════ STAKE POSITIONS TABLE ══════ -->
-            <div class="holders-card" style="margin-top:32px;">
+            <div class="holders-card" style="margin-top:16px;">
                 <div class="holders-card-header">
                     <h3>📊 Stake Positions <span class="h-count" id="stakeCount"></span></h3>
                 </div>
@@ -2593,8 +2626,28 @@
             filteredStakes.sort((a, b) => (a[col] - b[col]) * stakeSort.dir);
             stakeBodyPage = 0; renderstakeBody();
         }
+        function renderStakeSummary() {
+            let moat = 0, ebProto = 0, ebStake = 0;
+            STAKE_DATA.forEach(s => { moat += s.moatStake; ebProto += s.ebProto; ebStake += s.ebStake; });
+            const total = moat + ebProto + ebStake;
+            const pct = v => (v / EFFECTIVE_SUPPLY * 100).toFixed(2) + '%';
+            const barPct = v => Math.min(100, v / EFFECTIVE_SUPPLY * 100 * 2).toFixed(1) + '%';
+            document.getElementById('sSum-moat').textContent = formatNumber(moat);
+            document.getElementById('sSum-moatPct').textContent = pct(moat) + ' of supply';
+            document.getElementById('sSum-moatBar').style.width = barPct(moat);
+            document.getElementById('sSum-ebProto').textContent = formatNumber(ebProto);
+            document.getElementById('sSum-ebProtoPct').textContent = pct(ebProto) + ' of supply';
+            document.getElementById('sSum-ebProtoBar').style.width = barPct(ebProto);
+            document.getElementById('sSum-ebStake').textContent = formatNumber(ebStake);
+            document.getElementById('sSum-ebStakePct').textContent = pct(ebStake) + ' of supply';
+            document.getElementById('sSum-ebStakeBar').style.width = barPct(ebStake);
+            document.getElementById('sSum-total').textContent = formatNumber(total);
+            document.getElementById('sSum-totalPct').textContent = pct(total) + ' of supply';
+            document.getElementById('sSum-totalBar').style.width = barPct(total);
+        }
         function renderstakeBody() {
             document.getElementById('stakeCount').textContent = `(${filteredStakes.length} stakerów)`;
+            renderStakeSummary();
             stakeBodyPage = renderGenericTable(filteredStakes, 'stakeBody', 'stakePager', stakeBodyPage, PAGE_SIZE, (h, rank, idx) => {
                 const fmtVal = v => v > 0 ? fmtBal(v) : '<span style="color:rgba(255,255,255,0.15)">—</span>';
                 return `<tr style="border-bottom:1px solid rgba(255,255,255,0.04);transition:transform .15s,background .15s;cursor:pointer;animation:rowFadeIn .25s ease forwards;animation-delay:${idx*20}ms" onmouseenter="this.style.transform='scale(1.01)';this.style.background='rgba(255,255,255,0.03)'" onmouseleave="this.style.transform='';this.style.background=''" onclick="window.open('https://snowscan.xyz/address/${h.a}','_blank')" title="${h.a}">
