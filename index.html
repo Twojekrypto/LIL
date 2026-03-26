@@ -2150,7 +2150,7 @@
         ];
 
         // ── Holders Rendering (Dolomite-style with pagination) ──
-        const PAGE_SIZE = 25;
+        const PAGE_SIZE = 10;
         let holderPage = 0;
         let holderSort = {col:'rank', dir:1};
         let filteredHolders = [...HOLDERS_DATA.map((h,i) => ({...h, rank: i+1}))];
