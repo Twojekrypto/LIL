@@ -45,3 +45,52 @@ jobs:
             git commit -m "daily: auto-update LIL data $(date +%Y-%m-%d)"
             git push
           fi
+
+  # ── Bi-weekly: refresh holder balances + circulation stats ──
+  refresh-holders:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Runs on 1st and 15th of each month at 09:00 UTC
+    if: github.event_name == 'workflow_dispatch' || (github.event.schedule == '0 8 * * *' && (contains(fromJSON('["1","15"]'), format('{0}', github.event.schedule)) == false))
+    steps:
+      - name: Check if bi-weekly run
+        id: check
+        run: |
+          DAY=$(date +%d)
+          if [ "$DAY" = "01" ] || [ "$DAY" = "15" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "run=true" >> $GITHUB_OUTPUT
+          else
+            echo "run=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Checkout
+        if: steps.check.outputs.run == 'true'
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        if: steps.check.outputs.run == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        if: steps.check.outputs.run == 'true'
+        run: npm ci
+
+      - name: Refresh holder balances
+        if: steps.check.outputs.run == 'true'
+        run: node scripts/fetch_holders.js
+
+      - name: Commit & Push
+        if: steps.check.outputs.run == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "bi-weekly: refresh holder balances $(date +%Y-%m-%d)"
+            git push
+          fi
