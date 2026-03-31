@@ -40,8 +40,9 @@
 - **`moatData.staked` ≠ `moatData.locked`** — `totalStaked()` is flexible staking, `totalLocked()` is time-locked positions
 - AVG_LOCK_MULTIPLIER uses interpolated multiplier from LOCK_POINTS, NOT raw `days/365`
 - The `embed_data.js` file is NOT loaded by index.html — data is copy-pasted into HTML
-- Moat contract points (`getCurrentPoints`, `totalPoints`) are raw uint256 NOT 18-decimal — don't use `formatEther()` on them. Divide by 1e9 for human-readable display.
+- Moat contract points (`getCurrentPoints`, `totalPoints`) are raw uint256 NOT 18-decimal — don't use `formatEther()` on them. Divide by `POINTS_DIVISOR` (27e9) for human-readable display.
 - **Moat contract `getTotalAmounts()`** returns `(totalStaked, totalLocked, totalBurned, totalInContract)` — single source of truth for calculator data
+- **Points display normalization**: `POINTS_DIVISOR = TOTAL_SUPPLY * 20 = 27,000,000,000`. Raw `getCurrentPoints()` / `POINTS_DIVISOR` = display points matching moats.app. Do NOT use `/1e9` — that gives ~27x wrong values.
 
 ## My Rewards Dashboard (added 2026-03-26)
 - Third tab "🎯 My Rewards" in the tab-nav system

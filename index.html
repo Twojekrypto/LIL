@@ -3170,10 +3170,14 @@
                 var userPtsRaw = Number(currentPts);
                 var totalPoolRaw = Number(totalPts);
                 var shareRat = totalPoolRaw > 0 ? userPtsRaw / totalPoolRaw : 0;
-                var biWeekly = shareRat * 25;
-                // Scale points for display (divide by 1e9 for readability)
-                var userPtsDisplay = userPtsRaw / 1e9;
-                var totalPoolDisplay = totalPoolRaw / 1e9;
+                // Moats.app normalizes points: raw / (TOTAL_SUPPLY * 20)
+                // = raw / 27,000,000,000 — so 50,000 pts = staking entire supply at 1x
+                var POINTS_DIVISOR = 27000000000;
+                var userPtsDisplay = userPtsRaw / POINTS_DIVISOR;
+                var totalPoolDisplay = totalPoolRaw / POINTS_DIVISOR;
+                // Reward estimate: share of 25 AVAX bi-weekly pool
+                var rewardPoolAvax = 25;
+                var biWeekly = shareRat * rewardPoolAvax;
 
                 var ebProtoStk = fmtE(ebProtoInfo[0]);
                 var ebStakeStk = fmtE(ebStakeInfo[0]);
