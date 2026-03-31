@@ -82,8 +82,11 @@ function main() {
   html = html.replace(/Data from [\d.]+\.\d+\.\d+\./, `Data from ${dateStr}.`);
 
   // 4. Update circulation stats (Locked / Staked)
-  const totalStaked = stakeData.stakers.reduce((s, x) => s + x.totalStaked, 0);
-  const totalLocked = lockData.lockers.reduce((s, x) => s + x.totalLocked, 0);
+  // Use authoritative Moat contract totals
+  const moatTotals = stakeData.moatTotals || {};
+  const totalStaked = moatTotals.totalStaked || stakeData.stakers.reduce((s, x) => s + x.totalStaked, 0);
+  const totalLocked = moatTotals.totalLocked || lockData.lockers.reduce((s, x) => s + x.totalLocked, 0);
+  const totalBurned = moatTotals.totalBurned || 0;
   const lockedStaked = totalStaked + totalLocked;
   const effSupply = 986812159;
   const pct = (lockedStaked / effSupply * 100).toFixed(1);
@@ -105,7 +108,7 @@ function main() {
     date: isoDate,
     staked: totalStaked,
     locked: totalLocked,
-    burned: 363187841,
+    burned: totalBurned,
     stakers: stakeData.stakers.length,
     lockers: lockData.lockers.length,
   };

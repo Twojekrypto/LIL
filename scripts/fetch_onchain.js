@@ -69,6 +69,8 @@ const MOAT_ABI = [
   'function getUserAllLocks(address) view returns (uint256[] amounts, uint256[] ends, uint256[] points, uint256[] originalDurations, uint256[] lastUpdated, bool[] active)',
   'function totalStaked() view returns (uint256)',
   'function totalLocked() view returns (uint256)',
+  'function totalBurned() view returns (uint256)',
+  'function getTotalAmounts() view returns (uint256 _totalStaked, uint256 _totalLocked, uint256 _totalBurned, uint256 _totalInContract)',
 ];
 
 const EB_ABI = [
@@ -179,10 +181,19 @@ async function main() {
   const lilToken = new ethers.Contract(LIL_TOKEN, ERC20_ABI, provider);
 
   // Verify contract totals
-  const [ebProtoTotal, ebStakeTotal] = await Promise.all([
+  const [ebProtoTotal, ebStakeTotal, moatTotals] = await Promise.all([
     ebProto.totalStaked().catch(() => 0n),
     ebStake.totalStaked().catch(() => 0n),
+    moat.getTotalAmounts().catch(() => [0n, 0n, 0n, 0n]),
   ]);
+  const moatContractStaked = fmt(moatTotals[0]);
+  const moatContractLocked = fmt(moatTotals[1]);
+  const moatContractBurned = fmt(moatTotals[2]);
+  const moatContractInContract = fmt(moatTotals[3]);
+  console.log(`  Moat totalStaked:  ${Math.round(moatContractStaked).toLocaleString()} LIL`);
+  console.log(`  Moat totalLocked:  ${Math.round(moatContractLocked).toLocaleString()} LIL`);
+  console.log(`  Moat totalBurned:  ${Math.round(moatContractBurned).toLocaleString()} LIL`);
+  console.log(`  Moat inContract:   ${Math.round(moatContractInContract).toLocaleString()} LIL`);
   console.log(`  EB Protocol totalStaked: ${Math.round(fmt(ebProtoTotal)).toLocaleString()} LIL`);
   console.log(`  EB Staking totalStaked:  ${Math.round(fmt(ebStakeTotal)).toLocaleString()} LIL`);
 
@@ -347,8 +358,15 @@ async function main() {
   const dataDir = path.join(__dirname, '..', 'data');
   fs.mkdirSync(dataDir, { recursive: true });
 
+  const moatTotalsData = {
+    totalStaked: Math.round(moatContractStaked),
+    totalLocked: Math.round(moatContractLocked),
+    totalBurned: Math.round(moatContractBurned),
+    totalInContract: Math.round(moatContractInContract),
+  };
+
   const lockData = { fetchedAt: now, block, lockers: lockArr };
-  const stakeData = { fetchedAt: now, block, stakers: stakeArr };
+  const stakeData = { fetchedAt: now, block, moatTotals: moatTotalsData, stakers: stakeArr };
   const portfolioData = { fetchedAt: now, block, holders: portfolioArr };
 
   fs.writeFileSync(path.join(dataDir, 'lock_data.json'), JSON.stringify(lockData, null, 2));

@@ -31,10 +31,17 @@
 - **EB Staking** — LEGACY, rewards migrated to Moat. Tokens still locked in contract
 
 ## Common Pitfalls
-- `totalBurned` is hardcoded (363,187,841) — update only if new burn events happen
+- **TWO different "burned" values exist:**
+  - `BURN_AMOUNT` = dead wallet `balanceOf(0xdead)` → used for **effective supply / holders view** (updated by `fetch_holders.js`)
+  - `moatData.burned` = Moat contract `totalBurned()` → used for **calculator points** (updated by `fetch_onchain.js` → `update_html.js`)
+  - These are NOT the same number — Moat `totalBurned` only tracks burns done through the Moat CA
+- **`totalStaked` in history.json** = Moat contract `totalStaked()` (Moat-only, NOT EB combined)
+  - EB Protocol and EB Staking are inactive/legacy — don't add them to calculator staked
+- **`moatData.staked` ≠ `moatData.locked`** — `totalStaked()` is flexible staking, `totalLocked()` is time-locked positions
 - AVG_LOCK_MULTIPLIER uses interpolated multiplier from LOCK_POINTS, NOT raw `days/365`
 - The `embed_data.js` file is NOT loaded by index.html — data is copy-pasted into HTML
 - Moat contract points (`getCurrentPoints`, `totalPoints`) are raw uint256 NOT 18-decimal — don't use `formatEther()` on them. Divide by 1e9 for human-readable display.
+- **Moat contract `getTotalAmounts()`** returns `(totalStaked, totalLocked, totalBurned, totalInContract)` — single source of truth for calculator data
 
 ## My Rewards Dashboard (added 2026-03-26)
 - Third tab "🎯 My Rewards" in the tab-nav system

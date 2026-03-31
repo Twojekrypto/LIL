@@ -1878,8 +1878,8 @@
                 <div class="circ-stats" style="grid-template-columns: repeat(4, 1fr);">
                     <div class="circ-stat" style="border-color: rgba(59, 130, 246, 0.25);">
                         <div class="label">🔒 Locked / Staked</div>
-                        <div class="value blue">470,091,502</div>
-                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-blue);">47.6%</div>
+                        <div class="value blue">308,013,382</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-blue);">31.2%</div>
                     </div>
                     <div class="circ-stat" style="border-color: rgba(245, 158, 11, 0.25);">
                         <div class="label">💧 LP (Pharaoh)</div>
@@ -2361,11 +2361,10 @@
                     document.getElementById('dataDate').textContent = `Data: ${d}.${m}.${y}`;
                 }
             } catch (e) {
-                console.warn('Failed to load history.json, using fallback values', e);
-                // Fallback hardcoded values
-                moatData.staked = 336325128;
-                moatData.locked = 137732680;
-                moatData.burned = 373631302;
+                // Fallback hardcoded values (Moat-only totals)
+                moatData.staked = 155683164;
+                moatData.locked = 152330218;
+                moatData.burned = 0; // will be set by next fetch
                 document.getElementById('totalStakedDisplay').textContent = formatNumber(moatData.staked);
                 document.getElementById('totalLockedDisplay').textContent = formatNumber(moatData.locked);
                 document.getElementById('totalBurnedDisplay').textContent = formatNumber(moatData.burned);
@@ -2706,7 +2705,6 @@
             const fmt = n => n >= 1e6 ? (n/1e6).toFixed(1)+'M' : n >= 1e3 ? (n/1e3).toFixed(0)+'K' : n.toLocaleString();
 
             // ── 1. DONUT: Supply Breakdown ──
-            const BURN = 363187841;
             const lockedStaked = 467529271;
             const lpEntry = HOLDERS_DATA.find(h => (h.tc || h.t) === 'lp');
             const lpAmount = lpEntry ? lpEntry.b : 353508945;

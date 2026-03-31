@@ -153,8 +153,8 @@ async function main() {
   html = html.replace(/(🟢 Free Float<\/div>\s*<div class="value green">)[\d,]+/, `$1${fmtNum(freeFloat)}`);
   html = html.replace(/(🟢 Free Float[\s\S]*?<div class="value green">[\d,]+<\/div>\s*<div[^>]*>)[\d.]+%/, `$1${(freeFloat / effSupply * 100).toFixed(1)}%`);
 
-  // Update fallback values in loadMoatData
-  html = html.replace(/moatData\.burned = \d+;/, `moatData.burned = ${burnAmt};`);
+  // Note: moatData.burned fallback is set by update_html.js from Moat contract totalBurned
+  // Do NOT overwrite it here with dead wallet balance (burnAmt) — different concepts
 
   // Update holder count in header
   const holderCount = updated.filter(h => h.t === 'holder').length;
