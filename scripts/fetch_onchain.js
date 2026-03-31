@@ -171,9 +171,27 @@ async function findNewDepositors(targetAddr, label, startFromBlock) {
 }
 
 async function main() {
-  console.log('🚀 LIL On-Chain Data Fetcher (v4 — incremental scan)');
+  console.log('🚀 LIL On-Chain Data Fetcher (v5 — burn + points)');
   const block = await provider.getBlockNumber();
   console.log(`  Block: ${block}`);
+
+  // Fetch Moat API points (authoritative source)
+  let moatApiPoints = {};
+  try {
+    const apiUrl = `https://api.moats.app/api/moat-points/v2/all?contractAddress=${MOAT_ADDR}&chainId=43114`;
+    const resp = await fetch(apiUrl);
+    if (resp.ok) {
+      const data = await resp.json();
+      if (data.leaderboard) {
+        data.leaderboard.forEach(e => {
+          moatApiPoints[e.address.toLowerCase()] = e.points || 0;
+        });
+        console.log(`  Moat API: ${Object.keys(moatApiPoints).length} users with points`);
+      }
+    }
+  } catch (e) {
+    console.log(`  ⚠ Moat API fetch failed: ${e.message}`);
+  }
 
   const moat = new ethers.Contract(MOAT_ADDR, MOAT_ABI, provider);
   const ebProto = new ethers.Contract(EB_PROTO, EB_ABI, provider);
@@ -254,6 +272,7 @@ async function main() {
       ]);
 
       const moatStaked = moatInfo ? fmt(moatInfo.stakedAmount) : 0;
+      const moatBurned = moatInfo ? fmt(moatInfo.totalUserBurn) : 0;
       const ebProtoStaked = fmt(ebProtoInfo[0]);
       const ebStakeStaked = fmt(ebStakeInfo[0]);
       const walletBal = fmt(walBal);
@@ -312,6 +331,8 @@ async function main() {
           wallet: Math.round(walletBal),
           locked: Math.round(totalLocked),
           staked: totalStaked,
+          burned: Math.round(moatBurned),
+          points: moatApiPoints[lc] || 0,
           total: Math.round(walletBal) + Math.round(totalLocked) + totalStaked,
         };
       }
@@ -374,7 +395,7 @@ async function main() {
   fs.writeFileSync(path.join(dataDir, 'portfolio_data.json'), JSON.stringify(portfolioData, null, 2));
 
   // Embeddable JS
-  const js = `// Auto-generated ${now} block ${block}\nconst LOCK_DATA = ${JSON.stringify(lockArr)};\nconst STAKE_DATA = ${JSON.stringify(stakeArr)};\nconst PORTFOLIO_DATA = ${JSON.stringify(portfolioArr)};\n`;
+  const js = `// Auto-generated ${now} block ${block}\nconst LOCK_DATA = ${JSON.stringify(lockArr)};\nconst STAKE_DATA = ${JSON.stringify(stakeArr)};\nconst PORTFOLIO_DATA = ${JSON.stringify(portfolioArr)};\nconst RAW_PORTFOLIO = ${JSON.stringify(portfolioArr)};\n`;
   fs.writeFileSync(path.join(dataDir, 'embed_data.js'), js);
 
   console.log(`  Files: data/lock_data.json, data/stake_data.json, data/portfolio_data.json, data/embed_data.js`);

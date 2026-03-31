@@ -2158,23 +2158,25 @@
                 <div class="holders-table-scroll">
                     <table class="holders-tbl">
                         <colgroup>
-                            <col style="width:36px">
-                            <col style="width:30%">
-                            <col style="width:14%">
-                            <col style="width:14%">
-                            <col style="width:14%">
-                            <col style="width:14%">
+                            <col style="width:30px">
+                            <col style="width:24%">
+                            <col style="width:12%">
+                            <col style="width:12%">
+                            <col style="width:12%">
+                            <col style="width:10%">
+                            <col style="width:12%">
                             <col style="width:10%">
                         </colgroup>
                         <thead>
                             <tr>
                                 <th class="col-rank">#</th>
                                 <th>Address</th>
-                                <th class="sortable" onclick="sortPortfolio('wallet')" style="text-align:right">Wallet <span class="sort-arrow">⇅</span></th>
-                                <th class="sortable" onclick="sortPortfolio('locked')" style="text-align:right">🔒 Locked <span class="sort-arrow">⇅</span></th>
-                                <th class="sortable" onclick="sortPortfolio('staked')" style="text-align:right">📊 Staked <span class="sort-arrow">⇅</span></th>
-                                <th class="sortable" onclick="sortPortfolio('total')" style="text-align:right">Total <span class="sort-arrow">▼</span></th>
-                                <th style="text-align:right">%</th>
+                                <th class="sortable" onclick="sortPortfolio('wallet')" style="text-align:right">Wallet <span class="sort-arrow" id="pSort-wallet">⇅</span></th>
+                                <th class="sortable" onclick="sortPortfolio('locked')" style="text-align:right">🔒 Locked <span class="sort-arrow" id="pSort-locked">⇅</span></th>
+                                <th class="sortable" onclick="sortPortfolio('staked')" style="text-align:right">📊 Staked <span class="sort-arrow" id="pSort-staked">⇅</span></th>
+                                <th class="sortable" onclick="sortPortfolio('burned')" style="text-align:right">🔥 Burned <span class="sort-arrow" id="pSort-burned">⇅</span></th>
+                                <th class="sortable" onclick="sortPortfolio('total')" style="text-align:right">Total <span class="sort-arrow" id="pSort-total">▼</span></th>
+                                <th class="sortable" onclick="sortPortfolio('points')" style="text-align:right">🏆 Points <span class="sort-arrow" id="pSort-points">⇅</span></th>
                             </tr>
                         </thead>
                         <tbody id="portfolioBody"></tbody>
@@ -2671,7 +2673,7 @@
             const ensure = (a, n, t) => {
                 const k = a.toLowerCase();
                 if (SKIP_ADDR.has(k)) return null;
-                if (!map[k]) map[k] = {a, n: n||null, t: t||'holder', wallet:0, locked:0, staked:0, total:0};
+                if (!map[k]) map[k] = {a, n: n||null, t: t||'holder', wallet:0, locked:0, staked:0, burned:0, points:0, total:0};
                 if (n && !map[k].n) map[k].n = n;
                 return map[k];
             };
@@ -2691,6 +2693,16 @@
                 const e = ensure(h.a, h.n, h.t);
                 if (e) e.staked = h.totalStaked;
             });
+            // 4) Burn & points from raw PORTFOLIO_DATA (if present)
+            if (typeof RAW_PORTFOLIO !== 'undefined') {
+                RAW_PORTFOLIO.forEach(h => {
+                    const e = ensure(h.a, h.n, h.t);
+                    if (e) {
+                        if (h.burned) e.burned = h.burned;
+                        if (h.points) e.points = h.points;
+                    }
+                });
+            }
             // Compute totals & sort
             return Object.values(map).map(e => {
                 e.total = e.wallet + e.locked + e.staked;
@@ -3034,6 +3046,11 @@
             if (portfolioSort.col === col) portfolioSort.dir *= -1;
             else { portfolioSort.col = col; portfolioSort.dir = -1; }
             filteredPortfolio.sort((a, b) => (a[col] - b[col]) * portfolioSort.dir);
+            // Update sort arrows
+            ['wallet','locked','staked','burned','total','points'].forEach(c => {
+                const el = document.getElementById('pSort-' + c);
+                if (el) el.textContent = c === col ? (portfolioSort.dir === -1 ? '▼' : '▲') : '⇅';
+            });
             portfolioBodyPage = 0; renderportfolioBody();
         }
         // Build lock lookup for avg duration in portfolio
@@ -3045,6 +3062,7 @@
             portfolioBodyPage = renderGenericTable(filteredPortfolio, 'portfolioBody', 'portfolioPager', portfolioBodyPage, PAGE_SIZE, (h, rank, idx) => {
                 const fmtVal = v => v > 0 ? fmtBal(v) : '<span style="color:rgba(255,255,255,0.15)">—</span>';
                 const totalColor = h.total > 10000000 ? 'color:#22d3ee;font-weight:600' : h.total > 1000000 ? 'color:#34d399;font-weight:600' : '';
+                const pointsColor = h.points > 10000 ? 'color:#f59e0b;font-weight:600' : h.points > 1000 ? 'color:#fbbf24' : '';
                 // Avg lock duration from LOCK_DATA
                 let lockedCell = fmtVal(h.locked);
                 const lockInfo = lockByAddr[h.a.toLowerCase()];
@@ -3055,14 +3073,17 @@
                     const avgLabel = avgDays >= 365 ? (avgDays / 365).toFixed(1) + 'y' : avgDays + 'd';
                     lockedCell = `${fmtBal(h.locked)}<br><span style="font-size:9px;color:var(--text-muted)">avg ${avgLabel}</span>`;
                 }
+                const burnVal = (h.burned || 0);
+                const ptsVal = (h.points || 0);
                 return `<tr style="border-bottom:1px solid rgba(255,255,255,0.04);transition:transform .15s,background .15s;cursor:pointer;animation:rowFadeIn .25s ease forwards;animation-delay:${idx*20}ms" onmouseenter="this.style.transform='scale(1.01)';this.style.background='rgba(255,255,255,0.03)'" onmouseleave="this.style.transform='';this.style.background=''" onclick="window.open('https://snowscan.xyz/address/${h.a}','_blank')" title="${h.a}">
                     <td class="td-rank">${rank}</td>
                     <td class="td-addr">${makeAddr(h)}</td>
                     <td style="text-align:right;font-size:12px">${fmtVal(h.wallet)}</td>
                     <td style="text-align:right;font-size:12px;color:var(--accent-blue)">${lockedCell}</td>
                     <td style="text-align:right;font-size:12px;color:var(--accent-green)">${fmtVal(h.staked)}</td>
+                    <td style="text-align:right;font-size:12px;color:#f87171">${fmtVal(burnVal)}</td>
                     <td class="td-bal" style="text-align:right;${totalColor}"><span class="bal-num">${fmtBal(h.total)}</span><span class="bal-unit">LIL</span></td>
-                    <td class="td-pct"><span class="pct-num pct-${h.total/EFFECTIVE_SUPPLY*100 > 1 ? 'high' : h.total/EFFECTIVE_SUPPLY*100 > 0.1 ? 'mid' : 'low'}">${(h.total/EFFECTIVE_SUPPLY*100).toFixed(2)}%</span></td>
+                    <td style="text-align:right;font-size:12px;${pointsColor}">${ptsVal > 0 ? ptsVal.toLocaleString() : '<span style="color:rgba(255,255,255,0.15)">—</span>'}</td>
                 </tr>`;
             });
         }

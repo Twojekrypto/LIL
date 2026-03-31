@@ -45,13 +45,27 @@ function main() {
   // Extract arrays from embed_data.js
   const lockMatch = embed.match(/const LOCK_DATA = (\[.*?\]);/s);
   const stakeMatch = embed.match(/const STAKE_DATA = (\[.*?\]);/s);
+  const rawPortfolioMatch = embed.match(/const RAW_PORTFOLIO = (\[.*?\]);/s);
   if (!lockMatch || !stakeMatch) {
     console.error('❌ Could not parse embed_data.js'); process.exit(1);
   }
 
-  // 1. Replace LOCK_DATA and STAKE_DATA in HTML
+  // 1. Replace LOCK_DATA, STAKE_DATA, and RAW_PORTFOLIO in HTML
   html = html.replace(/const LOCK_DATA = \[.*?\];/s, 'const LOCK_DATA = ' + lockMatch[1] + ';');
   html = html.replace(/const STAKE_DATA = \[.*?\];/s, 'const STAKE_DATA = ' + stakeMatch[1] + ';');
+  if (rawPortfolioMatch) {
+    // Update existing RAW_PORTFOLIO or inject it after STAKE_DATA
+    if (html.includes('const RAW_PORTFOLIO')) {
+      html = html.replace(/const RAW_PORTFOLIO = \[.*?\];/s, 'const RAW_PORTFOLIO = ' + rawPortfolioMatch[1] + ';');
+    } else {
+      // Inject after STAKE_DATA line
+      html = html.replace(
+        /(const STAKE_DATA = \[.*?\];)/s,
+        '$1\n        const RAW_PORTFOLIO = ' + rawPortfolioMatch[1] + ';'
+      );
+    }
+    console.log('  RAW_PORTFOLIO embedded (burned + points data)');
+  }
 
   // 2. Compute and update AVG_LOCK_MULTIPLIER
   let totalWeightedMult = 0, totalAmount = 0, totalDays = 0;
