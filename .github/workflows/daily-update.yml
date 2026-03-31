@@ -49,23 +49,31 @@ jobs:
   # ── Bi-weekly: refresh holder balances + circulation stats ──
   refresh-holders:
     runs-on: ubuntu-latest
+    needs: update-data
     timeout-minutes: 10
-    # Runs on 1st and 15th of each month at 09:00 UTC
-    if: github.event_name == 'workflow_dispatch' || (github.event.schedule == '0 8 * * *' && (contains(fromJSON('["1","15"]'), format('{0}', github.event.schedule)) == false))
+
     steps:
-      - name: Check if bi-weekly run
+      - name: Check if bi-weekly run day
         id: check
         run: |
-          DAY=$(date +%d)
+          DAY=$(date -u +%d)
           if [ "$DAY" = "01" ] || [ "$DAY" = "15" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "run=true" >> $GITHUB_OUTPUT
+            echo "✅ Bi-weekly run: day=$DAY, event=${{ github.event_name }}"
           else
             echo "run=false" >> $GITHUB_OUTPUT
+            echo "⏭ Skipping holder refresh: day=$DAY (runs on 1st/15th)"
           fi
 
       - name: Checkout
         if: steps.check.outputs.run == 'true'
         uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Pull latest (after daily update)
+        if: steps.check.outputs.run == 'true'
+        run: git pull origin main
 
       - name: Setup Node.js
         if: steps.check.outputs.run == 'true'
