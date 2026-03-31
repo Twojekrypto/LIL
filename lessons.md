@@ -43,12 +43,16 @@
 - Moat contract points (`getCurrentPoints`, `totalPoints`) are raw uint256 NOT 18-decimal — don't use `formatEther()` on them. Divide by `POINTS_DIVISOR` (27e9) for human-readable display.
 - **Moat contract `getTotalAmounts()`** returns `(totalStaked, totalLocked, totalBurned, totalInContract)` — single source of truth for calculator data
 - **Points display normalization**: `POINTS_DIVISOR = TOTAL_SUPPLY * 20 = 27,000,000,000`. Raw `getCurrentPoints()` / `POINTS_DIVISOR` = display points matching moats.app. Do NOT use `/1e9` — that gives ~27x wrong values.
+- **CRITICAL: `getCurrentPoints()` returns STALE data** — the Moat contract only updates user points when they perform an action (stake/lock/burn/unstake). Idle users accumulate points off-chain. The official Moat site uses its own API (`api.moats.app/api/moat-points/v2/all`) which computes real-time points including pending accrual. **Always use the Moat API as the authoritative source for display points**, with on-chain `getCurrentPoints` as fallback only.
 
 ## My Rewards Dashboard (added 2026-03-26)
 - Third tab "🎯 My Rewards" in the tab-nav system
 - Uses ethers.js v6 (CDN) to query Moat contract live on Avalanche C-Chain
-- Queries: `userInfo`, `getUserAllLocks`, `getAllPendingRewards`, `getCurrentPoints`, `totalPoints`, `getRewardTokens`
+- **Points source of truth**: official Moat API (`api.moats.app/api/moat-points/v2/all?contractAddress=...&chainId=43114`) → on-chain `getCurrentPoints` fallback
+- Moat API returns leaderboard array with `{ address, points, basePoints, weight }` — points are display-ready (no divisor needed)
+- Total pool = sum of all leaderboard entries' points
+- On-chain queries: `userInfo`, `getUserAllLocks`, `getAllPendingRewards` (for position breakdown)
 - Also checks EB Protocol + EB Staking legacy positions via `userInfo` 
 - Displays: pending AVAX rewards, moat points, pool share %, est. bi-weekly reward, staked/locked/burned breakdown, individual lock positions
 - Bi-weekly reward estimation assumes 25 AVAX pool (configurable constant)
-- POINTS_SCALING_FACTOR = 1e12, display scaled by 1e9 for readability
+

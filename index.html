@@ -3117,20 +3117,29 @@
                 var ebStakeC = new ethers.Contract(EB_STAKE_ADDR, EB_READ_ABI, provider);
                 var addr = ethers.getAddress(addrInput);
 
+                // Fetch on-chain data + official Moat API points in parallel
+                var MOAT_API_URL = 'https://api.moats.app/api/moat-points/v2/all?contractAddress=' +
+                    MOAT_CONTRACT + '&chainId=43114';
+
                 var results = await Promise.all([
                     moatC.userInfo(addr),
                     moatC.getUserAllLocks(addr),
                     moatC.getAllPendingRewards(addr),
-                    moatC.getCurrentPoints(addr),
-                    moatC.totalPoints(),
                     moatC.queryFilter(moatC.filters.RewardClaimed(addr), 0).catch(function() { return []; }),
                     ebProtoC.userInfo(addr).catch(function() { return [0n, 0n]; }),
                     ebStakeC.userInfo(addr).catch(function() { return [0n, 0n]; }),
+                    // Fetch official Moat API for authoritative points
+                    fetch(MOAT_API_URL).then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; }),
+                    // On-chain fallback
+                    moatC.getCurrentPoints(addr),
+                    moatC.totalPoints(),
                 ]);
 
                 var userInf = results[0], locks = results[1], pending = results[2];
-                var currentPts = results[3], totalPts = results[4], claimEvents = results[5];
-                var ebProtoInfo = results[6], ebStakeInfo = results[7];
+                var claimEvents = results[3];
+                var ebProtoInfo = results[4], ebStakeInfo = results[5];
+                var moatApiData = results[6];
+                var onchainPts = results[7], onchainTotal = results[8];
 
                 var fmtE = function(v) { return Number(ethers.formatEther(v)); };
                 var fmtN = function(n, d) { d = d || 0; return n.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }); };
@@ -3165,14 +3174,33 @@
                     userClaimedTotal += fmtE(claimEvents[k].args.amount);
                 }
 
-                var userPtsRaw = Number(currentPts);
-                var totalPoolRaw = Number(totalPts);
-                var shareRat = totalPoolRaw > 0 ? userPtsRaw / totalPoolRaw : 0;
-                // Moats.app normalizes points: raw / (TOTAL_SUPPLY * 20)
-                // = raw / 27,000,000,000 — so 50,000 pts = staking entire supply at 1x
+                // ── Points source of truth: official Moat API → on-chain fallback ──
+                var userPtsDisplay, totalPoolDisplay, shareRat;
+                var addrLower = addr.toLowerCase();
                 var POINTS_DIVISOR = 27000000000;
-                var userPtsDisplay = userPtsRaw / POINTS_DIVISOR;
-                var totalPoolDisplay = totalPoolRaw / POINTS_DIVISOR;
+
+                if (moatApiData && moatApiData.leaderboard && moatApiData.leaderboard.length > 0) {
+                    // Use official Moat API — same source as moats.app leaderboard
+                    var leaderboard = moatApiData.leaderboard;
+                    var userEntry = null;
+                    totalPoolDisplay = 0;
+                    for (var m = 0; m < leaderboard.length; m++) {
+                        totalPoolDisplay += (leaderboard[m].points || 0);
+                        if (leaderboard[m].address && leaderboard[m].address.toLowerCase() === addrLower) {
+                            userEntry = leaderboard[m];
+                        }
+                    }
+                    userPtsDisplay = userEntry ? (userEntry.points || 0) : 0;
+                    shareRat = totalPoolDisplay > 0 ? userPtsDisplay / totalPoolDisplay : 0;
+                } else {
+                    // Fallback: on-chain getCurrentPoints (may be stale for idle users)
+                    var userPtsRaw = Number(onchainPts);
+                    var totalPoolRaw = Number(onchainTotal);
+                    userPtsDisplay = userPtsRaw / POINTS_DIVISOR;
+                    totalPoolDisplay = totalPoolRaw / POINTS_DIVISOR;
+                    shareRat = totalPoolRaw > 0 ? userPtsRaw / totalPoolRaw : 0;
+                }
+
                 // Reward estimate: share of 25 AVAX bi-weekly pool
                 var rewardPoolAvax = 25;
                 var biWeekly = shareRat * rewardPoolAvax;
