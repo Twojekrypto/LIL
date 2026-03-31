@@ -1,6 +1,6 @@
 {
-  "fetchedAt": "2026-03-30T09:05:09.888Z",
-  "block": 81652956,
+  "fetchedAt": "2026-03-31T08:50:13.132Z",
+  "block": 81736015,
   "stakers": [
     {
       "a": "0xa344C1401D8fdEC5F842E07a488006c6ec6A26b9",
@@ -204,9 +204,9 @@
       "a": "0xd45a6835540F1e4B738F95bd8eaD1c8d6b7798B4",
       "n": null,
       "t": "holder",
-      "moatStake": 0,
+      "moatStake": 3193417,
       "ebProto": 0,
-      "ebStake": 3193417,
+      "ebStake": 0,
       "totalStaked": 3193417
     },
     {

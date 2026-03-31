@@ -1,6 +1,6 @@
 {
-  "fetchedAt": "2026-03-30T09:05:09.888Z",
-  "block": 81652956,
+  "fetchedAt": "2026-03-31T08:50:13.132Z",
+  "block": 81736015,
   "holders": [
     {
       "a": "0x5b5a1503f491B2935BF757b21d2832a2B3D0df44",
@@ -51,10 +51,10 @@
       "a": "0x88f470733100c2bf068a88B218455bdC73049AB1",
       "n": null,
       "t": "holder",
-      "wallet": 0,
-      "locked": 18365727,
+      "wallet": 1,
+      "locked": 18113455,
       "staked": 0,
-      "total": 18365727
+      "total": 18113456
     },
     {
       "a": "0x0fc0EbE63B74C3c90731A3cDaE03c9a51B084F36",
@@ -96,10 +96,10 @@
       "a": "0x0F6A81BA40E410b34c74BB4d7D5dFFaf180d3471",
       "n": null,
       "t": "holder",
-      "wallet": 1,
+      "wallet": 0,
       "locked": 12770527,
       "staked": 0,
-      "total": 12770528
+      "total": 12770527
     },
     {
       "a": "0x5113E792816311741f9a8a803953405f2DfFEADE",
@@ -885,6 +885,15 @@
       "total": 750000
     },
     {
+      "a": "0x8B4A106521AE96a41B2Ec405d3FCb05eaf4A7C4f",
+      "n": null,
+      "t": "holder",
+      "wallet": 82530,
+      "locked": 500000,
+      "staked": 91590,
+      "total": 674120
+    },
+    {
       "a": "0x5Abbf6aB860577E89C0483cF141e300bF8B74250",
       "n": null,
       "t": "holder",
@@ -901,15 +910,6 @@
       "locked": 0,
       "staked": 670255,
       "total": 670255
-    },
-    {
-      "a": "0x8B4A106521AE96a41B2Ec405d3FCb05eaf4A7C4f",
-      "n": null,
-      "t": "holder",
-      "wallet": 50138,
-      "locked": 500000,
-      "staked": 91590,
-      "total": 641728
     },
     {
       "a": "0x3737AB1829d1496d3bd6fc4DEc599Ff0F72f81A7",
@@ -1009,6 +1009,15 @@
       "locked": 0,
       "staked": 460139,
       "total": 460139
+    },
+    {
+      "a": "0x9992e35790176857ff3825554203f6918b8DEaEa",
+      "n": null,
+      "t": "holder",
+      "wallet": 1206,
+      "locked": 440000,
+      "staked": 0,
+      "total": 441206
     },
     {
       "a": "0x4d9401459Ce8b89306fAE529bF0F1A50Bb673113",
@@ -1245,6 +1254,15 @@
       "total": 127540
     },
     {
+      "a": "0x2CbD36D9190c3aB603A8cF685c2a363387bE2314",
+      "n": null,
+      "t": "holder",
+      "wallet": 121785,
+      "locked": 0,
+      "staked": 0,
+      "total": 121785
+    },
+    {
       "a": "0xe7cA84b8A0AC2609b1cbA620DaA63DAB0773B6D0",
       "n": null,
       "t": "holder",
@@ -1297,15 +1315,6 @@
       "locked": 0,
       "staked": 83291,
       "total": 83291
-    },
-    {
-      "a": "0x2CbD36D9190c3aB603A8cF685c2a363387bE2314",
-      "n": null,
-      "t": "holder",
-      "wallet": 81281,
-      "locked": 0,
-      "staked": 0,
-      "total": 81281
     },
     {
       "a": "0xfBD31ccD483B49A8DCe0fB8C0542cBCdfEFcaaEb",
