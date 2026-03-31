@@ -1,6 +1,6 @@
 {
-  "fetchedAt": "2026-03-31T12:41:48.897Z",
-  "block": 81749613,
+  "fetchedAt": "2026-03-31T19:24:33.287Z",
+  "block": 81773260,
   "holders": [
     {
       "a": "0x5b5a1503f491B2935BF757b21d2832a2B3D0df44",
@@ -9,6 +9,8 @@
       "wallet": 95000091,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 95000091
     },
     {
@@ -18,6 +20,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 90000000,
+      "burned": 1816388,
+      "points": 8952,
       "total": 90000000
     },
     {
@@ -27,6 +31,8 @@
       "wallet": 2376194,
       "locked": 42429079,
       "staked": 0,
+      "burned": 43347952,
+      "points": 21869,
       "total": 44805273
     },
     {
@@ -36,6 +42,8 @@
       "wallet": 0,
       "locked": 10000000,
       "staked": 20048032,
+      "burned": 12069599,
+      "points": 11887,
       "total": 30048032
     },
     {
@@ -45,6 +53,8 @@
       "wallet": 25022772,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 25022772
     },
     {
@@ -54,6 +64,8 @@
       "wallet": 1,
       "locked": 18113455,
       "staked": 0,
+      "burned": 69420,
+      "points": 8222,
       "total": 18113456
     },
     {
@@ -63,6 +75,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 17763510,
+      "burned": 0,
+      "points": 0,
       "total": 17763510
     },
     {
@@ -72,6 +86,8 @@
       "wallet": 0,
       "locked": 14058860,
       "staked": 1300591,
+      "burned": 4883150,
+      "points": 9445,
       "total": 15359451
     },
     {
@@ -81,6 +97,8 @@
       "wallet": 1,
       "locked": 14548108,
       "staked": 0,
+      "burned": 3146460,
+      "points": 8786,
       "total": 14548109
     },
     {
@@ -90,6 +108,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 14079533,
+      "burned": 0,
+      "points": 0,
       "total": 14079533
     },
     {
@@ -99,6 +119,8 @@
       "wallet": 0,
       "locked": 12770527,
       "staked": 0,
+      "burned": 6433676,
+      "points": 9745,
       "total": 12770527
     },
     {
@@ -108,6 +130,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 11886278,
+      "burned": 0,
+      "points": 0,
       "total": 11886278
     },
     {
@@ -117,6 +141,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 8085870,
+      "burned": 0,
+      "points": 2448,
       "total": 8085870
     },
     {
@@ -126,6 +152,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 7482037,
+      "burned": 0,
+      "points": 0,
       "total": 7482037
     },
     {
@@ -135,6 +163,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 7054284,
+      "burned": 0,
+      "points": 0,
       "total": 7054284
     },
     {
@@ -144,6 +174,8 @@
       "wallet": 0,
       "locked": 6475000,
       "staked": 0,
+      "burned": 0,
+      "points": 4898,
       "total": 6475000
     },
     {
@@ -153,6 +185,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 5901239,
+      "burned": 0,
+      "points": 0,
       "total": 5901239
     },
     {
@@ -162,6 +196,8 @@
       "wallet": 0,
       "locked": 5825460,
       "staked": 0,
+      "burned": 0,
+      "points": 4645,
       "total": 5825460
     },
     {
@@ -171,6 +207,8 @@
       "wallet": 0,
       "locked": 5490448,
       "staked": 0,
+      "burned": 0,
+      "points": 4510,
       "total": 5490448
     },
     {
@@ -180,6 +218,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 5386052,
+      "burned": 0,
+      "points": 0,
       "total": 5386052
     },
     {
@@ -189,6 +229,8 @@
       "wallet": 1324723,
       "locked": 0,
       "staked": 3692271,
+      "burned": 0,
+      "points": 1654,
       "total": 5016994
     },
     {
@@ -198,6 +240,8 @@
       "wallet": 0,
       "locked": 5000000,
       "staked": 0,
+      "burned": 1112846,
+      "points": 5174,
       "total": 5000000
     },
     {
@@ -207,6 +251,8 @@
       "wallet": 1,
       "locked": 0,
       "staked": 4523697,
+      "burned": 0,
+      "points": 1831,
       "total": 4523698
     },
     {
@@ -216,6 +262,8 @@
       "wallet": 0,
       "locked": 2050260,
       "staked": 2050260,
+      "burned": 0,
+      "points": 3019,
       "total": 4100520
     },
     {
@@ -225,6 +273,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 4069072,
+      "burned": 0,
+      "points": 0,
       "total": 4069072
     },
     {
@@ -234,6 +284,8 @@
       "wallet": 15857,
       "locked": 0,
       "staked": 3750000,
+      "burned": 0,
+      "points": 0,
       "total": 3765857
     },
     {
@@ -243,6 +295,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 3755392,
+      "burned": 0,
+      "points": 0,
       "total": 3755392
     },
     {
@@ -252,6 +306,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 3753592,
+      "burned": 0,
+      "points": 0,
       "total": 3753592
     },
     {
@@ -261,6 +317,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 3750200,
+      "burned": 0,
+      "points": 1667,
       "total": 3750200
     },
     {
@@ -270,6 +328,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 3750000,
+      "burned": 0,
+      "points": 0,
       "total": 3750000
     },
     {
@@ -279,6 +339,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 3750000,
+      "burned": 0,
+      "points": 0,
       "total": 3750000
     },
     {
@@ -288,6 +350,8 @@
       "wallet": 0,
       "locked": 2500,
       "staked": 3745000,
+      "burned": 2500,
+      "points": 1674,
       "total": 3747500
     },
     {
@@ -297,6 +361,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 3462086,
+      "burned": 0,
+      "points": 1602,
       "total": 3462086
     },
     {
@@ -306,6 +372,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 3290897,
+      "burned": 0,
+      "points": 0,
       "total": 3290897
     },
     {
@@ -315,6 +383,8 @@
       "wallet": 0,
       "locked": 1875000,
       "staked": 1406250,
+      "burned": 468750,
+      "points": 3386,
       "total": 3281250
     },
     {
@@ -324,6 +394,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 3193417,
+      "burned": 0,
+      "points": 1539,
       "total": 3193417
     },
     {
@@ -333,6 +405,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 2755850,
+      "burned": 0,
+      "points": 0,
       "total": 2755850
     },
     {
@@ -342,6 +416,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 2745007,
+      "burned": 0,
+      "points": 0,
       "total": 2745007
     },
     {
@@ -351,6 +427,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 2693962,
+      "burned": 0,
+      "points": 0,
       "total": 2693962
     },
     {
@@ -360,6 +438,8 @@
       "wallet": 27985,
       "locked": 1325000,
       "staked": 1325000,
+      "burned": 0,
+      "points": 2427,
       "total": 2677985
     },
     {
@@ -369,6 +449,8 @@
       "wallet": 0,
       "locked": 1250000,
       "staked": 1250000,
+      "burned": 0,
+      "points": 2358,
       "total": 2500000
     },
     {
@@ -378,6 +460,8 @@
       "wallet": 1,
       "locked": 2499999,
       "staked": 0,
+      "burned": 0,
+      "points": 3043,
       "total": 2500000
     },
     {
@@ -387,6 +471,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 2500000,
+      "burned": 0,
+      "points": 1361,
       "total": 2500000
     },
     {
@@ -396,6 +482,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 2500000,
+      "burned": 0,
+      "points": 0,
       "total": 2500000
     },
     {
@@ -405,6 +493,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 2500000,
+      "burned": 0,
+      "points": 0,
       "total": 2500000
     },
     {
@@ -414,6 +504,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 2500000,
+      "burned": 0,
+      "points": 0,
       "total": 2500000
     },
     {
@@ -423,6 +515,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 2500000,
+      "burned": 0,
+      "points": 0,
       "total": 2500000
     },
     {
@@ -432,6 +526,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 2302969,
+      "burned": 0,
+      "points": 1307,
       "total": 2302969
     },
     {
@@ -441,6 +537,8 @@
       "wallet": 1,
       "locked": 2298127,
       "staked": 0,
+      "burned": 184359,
+      "points": 3143,
       "total": 2298128
     },
     {
@@ -450,6 +548,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 1964402,
+      "burned": 0,
+      "points": 0,
       "total": 1964402
     },
     {
@@ -459,6 +559,8 @@
       "wallet": 0,
       "locked": 1961672,
       "staked": 0,
+      "burned": 0,
+      "points": 2696,
       "total": 1961672
     },
     {
@@ -468,6 +570,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 1521099,
+      "burned": 0,
+      "points": 0,
       "total": 1521099
     },
     {
@@ -477,6 +581,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 1501066,
+      "burned": 0,
+      "points": 0,
       "total": 1501066
     },
     {
@@ -486,6 +592,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 1500200,
+      "burned": 0,
+      "points": 1055,
       "total": 1500200
     },
     {
@@ -495,6 +603,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 1500000,
+      "burned": 0,
+      "points": 0,
       "total": 1500000
     },
     {
@@ -504,6 +614,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 1500000,
+      "burned": 0,
+      "points": 0,
       "total": 1500000
     },
     {
@@ -513,6 +625,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 1500000,
+      "burned": 0,
+      "points": 0,
       "total": 1500000
     },
     {
@@ -522,6 +636,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 1500000,
+      "burned": 0,
+      "points": 0,
       "total": 1500000
     },
     {
@@ -531,6 +647,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 1500000,
+      "burned": 0,
+      "points": 0,
       "total": 1500000
     },
     {
@@ -540,6 +658,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 1500000,
+      "burned": 0,
+      "points": 0,
       "total": 1500000
     },
     {
@@ -549,6 +669,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 1456167,
+      "burned": 0,
+      "points": 0,
       "total": 1456167
     },
     {
@@ -558,6 +680,8 @@
       "wallet": 1,
       "locked": 966706,
       "staked": 483353,
+      "burned": 483352,
+      "points": 2743,
       "total": 1450060
     },
     {
@@ -567,6 +691,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 1306055,
+      "burned": 0,
+      "points": 0,
       "total": 1306055
     },
     {
@@ -576,6 +702,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 1297937,
+      "burned": 0,
+      "points": 0,
       "total": 1297937
     },
     {
@@ -585,6 +713,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 1250000,
+      "burned": 0,
+      "points": 0,
       "total": 1250000
     },
     {
@@ -594,6 +724,8 @@
       "wallet": 0,
       "locked": 1171281,
       "staked": 0,
+      "burned": 0,
+      "points": 2083,
       "total": 1171281
     },
     {
@@ -603,6 +735,8 @@
       "wallet": 946277,
       "locked": 0,
       "staked": 147431,
+      "burned": 0,
+      "points": 0,
       "total": 1093708
     },
     {
@@ -612,6 +746,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 1000045,
+      "burned": 0,
+      "points": 0,
       "total": 1000045
     },
     {
@@ -621,6 +757,8 @@
       "wallet": 1000000,
       "locked": 0,
       "staked": 0,
+      "burned": 498186,
+      "points": 1922,
       "total": 1000000
     },
     {
@@ -630,6 +768,8 @@
       "wallet": 1000000,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 1000000
     },
     {
@@ -639,6 +779,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 1000000,
+      "burned": 0,
+      "points": 0,
       "total": 1000000
     },
     {
@@ -648,6 +790,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 1000000,
+      "burned": 0,
+      "points": 0,
       "total": 1000000
     },
     {
@@ -657,6 +801,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 950000,
+      "burned": 0,
+      "points": 0,
       "total": 950000
     },
     {
@@ -666,6 +812,8 @@
       "wallet": 0,
       "locked": 929398,
       "staked": 0,
+      "burned": 0,
+      "points": 1856,
       "total": 929398
     },
     {
@@ -675,6 +823,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 900000,
+      "burned": 0,
+      "points": 0,
       "total": 900000
     },
     {
@@ -684,6 +834,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 882385,
+      "burned": 0,
+      "points": 0,
       "total": 882385
     },
     {
@@ -693,6 +845,8 @@
       "wallet": 875600,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 875600
     },
     {
@@ -702,6 +856,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 875200,
+      "burned": 0,
+      "points": 0,
       "total": 875200
     },
     {
@@ -711,6 +867,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 875200,
+      "burned": 0,
+      "points": 0,
       "total": 875200
     },
     {
@@ -720,6 +878,8 @@
       "wallet": 875000,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 875000
     },
     {
@@ -729,6 +889,8 @@
       "wallet": 875000,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 875000
     },
     {
@@ -738,6 +900,8 @@
       "wallet": 875000,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 875000
     },
     {
@@ -747,6 +911,8 @@
       "wallet": 875000,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 875000
     },
     {
@@ -756,6 +922,8 @@
       "wallet": 875000,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 875000
     },
     {
@@ -765,6 +933,8 @@
       "wallet": 875000,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 875000
     },
     {
@@ -774,6 +944,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 875000,
+      "burned": 0,
+      "points": 0,
       "total": 875000
     },
     {
@@ -783,6 +955,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 875000,
+      "burned": 0,
+      "points": 0,
       "total": 875000
     },
     {
@@ -792,6 +966,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 875000,
+      "burned": 0,
+      "points": 0,
       "total": 875000
     },
     {
@@ -801,6 +977,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 875000,
+      "burned": 0,
+      "points": 0,
       "total": 875000
     },
     {
@@ -810,6 +988,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 875000,
+      "burned": 0,
+      "points": 0,
       "total": 875000
     },
     {
@@ -819,6 +999,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 875000,
+      "burned": 0,
+      "points": 0,
       "total": 875000
     },
     {
@@ -828,6 +1010,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 875000,
+      "burned": 0,
+      "points": 0,
       "total": 875000
     },
     {
@@ -837,6 +1021,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 875000,
+      "burned": 0,
+      "points": 0,
       "total": 875000
     },
     {
@@ -846,6 +1032,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 875000,
+      "burned": 0,
+      "points": 0,
       "total": 875000
     },
     {
@@ -855,6 +1043,8 @@
       "wallet": 0,
       "locked": 103999,
       "staked": 719776,
+      "burned": 10026993,
+      "points": 8672,
       "total": 823775
     },
     {
@@ -864,6 +1054,8 @@
       "wallet": 800000,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 800000
     },
     {
@@ -873,6 +1065,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 751335,
+      "burned": 0,
+      "points": 0,
       "total": 751335
     },
     {
@@ -882,16 +1076,20 @@
       "wallet": 0,
       "locked": 0,
       "staked": 750000,
+      "burned": 0,
+      "points": 0,
       "total": 750000
     },
     {
       "a": "0x8B4A106521AE96a41B2Ec405d3FCb05eaf4A7C4f",
       "n": null,
       "t": "holder",
-      "wallet": 82530,
+      "wallet": 108033,
       "locked": 500000,
       "staked": 91590,
-      "total": 674120
+      "burned": 54300000,
+      "points": 20104,
+      "total": 699623
     },
     {
       "a": "0x5Abbf6aB860577E89C0483cF141e300bF8B74250",
@@ -900,6 +1098,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 671250,
+      "burned": 0,
+      "points": 0,
       "total": 671250
     },
     {
@@ -909,6 +1109,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 670255,
+      "burned": 0,
+      "points": 0,
       "total": 670255
     },
     {
@@ -918,6 +1120,8 @@
       "wallet": 625000,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 625000
     },
     {
@@ -927,6 +1131,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 625000,
+      "burned": 0,
+      "points": 0,
       "total": 625000
     },
     {
@@ -936,6 +1142,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 625000,
+      "burned": 0,
+      "points": 0,
       "total": 625000
     },
     {
@@ -945,6 +1153,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 625000,
+      "burned": 0,
+      "points": 0,
       "total": 625000
     },
     {
@@ -954,6 +1164,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 571711,
+      "burned": 0,
+      "points": 0,
       "total": 571711
     },
     {
@@ -963,6 +1175,8 @@
       "wallet": 543750,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 543750
     },
     {
@@ -972,6 +1186,8 @@
       "wallet": 539927,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 539927
     },
     {
@@ -981,6 +1197,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 500400,
+      "burned": 0,
+      "points": 0,
       "total": 500400
     },
     {
@@ -990,6 +1208,8 @@
       "wallet": 500000,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 500000
     },
     {
@@ -999,6 +1219,8 @@
       "wallet": 475000,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 475000
     },
     {
@@ -1008,6 +1230,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 460139,
+      "burned": 0,
+      "points": 0,
       "total": 460139
     },
     {
@@ -1017,6 +1241,8 @@
       "wallet": 1206,
       "locked": 440000,
       "staked": 0,
+      "burned": 0,
+      "points": 1277,
       "total": 441206
     },
     {
@@ -1026,6 +1252,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 438000,
+      "burned": 0,
+      "points": 0,
       "total": 438000
     },
     {
@@ -1035,6 +1263,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 437500,
+      "burned": 0,
+      "points": 0,
       "total": 437500
     },
     {
@@ -1044,6 +1274,8 @@
       "wallet": 436375,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 436375
     },
     {
@@ -1053,6 +1285,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 400000,
+      "burned": 0,
+      "points": 0,
       "total": 400000
     },
     {
@@ -1062,6 +1296,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 373288,
+      "burned": 0,
+      "points": 0,
       "total": 373288
     },
     {
@@ -1071,6 +1307,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 360993,
+      "burned": 0,
+      "points": 0,
       "total": 360993
     },
     {
@@ -1080,6 +1318,8 @@
       "wallet": 5,
       "locked": 0,
       "staked": 345092,
+      "burned": 0,
+      "points": 0,
       "total": 345097
     },
     {
@@ -1089,6 +1329,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 314859,
+      "burned": 0,
+      "points": 0,
       "total": 314859
     },
     {
@@ -1098,6 +1340,8 @@
       "wallet": 314324,
       "locked": 0,
       "staked": 0,
+      "burned": 31000000,
+      "points": 15154,
       "total": 314324
     },
     {
@@ -1107,6 +1351,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 312500,
+      "burned": 0,
+      "points": 0,
       "total": 312500
     },
     {
@@ -1116,6 +1362,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 304184,
+      "burned": 0,
+      "points": 0,
       "total": 304184
     },
     {
@@ -1125,6 +1373,8 @@
       "wallet": 56511,
       "locked": 0,
       "staked": 208062,
+      "burned": 0,
+      "points": 0,
       "total": 264573
     },
     {
@@ -1134,6 +1384,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 250000,
+      "burned": 0,
+      "points": 0,
       "total": 250000
     },
     {
@@ -1143,6 +1395,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 244148,
+      "burned": 0,
+      "points": 0,
       "total": 244148
     },
     {
@@ -1152,6 +1406,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 242928,
+      "burned": 0,
+      "points": 0,
       "total": 242928
     },
     {
@@ -1161,6 +1417,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 239106,
+      "burned": 0,
+      "points": 0,
       "total": 239106
     },
     {
@@ -1170,6 +1428,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 229967,
+      "burned": 0,
+      "points": 0,
       "total": 229967
     },
     {
@@ -1179,6 +1439,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 227895,
+      "burned": 0,
+      "points": 0,
       "total": 227895
     },
     {
@@ -1188,6 +1450,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 207775,
+      "burned": 0,
+      "points": 0,
       "total": 207775
     },
     {
@@ -1197,6 +1461,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 183141,
+      "burned": 0,
+      "points": 0,
       "total": 183141
     },
     {
@@ -1206,6 +1472,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 164798,
+      "burned": 0,
+      "points": 350,
       "total": 164798
     },
     {
@@ -1215,15 +1483,19 @@
       "wallet": 0,
       "locked": 0,
       "staked": 161821,
+      "burned": 0,
+      "points": 0,
       "total": 161821
     },
     {
       "a": "0xd572D5485904240D119814080B29597beA3354d4",
       "n": null,
       "t": "holder",
-      "wallet": 10640,
+      "wallet": 0,
       "locked": 63839,
-      "staked": 85119,
+      "staked": 95759,
+      "burned": 10640,
+      "points": 622,
       "total": 159598
     },
     {
@@ -1233,6 +1505,8 @@
       "wallet": 0,
       "locked": 152388,
       "staked": 0,
+      "burned": 0,
+      "points": 752,
       "total": 152388
     },
     {
@@ -1242,6 +1516,8 @@
       "wallet": 266,
       "locked": 0,
       "staked": 150000,
+      "burned": 0,
+      "points": 0,
       "total": 150266
     },
     {
@@ -1251,6 +1527,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 127540,
+      "burned": 0,
+      "points": 0,
       "total": 127540
     },
     {
@@ -1260,6 +1538,8 @@
       "wallet": 121785,
       "locked": 0,
       "staked": 0,
+      "burned": 22652258,
+      "points": 12954,
       "total": 121785
     },
     {
@@ -1269,6 +1549,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 119252,
+      "burned": 0,
+      "points": 0,
       "total": 119252
     },
     {
@@ -1278,6 +1560,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 106168,
+      "burned": 0,
+      "points": 0,
       "total": 106168
     },
     {
@@ -1287,6 +1571,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 100000,
+      "burned": 0,
+      "points": 0,
       "total": 100000
     },
     {
@@ -1296,6 +1582,8 @@
       "wallet": 90013,
       "locked": 0,
       "staked": 0,
+      "burned": 48000000,
+      "points": 18857,
       "total": 90013
     },
     {
@@ -1305,6 +1593,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 83300,
+      "burned": 0,
+      "points": 0,
       "total": 83300
     },
     {
@@ -1314,6 +1604,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 83291,
+      "burned": 0,
+      "points": 0,
       "total": 83291
     },
     {
@@ -1323,6 +1615,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 76488,
+      "burned": 0,
+      "points": 0,
       "total": 76488
     },
     {
@@ -1332,6 +1626,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 76477,
+      "burned": 0,
+      "points": 0,
       "total": 76477
     },
     {
@@ -1341,6 +1637,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 75000,
+      "burned": 0,
+      "points": 0,
       "total": 75000
     },
     {
@@ -1350,6 +1648,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 69420,
+      "burned": 0,
+      "points": 0,
       "total": 69420
     },
     {
@@ -1359,6 +1659,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 64802,
+      "burned": 0,
+      "points": 0,
       "total": 64802
     },
     {
@@ -1368,6 +1670,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 58007,
+      "burned": 0,
+      "points": 0,
       "total": 58007
     },
     {
@@ -1377,6 +1681,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 57755,
+      "burned": 0,
+      "points": 0,
       "total": 57755
     },
     {
@@ -1386,6 +1692,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 56780,
+      "burned": 0,
+      "points": 0,
       "total": 56780
     },
     {
@@ -1395,6 +1703,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 54389,
+      "burned": 0,
+      "points": 0,
       "total": 54389
     },
     {
@@ -1404,6 +1714,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 50000,
+      "burned": 0,
+      "points": 0,
       "total": 50000
     },
     {
@@ -1413,6 +1725,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 42964,
+      "burned": 0,
+      "points": 0,
       "total": 42964
     },
     {
@@ -1422,6 +1736,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 40000,
+      "burned": 0,
+      "points": 0,
       "total": 40000
     },
     {
@@ -1431,6 +1747,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 31338,
+      "burned": 0,
+      "points": 0,
       "total": 31338
     },
     {
@@ -1440,6 +1758,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 30095,
+      "burned": 0,
+      "points": 0,
       "total": 30095
     },
     {
@@ -1449,6 +1769,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 27985,
+      "burned": 0,
+      "points": 0,
       "total": 27985
     },
     {
@@ -1458,6 +1780,8 @@
       "wallet": 0,
       "locked": 25000,
       "staked": 0,
+      "burned": 0,
+      "points": 305,
       "total": 25000
     },
     {
@@ -1467,6 +1791,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 22282,
+      "burned": 0,
+      "points": 0,
       "total": 22282
     },
     {
@@ -1476,6 +1802,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 21109,
+      "burned": 0,
+      "points": 0,
       "total": 21109
     },
     {
@@ -1485,6 +1813,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 20000,
+      "burned": 0,
+      "points": 0,
       "total": 20000
     },
     {
@@ -1494,6 +1824,8 @@
       "wallet": 11390,
       "locked": 0,
       "staked": 0,
+      "burned": 15250000,
+      "points": 10629,
       "total": 11390
     },
     {
@@ -1503,6 +1835,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 10000,
+      "burned": 0,
+      "points": 0,
       "total": 10000
     },
     {
@@ -1512,6 +1846,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 8929,
+      "burned": 0,
+      "points": 0,
       "total": 8929
     },
     {
@@ -1521,6 +1857,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 7148,
+      "burned": 0,
+      "points": 0,
       "total": 7148
     },
     {
@@ -1530,6 +1868,8 @@
       "wallet": 0,
       "locked": 4111,
       "staked": 2145,
+      "burned": 176,
+      "points": 135,
       "total": 6256
     },
     {
@@ -1539,6 +1879,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 4479,
+      "burned": 0,
+      "points": 0,
       "total": 4479
     },
     {
@@ -1548,6 +1890,8 @@
       "wallet": 1000,
       "locked": 0,
       "staked": 522,
+      "burned": 0,
+      "points": 0,
       "total": 1522
     },
     {
@@ -1557,6 +1901,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 1463,
+      "burned": 0,
+      "points": 0,
       "total": 1463
     },
     {
@@ -1566,6 +1912,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 538,
+      "burned": 0,
+      "points": 20,
       "total": 538
     },
     {
@@ -1575,6 +1923,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 432,
+      "burned": 0,
+      "points": 0,
       "total": 432
     },
     {
@@ -1584,6 +1934,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 400,
+      "burned": 0,
+      "points": 0,
       "total": 400
     },
     {
@@ -1593,6 +1945,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 200,
+      "burned": 0,
+      "points": 0,
       "total": 200
     },
     {
@@ -1602,6 +1956,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 66,
+      "burned": 0,
+      "points": 0,
       "total": 66
     },
     {
@@ -1611,6 +1967,8 @@
       "wallet": 1,
       "locked": 0,
       "staked": 1,
+      "burned": 0,
+      "points": 0,
       "total": 2
     },
     {
@@ -1620,6 +1978,8 @@
       "wallet": 1,
       "locked": 0,
       "staked": 0,
+      "burned": 3525423,
+      "points": 5111,
       "total": 1
     },
     {
@@ -1629,6 +1989,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 0,
+      "burned": 32242620,
+      "points": 15455,
       "total": 0
     },
     {
@@ -1638,6 +2000,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 0,
+      "burned": 1014501,
+      "points": 2742,
       "total": 0
     },
     {
@@ -1647,6 +2011,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 0,
+      "burned": 361465,
+      "points": 1637,
       "total": 0
     },
     {
@@ -1656,6 +2022,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 0,
+      "burned": 1262173,
+      "points": 3058,
       "total": 0
     },
     {
@@ -1665,6 +2033,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 0,
+      "burned": 3560364,
+      "points": 5136,
       "total": 0
     },
     {
@@ -1674,6 +2044,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 0,
+      "burned": 15701738,
+      "points": 10785,
       "total": 0
     },
     {
@@ -1683,6 +2055,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 0,
+      "burned": 3461913,
+      "points": 5064,
       "total": 0
     },
     {
@@ -1692,6 +2066,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 0,
+      "burned": 4350000,
+      "points": 5677,
       "total": 0
     },
     {
@@ -1701,6 +2077,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 0,
+      "burned": 202023,
+      "points": 1224,
       "total": 0
     },
     {
@@ -1710,6 +2088,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 0
     },
     {
@@ -1719,6 +2099,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 0
     },
     {
@@ -1728,6 +2110,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 0
     },
     {
@@ -1737,6 +2121,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 0
     },
     {
@@ -1746,6 +2132,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 0
     },
     {
@@ -1755,6 +2143,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 0
     },
     {
@@ -1764,6 +2154,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 0
     },
     {
@@ -1773,6 +2165,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 0
     },
     {
@@ -1782,6 +2176,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 0
     },
     {
@@ -1791,6 +2187,8 @@
       "wallet": 0,
       "locked": 0,
       "staked": 0,
+      "burned": 0,
+      "points": 0,
       "total": 0
     }
   ]
