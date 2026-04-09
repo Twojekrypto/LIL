@@ -1,6 +1,6 @@
 {
   "ebProto": {
-    "lastBlock": 82410837,
+    "lastBlock": 82493450,
     "depositors": [
       "0x1D03697F5FFB0FD4486E5a78F0013BFb8edb691d",
       "0x175F0b653D4D2B9302c11942Ca31cB0987A59786",
@@ -38,7 +38,7 @@
     ]
   },
   "ebStake": {
-    "lastBlock": 82410844,
+    "lastBlock": 82493453,
     "depositors": [
       "0x0fc0EbE63B74C3c90731A3cDaE03c9a51B084F36",
       "0x11902dC458d7e2CE6bAC74859ddb07c7861b70Ad",
@@ -129,5 +129,5 @@
       "0x4827e436B09243A5824eA199500e34b6ddA1133A"
     ]
   },
-  "updatedAt": "2026-04-08T08:54:30.952Z"
+  "updatedAt": "2026-04-09T09:00:36.711Z"
 }
