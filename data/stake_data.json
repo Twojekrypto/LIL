@@ -1,11 +1,11 @@
 {
-  "fetchedAt": "2026-04-09T09:00:36.711Z",
-  "block": 82493444,
+  "fetchedAt": "2026-04-10T09:01:37.495Z",
+  "block": 82574748,
   "moatTotals": {
-    "totalStaked": 156235166,
-    "totalLocked": 158815723,
-    "totalBurned": 325042585,
-    "totalInContract": 315050889
+    "totalStaked": 155584870,
+    "totalLocked": 152340723,
+    "totalBurned": 325867627,
+    "totalInContract": 307925593
   },
   "stakers": [
     {
@@ -306,6 +306,15 @@
       "totalStaked": 1964402
     },
     {
+      "a": "0x25F4891C6b1ef81BfB1363abA947b9eBeD9D011C",
+      "n": null,
+      "t": "holder",
+      "moatStake": 0,
+      "ebProto": 0,
+      "ebStake": 1705774,
+      "totalStaked": 1705774
+    },
+    {
       "a": "0x4533E03d983Fae04741131C5f7cB35F1b32A1ACD",
       "n": null,
       "t": "holder",
@@ -421,15 +430,6 @@
       "ebProto": 0,
       "ebStake": 1306055,
       "totalStaked": 1306055
-    },
-    {
-      "a": "0x785a9369CF7918C0a295809962EAF9d8FAbde98D",
-      "n": null,
-      "t": "holder",
-      "moatStake": 1300591,
-      "ebProto": 0,
-      "ebStake": 0,
-      "totalStaked": 1300591
     },
     {
       "a": "0xf27f70Baba694309b7E2Fecb1d72803B086C0086",
@@ -655,6 +655,15 @@
       "ebProto": 670255,
       "ebStake": 0,
       "totalStaked": 670255
+    },
+    {
+      "a": "0x785a9369CF7918C0a295809962EAF9d8FAbde98D",
+      "n": null,
+      "t": "holder",
+      "moatStake": 650295,
+      "ebProto": 0,
+      "ebStake": 0,
+      "totalStaked": 650295
     },
     {
       "a": "0xB0eaF4eC8c48395fad80d59E6F129D807ca11755",
