@@ -1,6 +1,6 @@
 {
-  "fetchedAt": "2026-04-15T09:12:09.001Z",
-  "block": 82991339,
+  "fetchedAt": "2026-04-16T09:11:19.640Z",
+  "block": 83075881,
   "holders": [
     {
       "a": "0x5b5a1503f491B2935BF757b21d2832a2B3D0df44",
@@ -1106,12 +1106,12 @@
       "a": "0x8B4A106521AE96a41B2Ec405d3FCb05eaf4A7C4f",
       "n": null,
       "t": "holder",
-      "wallet": 85431,
+      "wallet": 121005,
       "locked": 500000,
       "staked": 91590,
       "burned": 54300000,
       "points": 20104,
-      "total": 677021
+      "total": 712595
     },
     {
       "a": "0x5Abbf6aB860577E89C0483cF141e300bF8B74250",
@@ -1345,6 +1345,17 @@
       "total": 345097
     },
     {
+      "a": "0x9c5262E19B1235e0D21eF132DE4F2BecE2b3E92D",
+      "n": null,
+      "t": "holder",
+      "wallet": 333894,
+      "locked": 0,
+      "staked": 0,
+      "burned": 31200000,
+      "points": 15203,
+      "total": 333894
+    },
+    {
       "a": "0x1d9f38209C1feeB208210eC571fb68A210D98139",
       "n": null,
       "t": "holder",
@@ -1365,17 +1376,6 @@
       "burned": 0,
       "points": 0,
       "total": 312500
-    },
-    {
-      "a": "0x9c5262E19B1235e0D21eF132DE4F2BecE2b3E92D",
-      "n": null,
-      "t": "holder",
-      "wallet": 306054,
-      "locked": 0,
-      "staked": 0,
-      "burned": 31200000,
-      "points": 15203,
-      "total": 306054
     },
     {
       "a": "0x75Ba54fc40Fe4724536247d16bC598463410723B",
@@ -1488,6 +1488,17 @@
       "total": 183141
     },
     {
+      "a": "0x5d481170Ad927a7220150702150d70e4FDA9082C",
+      "n": null,
+      "t": "holder",
+      "wallet": 176268,
+      "locked": 0,
+      "staked": 0,
+      "burned": 48000000,
+      "points": 18857,
+      "total": 176268
+    },
+    {
       "a": "0xd572D5485904240D119814080B29597beA3354d4",
       "n": null,
       "t": "holder",
@@ -1552,17 +1563,6 @@
       "burned": 0,
       "points": 0,
       "total": 150266
-    },
-    {
-      "a": "0x5d481170Ad927a7220150702150d70e4FDA9082C",
-      "n": null,
-      "t": "holder",
-      "wallet": 137602,
-      "locked": 0,
-      "staked": 0,
-      "burned": 48000000,
-      "points": 18857,
-      "total": 137602
     },
     {
       "a": "0x2a19Ab7C15fEe9a924277D615Ab2aeFEA0E7B89a",
