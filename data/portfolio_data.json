@@ -1,17 +1,17 @@
 {
-  "fetchedAt": "2026-04-22T09:13:41.535Z",
-  "block": 83584494,
+  "fetchedAt": "2026-04-23T09:20:16.432Z",
+  "block": 83669444,
   "holders": [
     {
       "a": "0x5b5a1503f491B2935BF757b21d2832a2B3D0df44",
       "n": "DAO LIL",
       "t": "team",
-      "wallet": 95007255,
+      "wallet": 200411673,
       "locked": 0,
       "staked": 0,
       "burned": 0,
       "points": 0,
-      "total": 95007255
+      "total": 200411673
     },
     {
       "a": "0xF1B1CAE350ddF76b6Dcd75C21551DeD08d26968e",
@@ -1411,6 +1411,17 @@
       "total": 250000
     },
     {
+      "a": "0x5d481170Ad927a7220150702150d70e4FDA9082C",
+      "n": null,
+      "t": "holder",
+      "wallet": 245811,
+      "locked": 0,
+      "staked": 0,
+      "burned": 48000000,
+      "points": 18857,
+      "total": 245811
+    },
+    {
       "a": "0xC5A10d4BceF0843ed1Dc3a8b40D80805abECc2F6",
       "n": null,
       "t": "holder",
@@ -1475,17 +1486,6 @@
       "burned": 0,
       "points": 0,
       "total": 207775
-    },
-    {
-      "a": "0x5d481170Ad927a7220150702150d70e4FDA9082C",
-      "n": null,
-      "t": "holder",
-      "wallet": 193352,
-      "locked": 0,
-      "staked": 0,
-      "burned": 48000000,
-      "points": 18857,
-      "total": 193352
     },
     {
       "a": "0x984a5B2c8E629911c00F3937A5A49A43b158398A",
@@ -2016,17 +2016,6 @@
       "total": 2
     },
     {
-      "a": "0x83423b8099B3dBcf1B118083C182cD5947495054",
-      "n": null,
-      "t": "holder",
-      "wallet": 1,
-      "locked": 0,
-      "staked": 0,
-      "burned": 1370950,
-      "points": 3187,
-      "total": 1
-    },
-    {
       "a": "0x0dd894F173ec6580D460A9aEdcb5693c1e485E76",
       "n": null,
       "t": "holder",
@@ -2057,6 +2046,17 @@
       "staked": 0,
       "burned": 361465,
       "points": 1637,
+      "total": 0
+    },
+    {
+      "a": "0x83423b8099B3dBcf1B118083C182cD5947495054",
+      "n": null,
+      "t": "holder",
+      "wallet": 0,
+      "locked": 0,
+      "staked": 0,
+      "burned": 1386377,
+      "points": 3205,
       "total": 0
     },
     {
