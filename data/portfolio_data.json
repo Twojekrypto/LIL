@@ -1,6 +1,6 @@
 {
-  "fetchedAt": "2026-04-25T08:43:58.803Z",
-  "block": 83834068,
+  "fetchedAt": "2026-04-26T08:52:15.844Z",
+  "block": 83917892,
   "holders": [
     {
       "a": "0x5b5a1503f491B2935BF757b21d2832a2B3D0df44",
@@ -17,12 +17,12 @@
       "a": "0xF1B1CAE350ddF76b6Dcd75C21551DeD08d26968e",
       "n": null,
       "t": "holder",
-      "wallet": 2999994,
+      "wallet": 1999994,
       "locked": 42429079,
       "staked": 0,
-      "burned": 43501031,
-      "points": 21895,
-      "total": 45429073
+      "burned": 44501031,
+      "points": 22064,
+      "total": 44429073
     },
     {
       "a": "0xa344C1401D8fdEC5F842E07a488006c6ec6A26b9",
@@ -556,12 +556,12 @@
       "a": "0x9992e35790176857ff3825554203f6918b8DEaEa",
       "n": null,
       "t": "holder",
-      "wallet": 3200,
+      "wallet": 7949,
       "locked": 1640000,
-      "staked": 80000,
-      "burned": 71441,
-      "points": 2582,
-      "total": 1723200
+      "staked": 100000,
+      "burned": 111441,
+      "points": 2641,
+      "total": 1747949
     },
     {
       "a": "0x25F4891C6b1ef81BfB1363abA947b9eBeD9D011C",
@@ -1477,6 +1477,17 @@
       "total": 207775
     },
     {
+      "a": "0x5d481170Ad927a7220150702150d70e4FDA9082C",
+      "n": null,
+      "t": "holder",
+      "wallet": 201026,
+      "locked": 0,
+      "staked": 0,
+      "burned": 48000000,
+      "points": 18857,
+      "total": 201026
+    },
+    {
       "a": "0x984a5B2c8E629911c00F3937A5A49A43b158398A",
       "n": null,
       "t": "holder",
@@ -1574,17 +1585,6 @@
       "burned": 0,
       "points": 0,
       "total": 119252
-    },
-    {
-      "a": "0x5d481170Ad927a7220150702150d70e4FDA9082C",
-      "n": null,
-      "t": "holder",
-      "wallet": 107400,
-      "locked": 0,
-      "staked": 0,
-      "burned": 48000000,
-      "points": 18857,
-      "total": 107400
     },
     {
       "a": "0x23c7b9d0Ba7852fcbcab6C544c8D443c95BED7AB",
