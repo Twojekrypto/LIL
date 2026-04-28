@@ -1868,11 +1868,11 @@
                     </div>
                     <div class="circ-stat">
                         <div class="label">🔥 Burned</div>
-                        <div class="value red">432,661,241</div>
+                        <div class="value red">438,861,242</div>
                     </div>
                     <div class="circ-stat" style="border-color: rgba(16, 185, 129, 0.25);">
                         <div class="label">Effective Supply (post-burn)</div>
-                        <div class="value green">917,338,759</div>
+                        <div class="value green">911,138,758</div>
                     </div>
                 </div>
                 <div class="circ-stats" style="grid-template-columns: repeat(4, 1fr);">
@@ -1883,18 +1883,18 @@
                     </div>
                     <div class="circ-stat" style="border-color: rgba(245, 158, 11, 0.25);">
                         <div class="label">💧 LP (Pharaoh)</div>
-                        <div class="value amber">218,054,497</div>
-                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-amber);">23.8%</div>
+                        <div class="value amber">217,974,663</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-amber);">23.9%</div>
                     </div>
                     <div class="circ-stat" style="border-color: rgba(139, 92, 246, 0.25);">
                         <div class="label">👥 Team / DAO</div>
-                        <div class="value" style="color: var(--accent-purple);">201,878,010</div>
-                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-purple);">22.0%</div>
+                        <div class="value" style="color: var(--accent-purple);">190,021,610</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-purple);">20.9%</div>
                     </div>
                     <div class="circ-stat" style="border-color: rgba(16, 185, 129, 0.25);">
                         <div class="label">🟢 Free Float</div>
-                        <div class="value green">238,556,467</div>
-                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-green);">26.0%</div>
+                        <div class="value green">244,104,700</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-green);">26.8%</div>
                     </div>
                 </div>
             </div>
@@ -2403,33 +2403,33 @@
 
         // ── Top 100 Holders Data (from on-chain, 26.03.2026) ──
         const TOTAL_SUPPLY = 1350000000;
-        const BURN_AMOUNT = 432661241;
+        const BURN_AMOUNT = 438861242;
         const EFFECTIVE_SUPPLY = TOTAL_SUPPLY - BURN_AMOUNT; // 986,812,159 — post-burn
         const TAG_MAP = {burn:'t-burn',lp:'t-lp',contract:'t-contract',team:'t-team',holder:'t-holder'};
         const TAG_LABEL = {burn:'Burn',lp:'LP',contract:'Contract',team:'Team',holder:'Holder'};
         const HOLDERS_DATA = [
-            {a:'0x000000000000000000000000000000000000dEaD',b:432661241,n:'Burn Address',t:'contract',tl:'Burn',tc:'burn'},
-            {a:'0x7A4D20261a765Bd9bA67D49FBf8189843eEC3393',b:258849785,n:'MultiLockMoat (Locker)',t:'contract',tl:'Contract',tc:'contract'},
-            {a:'0x8acc49857A1259D25eb3CA0aa15B398D0E149EF2',b:218054497,n:'Pharaoh LP (LIL/WAVAX)',t:'contract',tl:'LP',tc:'lp'},
-            {a:'0x5b5a1503f491B2935BF757b21d2832a2B3D0df44',b:200411673,n:'DAO LIL',t:'team',tl:'DAO',tc:'team'},
-            {a:'0x2Bf32c61786b8A7b8035a029a82a23bE556DE537',b:138063253,n:'Earningsbaystaking',t:'contract',tl:'Stake (no lock)',tc:'holder'},
-            {a:'0x28DA3DdE285D8F1f87B2D858f89961Bb8B9Af180',b:26542223,n:null,t:'holder'},
+            {a:'0x000000000000000000000000000000000000dEaD',b:438861242,n:'Burn Address',t:'contract',tl:'Burn',tc:'burn'},
+            {a:'0x7A4D20261a765Bd9bA67D49FBf8189843eEC3393',b:259037785,n:'MultiLockMoat (Locker)',t:'contract',tl:'Contract',tc:'contract'},
+            {a:'0x8acc49857A1259D25eb3CA0aa15B398D0E149EF2',b:217974663,n:'Pharaoh LP (LIL/WAVAX)',t:'contract',tl:'LP',tc:'lp'},
+            {a:'0x5b5a1503f491B2935BF757b21d2832a2B3D0df44',b:188555273,n:'DAO LIL',t:'team',tl:'DAO',tc:'team'},
+            {a:'0x2Bf32c61786b8A7b8035a029a82a23bE556DE537',b:137993833,n:'Earningsbaystaking',t:'contract',tl:'Stake (no lock)',tc:'holder'},
+            {a:'0x28DA3DdE285D8F1f87B2D858f89961Bb8B9Af180',b:26612403,n:null,t:'holder'},
             {a:'0x950a98dd06c898950460b0D1FCaD75D4A23Ff373',b:22975640,n:'EarningsBay Protocol',t:'contract',tl:'Contract',tc:'contract'},
+            {a:'0xbA109916A5f1381845d6FC4a2758C1abD196ff93',b:1094380,n:null,t:'holder'},
             {a:'0x1CE8538df8341Ef84C239D7894D3c02E3AcF9Be6',b:1000000,n:null,t:'holder'},
-            {a:'0xbA109916A5f1381845d6FC4a2758C1abD196ff93',b:1000000,n:null,t:'holder'},
             {a:'0xfE85C993605Dd02FFD2b0B7db041f51071e45cd1',b:946277,n:'Treasury',t:'team',tl:'Team',tc:'team'},
+            {a:'0x886A94c3f534813586c59Cc0091f0640e4777F97',b:879840,n:null,t:'holder'},
+            {a:'0x5D8652226E1BcBe99897f18a4c9b8995d793A16C',b:879840,n:null,t:'holder'},
+            {a:'0x9d4b9c2Ab573d0316609326521E18fB37f0ec392',b:878020,n:null,t:'holder'},
+            {a:'0x211eF567C3DB15E5553B1D02abde685fD642c560',b:877420,n:null,t:'holder'},
+            {a:'0x06833acCC167D7d27508832D1538916b075188a8',b:877420,n:null,t:'holder'},
             {a:'0x7fa527A8561cDb3cB16dE66369cb99Bb6f023588',b:877317,n:null,t:'holder'},
-            {a:'0x9d4b9c2Ab573d0316609326521E18fB37f0ec392',b:875600,n:null,t:'holder'},
             {a:'0xdf9C3Dc94f1Ab2f44da4A313ed0AC74465F1c3f2',b:875000,n:null,t:'holder'},
-            {a:'0x886A94c3f534813586c59Cc0091f0640e4777F97',b:875000,n:null,t:'holder'},
-            {a:'0x5D8652226E1BcBe99897f18a4c9b8995d793A16C',b:875000,n:null,t:'holder'},
-            {a:'0x211eF567C3DB15E5553B1D02abde685fD642c560',b:875000,n:null,t:'holder'},
             {a:'0x151104237Df519386E05BeCa007398F08751e1CC',b:875000,n:null,t:'holder'},
-            {a:'0x06833acCC167D7d27508832D1538916b075188a8',b:875000,n:null,t:'holder'},
             {a:'0xfF0ddb910Dd9356ACE9Bc4AB4fc46de233C7ccf6',b:800000,n:null,t:'holder'},
-            {a:'0x3737AB1829d1496d3bd6fc4DEc599Ff0F72f81A7',b:625000,n:null,t:'holder'},
-            {a:'0xf84825664e8A056D41E14fCB04FC67e7F9427DbA',b:543750,n:null,t:'holder'},
-            {a:'0xB09406633B8b62087732404073a6668b26D244Bf',b:539927,n:null,t:'holder'},
+            {a:'0x3737AB1829d1496d3bd6fc4DEc599Ff0F72f81A7',b:629840,n:null,t:'holder'},
+            {a:'0xB09406633B8b62087732404073a6668b26D244Bf',b:559287,n:null,t:'holder'},
+            {a:'0xf84825664e8A056D41E14fCB04FC67e7F9427DbA',b:555850,n:null,t:'holder'},
             {a:'0xBd85dB7baD1A5B54AE2c979E631a5e6067d8833C',b:500000,n:null,t:'holder'},
             {a:'0x75dAC2A468A4A1Db7d715D6f6a93a566fCe0361e',b:475000,n:null,t:'holder'},
             {a:'0xe673d59ed552D6D417ea508233397197daA2645b',b:436375,n:null,t:'holder'},
@@ -2441,25 +2441,27 @@
             {a:'0x244A4a90e148Ec318a85f8C138A274e16FFE3032',b:228562,n:'Pharaoh Team Multisig',t:'team',tl:'Team',tc:'team'},
             {a:'0x8bF0c1f5541744509d26608cbC28e2Ef50606c82',b:150000,n:null,t:'holder'},
             {a:'0xcD6b980029E6E6e0733ac8eC3E02be9410D09799',b:134297,n:null,t:'holder'},
+            {a:'0x5d481170Ad927a7220150702150d70e4FDA9082C',b:128057,n:null,t:'holder'},
             {a:'0x650F464e70B1D41f9B30490db16B50F9f0B7C964',b:121539,n:null,t:'holder'},
+            {a:'0x00D77a45ea3D4E978c3dd5fD3b2A9f268f0B8c14',b:88720,n:null,t:'holder'},
+            {a:'0x8be93f0a9435D487E84a164469E0b24B46F7B5eE',b:57327,n:null,t:'holder'},
             {a:'0xCBBBf30A775Bc88c0693A971F29B275D386a7ce5',b:54581,n:null,t:'holder'},
             {a:'0xc93929c43698A6F4e7684b12688e1a71A9344Ec6',b:53931,n:null,t:'holder'},
             {a:'0xa171dD4D59167E3256831Ab5015cB4fd1C44EcC1',b:53778,n:null,t:'holder'},
             {a:'0x88de50B233052e4Fb783d4F6db78Cc34fEa3e9FC',b:52853,n:'Odos Router V2',t:'contract',tl:'Contract',tc:'contract'},
-            {a:'0x8be93f0a9435D487E84a164469E0b24B46F7B5eE',b:52487,n:null,t:'holder'},
             {a:'0xf3dFB6485C7df16F68a65eD98d6212B108FfC38B',b:50637,n:null,t:'holder'},
-            {a:'0x00D77a45ea3D4E978c3dd5fD3b2A9f268f0B8c14',b:50000,n:null,t:'holder'},
             {a:'0x49386AC6127212eF998d311975BF616eF713809D',b:47927,n:null,t:'holder'},
-            {a:'0x5d481170Ad927a7220150702150d70e4FDA9082C',b:45472,n:null,t:'holder'},
             {a:'0x8D413dB42D6901De42b2C481Cc0F6D0fd1C52828',b:43801,n:null,t:'holder'},
             {a:'0x9300fBfa53d04331f28fBa005C7148FDec6C260B',b:42883,n:null,t:'holder'},
             {a:'0xB1E1a5771883016422235c910Ec3Bca22682CC39',b:42322,n:null,t:'holder'},
             {a:'0xF25f313802d8a6F36A6E40d76264572951eE8127',b:40400,n:null,t:'holder'},
+            {a:'0xe6C35D0aDEeC59101aBE9368154595fdD7278Cf8',b:30405,n:null,t:'holder'},
             {a:'0xEDc67d3D1734f59155687f414F9870CA8492b9Ae',b:27985,n:null,t:'holder'},
             {a:'0xEa7d9e0Ce6544887D58661369f806b5F89279F2e',b:27985,n:null,t:'holder'},
             {a:'0xe86474F97bE2506E8256DD75CB132099E389f520',b:27985,n:null,t:'holder'},
-            {a:'0xe6C35D0aDEeC59101aBE9368154595fdD7278Cf8',b:27985,n:null,t:'holder'},
             {a:'0xf3B76Be9B660060FfFdFCFB08746d773A7f3776c',b:27985,n:null,t:'holder'},
+            {a:'0x5836E7d37F3D350bCb6c688C850055Da9269CD08',b:14520,n:null,t:'holder'},
+            {a:'0x10a6B3F80bC4405260c1ac85Ef0b4C1f86C039b5',b:2420,n:null,t:'holder'},
             {a:'0x330625bFee406c96717bFBD179dbBAD4AcE18BE6',b:0,n:null,t:'holder'},
             {a:'0x8afF5e5527845f2a1A0a6b7d727Db22f7b6C99A7',b:0,n:null,t:'holder'},
             {a:'0x60B615967Db702Be1c4470982E47d5f0A20F88E7',b:0,n:'Stars Arena User',t:'holder'},
@@ -2471,9 +2473,7 @@
             {a:'0x4d86B5A1a65B4097f1B94C9b8995D793A16C03C1',b:0,n:null,t:'holder'},
             {a:'0xB39EDf83279177F8399Ba8583B104F532f7D52Ff',b:0,n:null,t:'holder'},
             {a:'0x3f31fCd1BE6b4B019Dc75ED77965309652Cbb2Ad',b:0,n:null,t:'holder'},
-            {a:'0x10a6B3F80bC4405260c1ac85Ef0b4C1f86C039b5',b:0,n:null,t:'holder'},
             {a:'0xF7D666E7d37F3D350bCb6c688C850055Da92E2Fc',b:0,n:null,t:'holder'},
-            {a:'0x5836E7d37F3D350bCb6c688C850055Da9269CD08',b:0,n:null,t:'holder'},
             {a:'0xBeF2b0b004B254Ac30F46DC06B0ACB483C1BBBA2',b:0,n:null,t:'holder'},
             {a:'0x19932B45836E7d37F3D350bCb6c688C850055Da9',b:0,n:null,t:'holder'},
             {a:'0x8995D793A16C03C142a7220150702150d70e4FDA',b:0,n:null,t:'holder'},
