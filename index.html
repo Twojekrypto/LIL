@@ -1868,11 +1868,11 @@
                     </div>
                     <div class="circ-stat">
                         <div class="label">🔥 Burned</div>
-                        <div class="value red">438,880,602</div>
+                        <div class="value red">439,608,902</div>
                     </div>
                     <div class="circ-stat" style="border-color: rgba(16, 185, 129, 0.25);">
                         <div class="label">Effective Supply (post-burn)</div>
-                        <div class="value green">911,119,398</div>
+                        <div class="value green">910,391,098</div>
                     </div>
                 </div>
                 <div class="circ-stats" style="grid-template-columns: repeat(4, 1fr);">
@@ -1883,17 +1883,17 @@
                     </div>
                     <div class="circ-stat" style="border-color: rgba(245, 158, 11, 0.25);">
                         <div class="label">💧 LP (Pharaoh)</div>
-                        <div class="value amber">219,366,848</div>
+                        <div class="value amber">219,543,546</div>
                         <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-amber);">24.1%</div>
                     </div>
                     <div class="circ-stat" style="border-color: rgba(139, 92, 246, 0.25);">
                         <div class="label">👥 Team / DAO</div>
-                        <div class="value" style="color: var(--accent-purple);">190,021,610</div>
-                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-purple);">20.9%</div>
+                        <div class="value" style="color: var(--accent-purple);">189,730,112</div>
+                        <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-purple);">20.8%</div>
                     </div>
                     <div class="circ-stat" style="border-color: rgba(16, 185, 129, 0.25);">
                         <div class="label">🟢 Free Float</div>
-                        <div class="value green">238,247,492</div>
+                        <div class="value green">237,633,992</div>
                         <div class="label" style="margin-top:4px; margin-bottom:0; font-size:13px; color: var(--accent-green);">26.1%</div>
                     </div>
                 </div>
@@ -2403,14 +2403,14 @@
 
         // ── Top 100 Holders Data (from on-chain, 26.03.2026) ──
         const TOTAL_SUPPLY = 1350000000;
-        const BURN_AMOUNT = 438880602;
+        const BURN_AMOUNT = 439608902;
         const EFFECTIVE_SUPPLY = TOTAL_SUPPLY - BURN_AMOUNT; // 986,812,159 — post-burn
         const TAG_MAP = {burn:'t-burn',lp:'t-lp',contract:'t-contract',team:'t-team',holder:'t-holder'};
         const TAG_LABEL = {burn:'Burn',lp:'LP',contract:'Contract',team:'Team',holder:'Holder'};
         const HOLDERS_DATA = [
-            {a:'0x000000000000000000000000000000000000dEaD',b:438880602,n:'Burn Address',t:'contract',tl:'Burn',tc:'burn'},
+            {a:'0x000000000000000000000000000000000000dEaD',b:439608902,n:'Burn Address',t:'contract',tl:'Burn',tc:'burn'},
             {a:'0x7A4D20261a765Bd9bA67D49FBf8189843eEC3393',b:263483447,n:'MultiLockMoat (Locker)',t:'contract',tl:'Contract',tc:'contract'},
-            {a:'0x8acc49857A1259D25eb3CA0aa15B398D0E149EF2',b:219366848,n:'Pharaoh LP (LIL/WAVAX)',t:'contract',tl:'LP',tc:'lp'},
+            {a:'0x8acc49857A1259D25eb3CA0aa15B398D0E149EF2',b:219543546,n:'Pharaoh LP (LIL/WAVAX)',t:'contract',tl:'LP',tc:'lp'},
             {a:'0x5b5a1503f491B2935BF757b21d2832a2B3D0df44',b:188555273,n:'DAO LIL',t:'team',tl:'DAO',tc:'team'},
             {a:'0x2Bf32c61786b8A7b8035a029a82a23bE556DE537',b:134004621,n:'Earningsbaystaking',t:'contract',tl:'Stake (no lock)',tc:'holder'},
             {a:'0x28DA3DdE285D8F1f87B2D858f89961Bb8B9Af180',b:26612403,n:null,t:'holder'},
@@ -2436,8 +2436,6 @@
             {a:'0xb96b79B74709fA5124d9A0B1253e95133A07A162',b:423287,n:null,t:'holder'},
             {a:'0x0A2e1a76ED641f8a47b8Ab7016a3d05bAeC1ED99',b:421125,n:null,t:'holder'},
             {a:'0xc2B20506830c7B227E4399B65eA64fD12486C46D',b:332964,n:null,t:'holder'},
-            {a:'0x660862D49E92f80f29E56C2770027E8d83e97882',b:291498,n:'Treasury Helper (Pharaoh)',t:'team',tl:'Team',tc:'team'},
-            {a:'0x5d481170Ad927a7220150702150d70e4FDA9082C',b:236979,n:null,t:'holder'},
             {a:'0x394C82976a57c4309138c072149Ee57Aea16560b',b:232906,n:null,t:'holder'},
             {a:'0x244A4a90e148Ec318a85f8C138A274e16FFE3032',b:228562,n:'Pharaoh Team Multisig',t:'team',tl:'Team',tc:'team'},
             {a:'0x8bF0c1f5541744509d26608cbC28e2Ef50606c82',b:150000,n:null,t:'holder'},
@@ -2461,7 +2459,9 @@
             {a:'0xe86474F97bE2506E8256DD75CB132099E389f520',b:27985,n:null,t:'holder'},
             {a:'0xf3B76Be9B660060FfFdFCFB08746d773A7f3776c',b:27985,n:null,t:'holder'},
             {a:'0x5836E7d37F3D350bCb6c688C850055Da9269CD08',b:14520,n:null,t:'holder'},
+            {a:'0x5d481170Ad927a7220150702150d70e4FDA9082C',b:6803,n:null,t:'holder'},
             {a:'0x10a6B3F80bC4405260c1ac85Ef0b4C1f86C039b5',b:2420,n:null,t:'holder'},
+            {a:'0x660862D49E92f80f29E56C2770027E8d83e97882',b:0,n:'Treasury Helper (Pharaoh)',t:'team',tl:'Team',tc:'team'},
             {a:'0x330625bFee406c96717bFBD179dbBAD4AcE18BE6',b:0,n:null,t:'holder'},
             {a:'0x8afF5e5527845f2a1A0a6b7d727Db22f7b6C99A7',b:0,n:null,t:'holder'},
             {a:'0x60B615967Db702Be1c4470982E47d5f0A20F88E7',b:0,n:'Stars Arena User',t:'holder'},
