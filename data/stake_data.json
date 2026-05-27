@@ -1,11 +1,11 @@
 {
-  "fetchedAt": "2026-05-25T11:46:12.903Z",
-  "block": 86334483,
+  "fetchedAt": "2026-05-27T11:31:57.586Z",
+  "block": 86495311,
   "moatTotals": {
-    "totalStaked": 99722103,
-    "totalLocked": 160443082,
-    "totalBurned": 397168815,
-    "totalInContract": 260165185
+    "totalStaked": 107310948,
+    "totalLocked": 160520832,
+    "totalBurned": 397398565,
+    "totalInContract": 267831779
   },
   "stakers": [
     {
@@ -111,18 +111,18 @@
       "a": "0x00d3bE15cc9A9d071b6810531fbAC7938C50aC39",
       "n": null,
       "t": "holder",
-      "moatStake": 0,
+      "moatStake": 3808632,
       "ebProto": 0,
-      "ebStake": 3808632,
+      "ebStake": 0,
       "totalStaked": 3808632
     },
     {
       "a": "0x8e2106E1E299744268f32495b7058d8FefA51231",
       "n": null,
       "t": "holder",
-      "moatStake": 0,
+      "moatStake": 3780212,
       "ebProto": 0,
-      "ebStake": 3780212,
+      "ebStake": 0,
       "totalStaked": 3780212
     },
     {
