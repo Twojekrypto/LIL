@@ -1,6 +1,6 @@
 {
-  "fetchedAt": "2026-05-28T11:31:40.365Z",
-  "block": 86576042,
+  "fetchedAt": "2026-05-29T11:21:46.180Z",
+  "block": 86658005,
   "lockers": [
     {
       "a": "0xF1B1CAE350ddF76b6Dcd75C21551DeD08d26968e",
@@ -446,8 +446,8 @@
       "a": "0xd572D5485904240D119814080B29597beA3354d4",
       "n": null,
       "t": "holder",
-      "totalLocked": 220569,
-      "lockCount": 4,
+      "totalLocked": 265569,
+      "lockCount": 5,
       "locks": [
         {
           "amount": 63839,
@@ -467,6 +467,11 @@
         {
           "amount": 13178,
           "endTs": 1841610890,
+          "durationDays": 730
+        },
+        {
+          "amount": 45000,
+          "endTs": 1843086237,
           "durationDays": 730
         }
       ]
