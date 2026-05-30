@@ -1,6 +1,6 @@
 {
-  "fetchedAt": "2026-05-29T11:21:46.180Z",
-  "block": 86658005,
+  "fetchedAt": "2026-05-30T09:52:56.544Z",
+  "block": 86732949,
   "holders": [
     {
       "a": "0x5b5a1503f491B2935BF757b21d2832a2B3D0df44",
@@ -562,17 +562,6 @@
       "burned": 111441,
       "points": 2641,
       "total": 1750369
-    },
-    {
-      "a": "0x25F4891C6b1ef81BfB1363abA947b9eBeD9D011C",
-      "n": null,
-      "t": "holder",
-      "wallet": 1737234,
-      "locked": 0,
-      "staked": 0,
-      "burned": 0,
-      "points": 0,
-      "total": 1737234
     },
     {
       "a": "0x4533E03d983Fae04741131C5f7cB35F1b32A1ACD",
@@ -1359,12 +1348,12 @@
       "a": "0xd572D5485904240D119814080B29597beA3354d4",
       "n": null,
       "t": "holder",
-      "wallet": 383,
+      "wallet": 594,
       "locked": 265569,
       "staked": 78925,
       "burned": 626139,
       "points": 2384,
-      "total": 344877
+      "total": 345088
     },
     {
       "a": "0x0Bb4b0BF8D1dD7621f493f1a68ad0887d4E5b478",
@@ -2071,17 +2060,6 @@
       "total": 2
     },
     {
-      "a": "0x83423b8099B3dBcf1B118083C182cD5947495054",
-      "n": null,
-      "t": "holder",
-      "wallet": 1,
-      "locked": 0,
-      "staked": 0,
-      "burned": 1501265,
-      "points": 3335,
-      "total": 1
-    },
-    {
       "a": "0x2CbD36D9190c3aB603A8cF685c2a363387bE2314",
       "n": null,
       "t": "holder",
@@ -2101,6 +2079,17 @@
       "staked": 0,
       "burned": 361465,
       "points": 1637,
+      "total": 0
+    },
+    {
+      "a": "0x83423b8099B3dBcf1B118083C182cD5947495054",
+      "n": null,
+      "t": "holder",
+      "wallet": 0,
+      "locked": 0,
+      "staked": 0,
+      "burned": 1515344,
+      "points": 3351,
       "total": 0
     },
     {
@@ -2292,6 +2281,17 @@
     },
     {
       "a": "0x5F8acBE409574Ca6662d3D31c20653e24Ec907CC",
+      "n": null,
+      "t": "holder",
+      "wallet": 0,
+      "locked": 0,
+      "staked": 0,
+      "burned": 0,
+      "points": 0,
+      "total": 0
+    },
+    {
+      "a": "0x25F4891C6b1ef81BfB1363abA947b9eBeD9D011C",
       "n": null,
       "t": "holder",
       "wallet": 0,
