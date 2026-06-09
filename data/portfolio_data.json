@@ -1,6 +1,6 @@
 {
-  "fetchedAt": "2026-06-08T12:26:20.027Z",
-  "block": 87486394,
+  "fetchedAt": "2026-06-09T10:54:08.387Z",
+  "block": 87565714,
   "holders": [
     {
       "a": "0x5b5a1503f491B2935BF757b21d2832a2B3D0df44",
@@ -732,9 +732,9 @@
       "a": "0xefCa8281b1056036414E48f73086C86138EDeeE7",
       "n": null,
       "t": "holder",
-      "wallet": 2420,
+      "wallet": 1002420,
       "locked": 0,
-      "staked": 1000000,
+      "staked": 0,
       "burned": 0,
       "points": 0,
       "total": 1002420
@@ -1444,6 +1444,17 @@
       "total": 207775
     },
     {
+      "a": "0x5d481170Ad927a7220150702150d70e4FDA9082C",
+      "n": null,
+      "t": "holder",
+      "wallet": 207634,
+      "locked": 0,
+      "staked": 0,
+      "burned": 54000000,
+      "points": 20000,
+      "total": 207634
+    },
+    {
       "a": "0x984a5B2c8E629911c00F3937A5A49A43b158398A",
       "n": null,
       "t": "holder",
@@ -1453,17 +1464,6 @@
       "burned": 0,
       "points": 0,
       "total": 183141
-    },
-    {
-      "a": "0x5d481170Ad927a7220150702150d70e4FDA9082C",
-      "n": null,
-      "t": "holder",
-      "wallet": 176250,
-      "locked": 0,
-      "staked": 0,
-      "burned": 54000000,
-      "points": 20000,
-      "total": 176250
     },
     {
       "a": "0xd93BAb51CD83881cE1228650B9798EE8FC3E746c",
@@ -1708,6 +1708,17 @@
       "total": 58007
     },
     {
+      "a": "0x2CbD36D9190c3aB603A8cF685c2a363387bE2314",
+      "n": null,
+      "t": "holder",
+      "wallet": 55773,
+      "locked": 0,
+      "staked": 0,
+      "burned": 23130379,
+      "points": 13090,
+      "total": 55773
+    },
+    {
       "a": "0x84aE1A9f786DD559b6728c7145A3B72Be092708d",
       "n": null,
       "t": "holder",
@@ -1937,17 +1948,6 @@
       "burned": 0,
       "points": 0,
       "total": 4479
-    },
-    {
-      "a": "0x2CbD36D9190c3aB603A8cF685c2a363387bE2314",
-      "n": null,
-      "t": "holder",
-      "wallet": 2421,
-      "locked": 0,
-      "staked": 0,
-      "burned": 23130379,
-      "points": 13090,
-      "total": 2421
     },
     {
       "a": "0x3Df4eBE3e5Bd012F459cD3392c90a2d8b576Ea7C",
