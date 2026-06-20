@@ -1,6 +1,6 @@
 {
-  "fetchedAt": "2026-06-19T12:00:00.187Z",
-  "block": 88364264,
+  "fetchedAt": "2026-06-20T10:27:55.857Z",
+  "block": 88430243,
   "holders": [
     {
       "a": "0x5b5a1503f491B2935BF757b21d2832a2B3D0df44",
@@ -183,11 +183,11 @@
       "n": null,
       "t": "holder",
       "wallet": 0,
-      "locked": 5490448,
+      "locked": 5465706,
       "staked": 0,
       "burned": 0,
       "points": 4510,
-      "total": 5490448
+      "total": 5465706
     },
     {
       "a": "0x767964496c217d5bE9c5cE268112379e5c4b42Fd",
