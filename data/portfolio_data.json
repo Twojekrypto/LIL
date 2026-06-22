@@ -1,6 +1,6 @@
 {
-  "fetchedAt": "2026-06-21T11:11:25.804Z",
-  "block": 88500452,
+  "fetchedAt": "2026-06-22T13:28:40.435Z",
+  "block": 88577116,
   "holders": [
     {
       "a": "0x5b5a1503f491B2935BF757b21d2832a2B3D0df44",
@@ -69,15 +69,26 @@
       "total": 18200000
     },
     {
+      "a": "0x0fc0EbE63B74C3c90731A3cDaE03c9a51B084F36",
+      "n": null,
+      "t": "holder",
+      "wallet": 17828850,
+      "locked": 0,
+      "staked": 0,
+      "burned": 0,
+      "points": 0,
+      "total": 17828850
+    },
+    {
       "a": "0x8566a6a3F75969270B98831B1486AB5D9D9fc389",
       "n": null,
       "t": "holder",
-      "wallet": 0,
-      "locked": 15074596,
+      "wallet": 1,
+      "locked": 15003144,
       "staked": 0,
       "burned": 3146460,
-      "points": 8897,
-      "total": 15074596
+      "points": 8882,
+      "total": 15003145
     },
     {
       "a": "0x785a9369CF7918C0a295809962EAF9d8FAbde98D",
@@ -1048,17 +1059,6 @@
       "total": 672675
     },
     {
-      "a": "0x0fc0EbE63B74C3c90731A3cDaE03c9a51B084F36",
-      "n": null,
-      "t": "holder",
-      "wallet": 642078,
-      "locked": 0,
-      "staked": 0,
-      "burned": 0,
-      "points": 0,
-      "total": 642078
-    },
-    {
       "a": "0xBC703d66A11e2F53498867d606A6879a94096bB1",
       "n": null,
       "t": "holder",
@@ -1950,6 +1950,17 @@
       "total": 1463
     },
     {
+      "a": "0x2CbD36D9190c3aB603A8cF685c2a363387bE2314",
+      "n": null,
+      "t": "holder",
+      "wallet": 810,
+      "locked": 0,
+      "staked": 0,
+      "burned": 23889000,
+      "points": 13303,
+      "total": 810
+    },
+    {
       "a": "0x46914D5DC59598801e435AF2a08928Da87C60dF0",
       "n": null,
       "t": "holder",
@@ -2014,17 +2025,6 @@
       "burned": 0,
       "points": 0,
       "total": 66
-    },
-    {
-      "a": "0x2CbD36D9190c3aB603A8cF685c2a363387bE2314",
-      "n": null,
-      "t": "holder",
-      "wallet": 31,
-      "locked": 0,
-      "staked": 0,
-      "burned": 23733881,
-      "points": 13260,
-      "total": 31
     },
     {
       "a": "0x4827e436B09243A5824eA199500e34b6ddA1133A",
