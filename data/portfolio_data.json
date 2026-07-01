@@ -1,6 +1,6 @@
 {
-  "fetchedAt": "2026-06-30T10:49:46.341Z",
-  "block": 89123279,
+  "fetchedAt": "2026-07-01T11:18:03.529Z",
+  "block": 89205024,
   "holders": [
     {
       "a": "0x5b5a1503f491B2935BF757b21d2832a2B3D0df44",
@@ -251,8 +251,8 @@
       "wallet": 0,
       "locked": 4176975,
       "staked": 0,
-      "burned": 272240,
-      "points": 4182,
+      "burned": 296226,
+      "points": 4203,
       "total": 4176975
     },
     {
@@ -1103,6 +1103,17 @@
       "total": 610867
     },
     {
+      "a": "0x8B4A106521AE96a41B2Ec405d3FCb05eaf4A7C4f",
+      "n": null,
+      "t": "holder",
+      "wallet": 94493,
+      "locked": 500000,
+      "staked": 0,
+      "burned": 54300000,
+      "points": 20102,
+      "total": 594493
+    },
+    {
       "a": "0xAf129803e3d8BC4B9c6cBf975468e8EbFB2F2a40",
       "n": null,
       "t": "holder",
@@ -1134,17 +1145,6 @@
       "burned": 0,
       "points": 0,
       "total": 555850
-    },
-    {
-      "a": "0x8B4A106521AE96a41B2Ec405d3FCb05eaf4A7C4f",
-      "n": null,
-      "t": "holder",
-      "wallet": 30472,
-      "locked": 500000,
-      "staked": 0,
-      "burned": 54300000,
-      "points": 20102,
-      "total": 530472
     },
     {
       "a": "0xb982f7f0254F390f5F0DCd7e5269BC52FAE9F69d",
@@ -1598,17 +1598,6 @@
       "total": 83291
     },
     {
-      "a": "0x2CbD36D9190c3aB603A8cF685c2a363387bE2314",
-      "n": null,
-      "t": "holder",
-      "wallet": 80867,
-      "locked": 0,
-      "staked": 0,
-      "burned": 24287000,
-      "points": 13413,
-      "total": 80867
-    },
-    {
       "a": "0x84d504ADc11880F859D81ccb2ee614EeAE2c303E",
       "n": null,
       "t": "holder",
@@ -1937,6 +1926,17 @@
       "burned": 0,
       "points": 43,
       "total": 2420
+    },
+    {
+      "a": "0x2CbD36D9190c3aB603A8cF685c2a363387bE2314",
+      "n": null,
+      "t": "holder",
+      "wallet": 1854,
+      "locked": 0,
+      "staked": 0,
+      "burned": 24430000,
+      "points": 13453,
+      "total": 1854
     },
     {
       "a": "0x381CC779761212344f8400373a994d29E17522c6",
