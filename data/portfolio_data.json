@@ -1,6 +1,6 @@
 {
-  "fetchedAt": "2026-07-11T09:19:49.128Z",
-  "block": 90028666,
+  "fetchedAt": "2026-07-12T09:44:53.779Z",
+  "block": 90112571,
   "holders": [
     {
       "a": "0x5b5a1503f491B2935BF757b21d2832a2B3D0df44",
@@ -69,17 +69,6 @@
       "total": 18200000
     },
     {
-      "a": "0x0fc0EbE63B74C3c90731A3cDaE03c9a51B084F36",
-      "n": null,
-      "t": "holder",
-      "wallet": 17828850,
-      "locked": 0,
-      "staked": 0,
-      "burned": 0,
-      "points": 0,
-      "total": 17828850
-    },
-    {
       "a": "0x8566a6a3F75969270B98831B1486AB5D9D9fc389",
       "n": null,
       "t": "holder",
@@ -97,8 +86,8 @@
       "wallet": 0,
       "locked": 14058860,
       "staked": 750295,
-      "burned": 6649554,
-      "points": 10094,
+      "burned": 6983142,
+      "points": 10216,
       "total": 14809155
     },
     {
@@ -1576,17 +1565,6 @@
       "total": 93152
     },
     {
-      "a": "0x2CbD36D9190c3aB603A8cF685c2a363387bE2314",
-      "n": null,
-      "t": "holder",
-      "wallet": 89126,
-      "locked": 0,
-      "staked": 0,
-      "burned": 24950000,
-      "points": 13595,
-      "total": 89126
-    },
-    {
       "a": "0x4482609e05ad22497cecd7EB5074C2Ca3E546CEE",
       "n": null,
       "t": "holder",
@@ -1629,6 +1607,17 @@
       "burned": 0,
       "points": 0,
       "total": 79840
+    },
+    {
+      "a": "0x0fc0EbE63B74C3c90731A3cDaE03c9a51B084F36",
+      "n": null,
+      "t": "holder",
+      "wallet": 78325,
+      "locked": 0,
+      "staked": 0,
+      "burned": 0,
+      "points": 0,
+      "total": 78325
     },
     {
       "a": "0xfBD31ccD483B49A8DCe0fB8C0542cBCdfEFcaaEb",
@@ -1882,6 +1871,17 @@
       "burned": 0,
       "points": 0,
       "total": 8929
+    },
+    {
+      "a": "0x2CbD36D9190c3aB603A8cF685c2a363387bE2314",
+      "n": null,
+      "t": "holder",
+      "wallet": 8761,
+      "locked": 0,
+      "staked": 0,
+      "burned": 25110000,
+      "points": 13639,
+      "total": 8761
     },
     {
       "a": "0x53929c6AdD8632731DA8F74fdbd8Fb2E0673D109",
