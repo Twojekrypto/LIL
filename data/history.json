@@ -1239,6 +1239,14 @@
       "burned": 408682739,
       "stakers": 140,
       "lockers": 34
+    },
+    {
+      "date": "2026-08-28",
+      "staked": 108838141,
+      "locked": 165154554,
+      "burned": 408824739,
+      "stakers": 139,
+      "lockers": 34
     }
   ]
 }

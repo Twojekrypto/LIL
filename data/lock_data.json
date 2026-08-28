@@ -1,6 +1,6 @@
 {
-  "fetchedAt": "2026-08-27T18:41:55.886Z",
-  "block": 93826664,
+  "fetchedAt": "2026-08-28T19:48:27.343Z",
+  "block": 93907983,
   "lockers": [
     {
       "a": "0xF1B1CAE350ddF76b6Dcd75C21551DeD08d26968e",
@@ -20,13 +20,13 @@
       "a": "0x88f470733100c2bf068a88B218455bdC73049AB1",
       "n": null,
       "t": "holder",
-      "totalLocked": 18000000,
+      "totalLocked": 18100000,
       "lockCount": 1,
       "locks": [
         {
-          "amount": 18000000,
-          "endTs": 1784141870,
-          "durationDays": 30
+          "amount": 18100000,
+          "endTs": 1793896883,
+          "durationDays": 69
         }
       ]
     },
@@ -245,30 +245,6 @@
       ]
     },
     {
-      "a": "0xfFcb681b7B779357B343E16cA875163Ed1063269",
-      "n": null,
-      "t": "holder",
-      "totalLocked": 2483837,
-      "lockCount": 3,
-      "locks": [
-        {
-          "amount": 230287,
-          "endTs": 1787318328,
-          "durationDays": 120
-        },
-        {
-          "amount": 2175800,
-          "endTs": 1795604091,
-          "durationDays": 193
-        },
-        {
-          "amount": 77749,
-          "endTs": 1787757079,
-          "durationDays": 92
-        }
-      ]
-    },
-    {
       "a": "0x5113E792816311741f9a8a803953405f2DfFEADE",
       "n": null,
       "t": "holder",
@@ -284,6 +260,20 @@
           "amount": 2212435,
           "endTs": 1788154883,
           "durationDays": 10
+        }
+      ]
+    },
+    {
+      "a": "0xfFcb681b7B779357B343E16cA875163Ed1063269",
+      "n": null,
+      "t": "holder",
+      "totalLocked": 2175800,
+      "lockCount": 1,
+      "locks": [
+        {
+          "amount": 2175800,
+          "endTs": 1795604091,
+          "durationDays": 193
         }
       ]
     },
