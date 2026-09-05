@@ -1,6 +1,6 @@
 {
-  "fetchedAt": "2026-09-04T12:24:33.952Z",
-  "block": 94447427,
+  "fetchedAt": "2026-09-05T11:30:51.802Z",
+  "block": 94525478,
   "holders": [
     {
       "a": "0x5b5a1503f491B2935BF757b21d2832a2B3D0df44",
@@ -1935,7 +1935,7 @@
       "locked": 0,
       "staked": 0,
       "burned": 29001000,
-      "points": 14617,
+      "points": 14657,
       "total": 550
     },
     {
