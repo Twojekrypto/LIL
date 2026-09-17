@@ -1,10 +1,10 @@
 {
-  "fetchedAt": "2026-09-16T12:58:52.969Z",
-  "block": 95427526,
+  "fetchedAt": "2026-09-17T12:55:13.899Z",
+  "block": 95508742,
   "moatTotals": {
     "totalStaked": 86999421,
     "totalLocked": 183946390,
-    "totalBurned": 411313305,
+    "totalBurned": 411323305,
     "totalInContract": 270945811
   },
   "stakers": [
